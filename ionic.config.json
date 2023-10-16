@@ -1,0 +1,8 @@
+{
+  "name": "Lifemusic",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue-vite",
+  "id": "abab303e"
+}
