@@ -1,8 +1,12 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router';
+import { setupI18n } from "./locales/"
 
 import { IonicVue } from '@ionic/vue';
+
+/* Import tailwindcss  */
+import './theme/main.css'
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/vue/css/core.css';
@@ -25,8 +29,9 @@ import './theme/variables.css';
 
 const app = createApp(App)
   .use(IonicVue)
+  .use(setupI18n)
   .use(router);
-  
+
 router.isReady().then(() => {
   app.mount('#app');
 });
