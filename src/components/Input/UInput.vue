@@ -2,23 +2,29 @@
   <input
     v-bind="attrs"
     :value="modelValue"
-    v-model="model"
+    @input="
+      $emit(
+        'update:modelValue',
+        ($event.currentTarget as HTMLInputElement).value
+      )
+    "
     :id="id"
     class="border p-2 border-primary outline-none rounded bg-transparent"
   />
 </template>
 <script lang="ts" setup>
-import { useAttrs, defineModel } from "vue";
+import { useAttrs } from "vue";
 const props = withDefaults(
   defineProps<{
+    modelValue: any;
     id?: string;
   }>(),
   {
-    id: `input_${Math.round((new Date().getTime() / 1000) * Math.random())}`,
+    id: () => `input_${crypto.randomUUID()}`,
   }
 );
 
-const attrs = useAttrs();
+defineEmits(["update:modelValue"]);
 
-const model = defineModel();
+const attrs = useAttrs();
 </script>
