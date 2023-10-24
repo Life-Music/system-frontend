@@ -5,7 +5,8 @@
       class="w-full px-2 py-2 outline-none on-focus bg-transparent"
       :id="id"
       v-bind="$attrs"
-      v-model="model"
+      :value="modelValue"
+      @input="$emit('update:modelValue', $event.currentTarget.value)"
       placeholder=" "
     />
     <label :for="id" class="absolute inset-0 bg-transparent">
@@ -45,19 +46,20 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { computed, defineModel } from "vue";
+import { computed } from "vue";
 import UTooltip from "@/components/Tooltip/UTooltip.vue";
 import { ErrorObject } from "@vuelidate/core";
 const props = withDefaults(defineProps<{
   errors: Array<ErrorObject>,
-  tag: string,
+  tag?: string,
+  modelValue: any,
   id?: string;
 }>(), {
-  id: `input_${Math.round((new Date().getTime() / 1000) * Math.random())}`,
+  id: () => `input_${crypto.randomUUID()}`,
   tag: "input"
 });
 
-const model = defineModel()
+const emits = defineEmits(["update:modelValue"])
 
 const isError = computed(() => props.errors.length ? true : false)
 
