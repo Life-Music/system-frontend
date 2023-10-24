@@ -4,6 +4,7 @@ import router from './router';
 import { setupI18n } from "./locales/"
 
 import { IonicVue } from '@ionic/vue';
+import { setup } from './utils/fontawesome';
 
 /* Import tailwindcss  */
 import './theme/main.css'
@@ -29,8 +30,12 @@ import './theme/variables.css';
 
 const app = createApp(App)
   .use(IonicVue)
-  .use(setupI18n)
   .use(router);
+setup(app)
+
+setupI18n().then((i18n) => {
+  app.use(i18n)
+})
 
 router.isReady().then(() => {
   app.mount('#app');

@@ -1,6 +1,7 @@
 import { I18n, createI18n } from "vue-i18n";
-import { appStorage } from "@/storages/app"
+import { appStorage, isReady } from "@/storages/app"
 export async function setupI18n() {
+  await isReady()
   let lang = await appStorage.get("lang")
   if (!lang) {
     lang = "vi"

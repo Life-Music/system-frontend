@@ -1,6 +1,7 @@
+import { Plugin, Component } from 'vue'
 import 'vue-router'
 
-export {}
+export { }
 
 declare module 'vue-router' {
   interface RouteMeta {

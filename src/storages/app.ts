@@ -1,8 +1,12 @@
 import { Storage } from '@ionic/storage';
 
 const appStorage = new Storage()
-await appStorage.create()
+const isReady = async () => {
+  if (!appStorage.driver)
+    await appStorage.create()
+}
 
 export {
-  appStorage
+  appStorage,
+  isReady,
 }

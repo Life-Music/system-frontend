@@ -9,11 +9,8 @@
         </div>
       </div>
       <div class="p-8 w-[430px] bg-[#050b17] rounded-r-md">
-        <div class="text-xl mb-2 text-center text-slate-300">
-          {{ $t("welcome_back") }}
-        </div>
-        <div class="text-base mb-8 text-center text-slate-300">
-          {{ $t("welcome_back_msg") }}
+        <div class="text-2xl mb-8 text-center text-slate-300">
+          {{ $t("sign_up") }}
         </div>
         <form @submit.prevent="submit">
           <div class="space-y-8">
@@ -23,17 +20,30 @@
               :errors="validate.email.$errors"
             />
             <MakodaInput
-              type="password"
-              :custom-placeholder="$t('password')"
-              v-model="formData.password"
-              :errors="validate.password.$errors"
+              :custom-placeholder="$t('username')"
+              v-model="formData.username"
+              :errors="validate.username.$errors"
             />
+            <div class="flex gap-x-4">
+              <MakodaInput
+                type="password"
+                :custom-placeholder="$t('password')"
+                v-model="formData.password"
+                :errors="validate.password.$errors"
+              />
+              <MakodaInput
+                type="password"
+                v-model="formData.re_password"
+                :custom-placeholder="$t('re_password')"
+                :errors="validate.re_password.$errors"
+              />
+            </div>
             <div class="flex justify-between items-center">
               <router-link
                 :to="{
-                  name: routerNames['AUTH.REGISTER'],
+                  name: routerNames['AUTH.LOGIN'],
                 }"
-                >{{ $t("no_account") }}</router-link
+                >{{ $t("has_account") }}</router-link
               >
               <button class="btn-base bg-primary float-right">
                 {{ $t("done") }}
@@ -48,26 +58,35 @@
 <script setup lang="ts">
 import MakodaInput from "@/components/Input/MakodaInput.vue";
 import Poster from "@/assets/images/poster.jpg";
-import { ref } from "vue";
+import { ref, computed } from "vue";
 const cssPoster = `url('${Poster}')`;
 import { useVuelidate } from "@vuelidate/core";
-import { required, email } from "@vuelidate/validators";
+import { required, email, sameAs } from "@vuelidate/validators";
 import routerNames from "@/router/routerNames";
 const formData = ref({
   email: "",
+  username: "",
   password: "",
+  re_password: "",
 });
 
 const validate = useVuelidate(
-  {
+  computed(() => ({
     email: {
       required,
       email,
     },
+    username: {
+      required,
+    },
     password: {
       required,
     },
-  },
+    re_password: {
+      required,
+      sameAsPassword: sameAs(formData.value.password),
+    },
+  })),
   formData
 );
 
