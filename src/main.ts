@@ -33,10 +33,13 @@ const app = createApp(App)
   .use(router);
 setup(app)
 
-setupI18n().then((i18n) => {
-  app.use(i18n)
-})
-
-router.isReady().then(() => {
-  app.mount('#app');
-});
+Promise.all([
+  setupI18n(),
+  router.isReady()
+])
+  .then(([i18n]) => {
+    return app.use(i18n)
+  })
+  .then(() => {
+    app.mount('#app');
+  })

@@ -11,5 +11,15 @@ const messages = {
   done: "Hoàn tất",
   has_account: "Bạn đã có tài khoản?",
   no_account: "Bạn chưa có tài khoản?",
+  sidebar: {
+    explore: "Khám phá",
+    radio: "Radio",
+    artist: "Nghệ sỹ",
+    trending: "Thịnh hành",
+    your_library: "Thư viện của bạn",
+    recent_play: "Vừa phát gần đây",
+    playlist: "Playlist",
+    no_playlist: "Không có playlist",
+  }
 };
 export default messages;

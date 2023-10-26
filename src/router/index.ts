@@ -1,13 +1,13 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { RouteRecordRaw } from 'vue-router';
 import routerNames from './routerNames';
+import IndexVue from '@/views/Index.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    redirect: {
-      name: routerNames['AUTH.LOGIN']
-    }
+    name: routerNames.HOME,
+    component: IndexVue,
   },
   {
     path: '/auth',
