@@ -1,5 +1,6 @@
 import { I18n, createI18n } from "vue-i18n";
 import { appStorage, isReady } from "@/storages/app"
+import { nextTick } from "vue";
 export async function setupI18n() {
   await isReady()
   let lang = await appStorage.get("lang")
@@ -40,5 +41,6 @@ export async function loadLocaleMessages(i18n: I18n, locale: string) {
   const messages = await import(`./langs/${locale}.ts`);
   // set locale and locale message
   i18n.global.setLocaleMessage("vi", messages.default);
-  // return nextTick();
+
+  return nextTick();
 }
