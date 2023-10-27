@@ -14,12 +14,17 @@ const messages = {
   sidebar: {
     explore: "Khám phá",
     radio: "Radio",
-    artist: "Nghệ sỹ",
+    artist: "Nghệ sĩ",
     trending: "Thịnh hành",
     your_library: "Thư viện của bạn",
     recent_play: "Vừa phát gần đây",
     playlist: "Playlist",
     no_playlist: "Không có playlist",
-  }
+    liked: "Đã thích",
+  },
+  search: "Tìm kiếm",
+  albums: "Albums",
+  new_discover: "Phám phá mới",
+  follow: "Theo dõi",
 };
 export default messages;

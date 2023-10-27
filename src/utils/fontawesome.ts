@@ -6,9 +6,15 @@ import {
   faRadio,
   faMicrophoneStand,
   faFire,
+  faChevronLeft,
+  faChevronRight,
+  faMagnifyingGlass,
+  faThumbsUp,
 } from "@ily1606/pro-regular-svg-fontawesome";
 import {
   faCaretLeft,
+  faPlay,
+  faPause,
 } from "@ily1606/pro-solid-svg-fontawesome";
 import type { App } from "vue";
 const icons = {
@@ -18,6 +24,12 @@ const icons = {
   faRadio,
   faMicrophoneStand,
   faFire,
+  faChevronLeft,
+  faChevronRight,
+  faMagnifyingGlass,
+  faThumbsUp,
+  faPlay,
+  faPause,
 };
 const setup = (app: App) => {
   app.use(Config, icons);

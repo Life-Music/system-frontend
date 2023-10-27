@@ -42,6 +42,16 @@
     url("/fonts/SegoeUI/Segoe UI Bold Italic.woff") format("woff");
 }
 
+html {
+  overflow: auto;
+}
+
 body {
+  position: static !important;
   font-family: "Segoe UI Regular";
+}
+
+.ion-page {
+  display: unset !important;
+  position: static !important;
 }
