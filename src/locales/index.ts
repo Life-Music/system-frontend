@@ -10,6 +10,7 @@ export async function setupI18n() {
   }
   const options = {
     locale: lang,
+    legacy: false,
   }
 
   const i18n = createI18n(options);

@@ -5,6 +5,8 @@ import { setupI18n } from "./locales/"
 
 import { IonicVue } from '@ionic/vue';
 import { setup } from './utils/fontawesome';
+import { Toast, options } from './utils/vue-toastification';
+import "vue-toastification/dist/index.css";
 
 /* Import tailwindcss  */
 import './theme/main.css'
@@ -30,6 +32,7 @@ import './theme/variables.css';
 
 const app = createApp(App)
   .use(IonicVue)
+  .use(Toast, options)
   .use(router);
 setup(app)
 

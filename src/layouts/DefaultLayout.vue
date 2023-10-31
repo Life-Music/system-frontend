@@ -16,4 +16,7 @@
 <script setup lang="ts">
 import USidebar from "@/components/Sidebar/USidebar.vue";
 import UHeader from "@/components/Header/UHeader.vue";
+import requestInstance from "@/utils/axios";
+
+const userInfo = requestInstance.get("/");
 </script>

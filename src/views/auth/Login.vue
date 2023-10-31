@@ -18,9 +18,9 @@
         <form @submit.prevent="submit">
           <div class="space-y-8">
             <MakodaInput
-              :custom-placeholder="$t('email')"
-              v-model="formData.email"
-              :errors="validate.email.$errors"
+              :custom-placeholder="$t('email_or_username')"
+              v-model="formData.username"
+              :errors="validate.username.$errors"
             />
             <MakodaInput
               type="password"
@@ -35,7 +35,15 @@
                 }"
                 >{{ $t("no_account") }}</router-link
               >
-              <button class="btn-base bg-primary float-right">
+              <button
+                class="btn-base bg-primary disabled:bg-green-200/60 fill-white float-right flex items-center gap-x-2 transition-all"
+                :disabled="isLoading"
+              >
+                <VueFontAwesome
+                  icon="fa-regular fa-spinner-third"
+                  class="w-4 animate-spin fill-inherit"
+                  v-if="isLoading"
+                />
                 {{ $t("done") }}
               </button>
             </div>
@@ -51,18 +59,22 @@ import Poster from "@/assets/images/poster.jpg";
 import { ref } from "vue";
 const cssPoster = `url('${Poster}')`;
 import { useVuelidate } from "@vuelidate/core";
-import { required, email } from "@vuelidate/validators";
+import { required } from "@vuelidate/validators";
 import routerNames from "@/router/routerNames";
+import requestInstance from "@/utils/axios";
+import { useRouter } from "vue-router";
+
 const formData = ref({
-  email: "",
+  username: "",
   password: "",
 });
+const isLoading = ref(false);
+const router = useRouter();
 
 const validate = useVuelidate(
   {
-    email: {
+    username: {
       required,
-      email,
     },
     password: {
       required,
@@ -72,12 +84,26 @@ const validate = useVuelidate(
 );
 
 const submit = async (e: Event) => {
-  console.log(validate);
   const result = await validate.value.$validate();
   if (!result) {
     return;
   }
-  // Call API here
+
+  isLoading.value = true;
+  const res = await requestInstance.post<
+    AxiosResponse<{
+      token: string;
+      user: any;
+    }>
+  >("/auth/login", formData.value);
+
+  if (res.data.success) {
+    localStorage.setItem("access_token", res.data.data.token);
+    router.push({
+      name: routerNames.HOME,
+    });
+  }
+  isLoading.value = false;
 };
 </script>
 <style scoped>
