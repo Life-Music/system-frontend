@@ -26,6 +26,18 @@
             />
             <div class="flex gap-x-4">
               <MakodaInput
+                :custom-placeholder="$t('first_name')"
+                v-model="formData.firstName"
+                :errors="validate.firstName.$errors"
+              />
+              <MakodaInput
+                v-model="formData.lastName"
+                :custom-placeholder="$t('last_name')"
+                :errors="validate.lastName.$errors"
+              />
+            </div>
+            <div class="flex gap-x-4">
+              <MakodaInput
                 type="password"
                 :custom-placeholder="$t('password')"
                 v-model="formData.password"
@@ -45,7 +57,15 @@
                 }"
                 >{{ $t("has_account") }}</router-link
               >
-              <button class="btn-base bg-primary float-right">
+              <button
+                class="btn-base bg-primary disabled:bg-green-200/60 fill-white float-right flex items-center gap-x-2 transition-all"
+                :disabled="isLoading"
+              >
+                <VueFontAwesome
+                  icon="fa-regular fa-spinner-third"
+                  class="w-4 animate-spin fill-inherit"
+                  v-if="isLoading"
+                />
                 {{ $t("done") }}
               </button>
             </div>
@@ -63,11 +83,22 @@ const cssPoster = `url('${Poster}')`;
 import { useVuelidate } from "@vuelidate/core";
 import { required, email, sameAs } from "@vuelidate/validators";
 import routerNames from "@/router/routerNames";
+import { useRouter } from "vue-router";
+import requestInstance from "@/utils/axios";
+import { useToast } from "vue-toastification";
+import { useI18n } from "vue-i18n";
+
+const toast = useToast();
+const isLoading = ref(false);
+const router = useRouter();
+const { t } = useI18n();
 const formData = ref({
   email: "",
   username: "",
   password: "",
   re_password: "",
+  firstName: "",
+  lastName: "",
 });
 
 const validate = useVuelidate(
@@ -86,6 +117,12 @@ const validate = useVuelidate(
       required,
       sameAsPassword: sameAs(formData.value.password),
     },
+    firstName: {
+      required,
+    },
+    lastName: {
+      required,
+    },
   })),
   formData
 );
@@ -96,7 +133,21 @@ const submit = async (e: Event) => {
   if (!result) {
     return;
   }
-  // Call API here
+
+  isLoading.value = true;
+  const res = await requestInstance.post<
+    AxiosResponse<{
+      user: any;
+    }>
+  >("/auth/register", formData.value);
+
+  if (res.data.success) {
+    toast.success(t("sign_up_successfully"));
+    router.push({
+      name: routerNames["AUTH.LOGIN"],
+    });
+  }
+  isLoading.value = false;
 };
 </script>
 <style scoped>

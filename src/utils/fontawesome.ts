@@ -10,6 +10,7 @@ import {
   faChevronRight,
   faMagnifyingGlass,
   faThumbsUp,
+  faSpinnerThird,
 } from "@ily1606/pro-regular-svg-fontawesome";
 import {
   faCaretLeft,
@@ -30,6 +31,7 @@ const icons = {
   faThumbsUp,
   faPlay,
   faPause,
+  faSpinnerThird,
 };
 const setup = (app: App) => {
   app.use(Config, icons);

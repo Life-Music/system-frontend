@@ -4,9 +4,12 @@ const messages = {
   sign_in: "Đăng nhập",
   sign_up: "Đăng ký",
   email: "Email",
+  email_or_username: "Email hoặc tên đăng nhập",
   username: "Tên người dùng",
   password: "Mật khẩu",
   re_password: "Nhập lại mật khẩu",
+  first_name: "Họ",
+  last_name: "Tên",
   discover_new_music: "Khám phá âm nhạc mới",
   done: "Hoàn tất",
   has_account: "Bạn đã có tài khoản?",
@@ -26,5 +29,6 @@ const messages = {
   albums: "Albums",
   new_discover: "Phám phá mới",
   follow: "Theo dõi",
+  sign_up_successfully: "Đăng ký thành công!",
 };
 export default messages;
