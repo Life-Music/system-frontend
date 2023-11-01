@@ -90,12 +90,16 @@ const submit = async (e: Event) => {
   }
 
   isLoading.value = true;
-  const res = await requestInstance.post<
-    AxiosResponse<{
-      token: string;
-      user: any;
-    }>
-  >("/auth/login", formData.value);
+  const res = await requestInstance
+    .post<
+      AxiosResponse<{
+        token: string;
+        user: any;
+      }>
+    >("/auth/login", formData.value)
+    .finally(() => {
+      isLoading.value = false;
+    });
 
   if (res.data.success) {
     localStorage.setItem("access_token", res.data.data.token);
@@ -103,7 +107,6 @@ const submit = async (e: Event) => {
       name: routerNames.HOME,
     });
   }
-  isLoading.value = false;
 };
 </script>
 <style scoped>

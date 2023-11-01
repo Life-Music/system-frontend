@@ -135,11 +135,15 @@ const submit = async (e: Event) => {
   }
 
   isLoading.value = true;
-  const res = await requestInstance.post<
-    AxiosResponse<{
-      user: any;
-    }>
-  >("/auth/register", formData.value);
+  const res = await requestInstance
+    .post<
+      AxiosResponse<{
+        user: any;
+      }>
+    >("/auth/register", formData.value)
+    .finally(() => {
+      isLoading.value = false;
+    });
 
   if (res.data.success) {
     toast.success(t("sign_up_successfully"));
@@ -147,7 +151,6 @@ const submit = async (e: Event) => {
       name: routerNames["AUTH.LOGIN"],
     });
   }
-  isLoading.value = false;
 };
 </script>
 <style scoped>
