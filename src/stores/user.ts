@@ -1,17 +1,20 @@
 import { defineStore } from "pinia";
+import { User } from "~/prisma/generated/mysql";
 
-export const useAudioStore = defineStore('audio', {
-  state() {
+export const useUserInfoStore = defineStore('user', {
+  state(): {
+    userInfo: User | null,
+  } {
     return {
-      currentAudio: null
+      userInfo: null
     }
   },
   actions: {
     setCurrentAudio(audio: any) {
-      this.currentAudio = audio
+      this.userInfo = audio
     },
     removeCurrentAudio() {
-      this.currentAudio = null
+      this.userInfo = null
     }
   }
 })
