@@ -19,17 +19,79 @@
       />
     </label>
     <div>
-      <button
-        class="btn-base bg-main-gradient text-slate-900 font-sans font-semibold"
-        @click="() => router.push({ name: routerNames['AUTH.LOGIN'] })"
-      >
-        {{ $t("sign_in") }}
-      </button>
+      <LazyPulse :handler="userInfoStore" class-loader="w-24 h-10">
+        <template v-if="userInfo">
+          <Menu class="relative" as="div">
+            <MenuButton>
+              <div class="flex gap-x-3 items-center cursor-pointer">
+                <ArtistAvatar :name="userInfo.firstName" />
+                <div class="font-sans font-semibold text-beige">
+                  {{ userInfo.username }}
+                </div>
+              </div>
+            </MenuButton>
+            <MenuItems
+              class="absolute right-0 mt-2 bg-slate-800 p-1 rounded-lg w-max origin-top-right"
+            >
+              <MenuItem v-slot="{ active }">
+                <div
+                  class="flex items-center gap-x-3 cursor-pointer px-4 rounded-lg py-2"
+                  :class="[active ? 'bg-slate-900 text-white' : '']"
+                >
+                  <VueFontAwesome
+                    icon="fa-regular fa-folder-music"
+                    class="h-4"
+                  />
+                  <div>Quản lý kênh</div>
+                </div>
+              </MenuItem>
+              <MenuItem v-slot="{ active }">
+                <div
+                  class="flex items-center gap-x-3 cursor-pointer px-4 rounded-lg py-2"
+                  :class="[active ? 'bg-slate-900 text-white' : '']"
+                  @click="logout()"
+                >
+                  <VueFontAwesome
+                    icon="fa-regular fa-right-from-bracket"
+                    class="h-4"
+                  />
+                  <div>Đăng xuất</div>
+                </div>
+              </MenuItem>
+            </MenuItems>
+          </Menu>
+        </template>
+        <template v-else>
+          <button
+            class="btn-base bg-main-gradient text-slate-900 font-sans font-semibold"
+            @click="() => router.push({ name: routerNames['AUTH.LOGIN'] })"
+          >
+            {{ $t("sign_in") }}
+          </button>
+        </template>
+      </LazyPulse>
     </div>
   </div>
 </template>
 <script setup lang="ts">
 import routerNames from "@/router/routerNames";
 import { useRouter } from "vue-router";
+import LazyPulse from "@/components/Lazy/Pulse.vue";
+import ArtistAvatar from "@/components/Artist/Avatar.vue";
+import { useUserInfoStore } from "@/stores/user";
+import { ref } from "vue";
+import { User } from "~/prisma/generated/mysql";
+import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
 const router = useRouter();
+const userStore = useUserInfoStore();
+const userInfoStore = userStore.userInfo;
+const userInfo = ref<User | null | false>(null);
+userInfoStore?.then((res) => {
+  userInfo.value = res;
+});
+
+const logout = () => {
+  localStorage.removeItem("access_token");
+  window.location.reload();
+};
 </script>

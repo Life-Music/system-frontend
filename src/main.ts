@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router';
 import { setupI18n } from "./locales/"
+import { createPinia } from 'pinia'
 
 import { IonicVue } from '@ionic/vue';
 import { setup } from './utils/fontawesome';
@@ -31,6 +32,7 @@ import '@ionic/vue/css/display.css';
 import './theme/variables.css';
 
 const app = createApp(App)
+  .use(createPinia())
   .use(IonicVue)
   .use(Toast, options)
   .use(router);

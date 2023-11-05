@@ -11,6 +11,8 @@ import {
   faMagnifyingGlass,
   faThumbsUp,
   faSpinnerThird,
+  faFolderMusic,
+  faRightFromBracket,
 } from "@ily1606/pro-regular-svg-fontawesome";
 import {
   faCaretLeft,
@@ -32,6 +34,8 @@ const icons = {
   faPlay,
   faPause,
   faSpinnerThird,
+  faFolderMusic,
+  faRightFromBracket,
 };
 const setup = (app: App) => {
   app.use(Config, icons);

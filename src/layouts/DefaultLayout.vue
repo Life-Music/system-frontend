@@ -16,7 +16,8 @@
 <script setup lang="ts">
 import USidebar from "@/components/Sidebar/USidebar.vue";
 import UHeader from "@/components/Header/UHeader.vue";
-import requestInstance from "@/utils/axios";
+import { useUserInfoStore } from "@/stores/user";
 
-const userInfo = requestInstance.get("/me");
+const userStore = useUserInfoStore();
+userStore.init();
 </script>
