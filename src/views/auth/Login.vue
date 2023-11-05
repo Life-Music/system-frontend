@@ -63,6 +63,8 @@ import { required } from "@vuelidate/validators";
 import routerNames from "@/router/routerNames";
 import requestInstance from "@/utils/axios";
 import { useRouter } from "vue-router";
+import { useUserInfoStore } from "@/stores/user";
+const userStore = useUserInfoStore();
 
 const formData = ref({
   username: "",
@@ -103,6 +105,8 @@ const submit = async (e: Event) => {
 
   if (res.data.success) {
     localStorage.setItem("access_token", res.data.data.token);
+    userStore.removeUserInfo();
+    userStore.init();
     router.push({
       name: routerNames.HOME,
     });

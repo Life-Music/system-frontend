@@ -1,17 +1,29 @@
+import requestInstance from "@/utils/axios";
 import { defineStore } from "pinia";
+import { User } from "~/prisma/generated/mysql";
 
-export const useAudioStore = defineStore('audio', {
-  state() {
+export const useUserInfoStore = defineStore('user', {
+  state(): {
+    userInfo: Promise<User | false> | null,
+  } {
     return {
-      currentAudio: null
+      userInfo: null
     }
   },
   actions: {
-    setCurrentAudio(audio: any) {
-      this.currentAudio = audio
+    init() {
+      this.userInfo ??= requestInstance.get<AxiosResponse<User | false>>("/me").then(({ data }) => {
+        if (data.data && data.data.firstName) return data.data
+        return false
+      });
     },
-    removeCurrentAudio() {
-      this.currentAudio = null
+    setUserInfo(userInfo: User) {
+      this.userInfo = Promise.resolve(userInfo)
+    },
+    removeUserInfo() {
+      this.userInfo = null
     }
+  },
+  getters: {
   }
 })
