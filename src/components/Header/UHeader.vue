@@ -37,6 +37,7 @@
                 <div
                   class="flex items-center gap-x-3 cursor-pointer px-4 rounded-lg py-2"
                   :class="[active ? 'bg-slate-900 text-white' : '']"
+                  @click="gotoStudio()"
                 >
                   <VueFontAwesome
                     icon="fa-regular fa-folder-music"
@@ -93,5 +94,11 @@ userInfoStore?.then((res) => {
 const logout = () => {
   localStorage.removeItem("access_token");
   window.location.reload();
+};
+
+const gotoStudio = () => {
+  const url = new URL(import.meta.env.VITE_STUDIO_ENDPOINT_AUTH);
+  url.searchParams.append("token", localStorage.getItem("access_token") ?? "");
+  window.open(url, "_blank");
 };
 </script>
