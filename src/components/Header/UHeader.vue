@@ -9,6 +9,13 @@
       <input autocomplete="off" type="text" v-model="q" id="search_input" class="w-56 bg-transparent outline-none text-sm"
         :placeholder="$t('search_placeholder')" @keydown="handleSearch" />
     </label>
+    <div v-if="buildMode !== 'electron'">
+      <a href="https://github.com/Life-Music/system-frontend/releases/latest" target="_blank"
+        class="bg-lime-700 hover:bg-green-700 text-white fill-white inline-flex items-center rounded-lg px-4 py-2 gap-x-2 font-medium">
+        <VueFontAwesome icon="fa-regular fa-cloud-arrow-down" class="h-5 fill-inherit" />
+        Download app
+      </a>
+    </div>
     <div>
       <LazyPulse :handler="userInfoStore" class-loader="w-24 h-10">
         <template v-if="userInfo">
@@ -66,6 +73,8 @@ const userInfo = ref<User | null | false>(null);
 userInfoStore?.then((res) => {
   userInfo.value = res;
 });
+
+const buildMode = import.meta.env.VITE_BUILD_MODE
 
 const header = ref()
 const q = ref("");

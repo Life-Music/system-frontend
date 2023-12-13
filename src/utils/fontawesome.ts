@@ -16,6 +16,7 @@ import {
   faRightFromBracket,
   faLoader,
   faCheck,
+  faCloudArrowDown,
 } from "@ily1606/pro-regular-svg-fontawesome";
 import {
   faCaretLeft,
@@ -37,7 +38,7 @@ import {
   faTrash,
   faListMusic,
   faBell,
-} from "@ily1606/pro-light-svg-fontawesome"
+} from "@ily1606/pro-light-svg-fontawesome";
 import type { App } from "vue";
 const icons = {
   faCircleExclamation,
@@ -72,6 +73,7 @@ const icons = {
   faListMusic,
   faCheck,
   faBell,
+  faCloudArrowDown,
 };
 const setup = (app: App) => {
   app.use(Config, icons);
