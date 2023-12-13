@@ -1,5 +1,5 @@
 <template>
-  <div class="px-2">
+  <div class="px-2 pb-32">
     <Pulse :handler="handler">
       <div v-if="dataSource">
         <div class="pt-2 mb-8">
