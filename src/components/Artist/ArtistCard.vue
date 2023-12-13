@@ -1,14 +1,30 @@
 <template>
-  <div class="flex gap-x-4 items-center">
-    <div
-      class="w-16 aspect-square bg-no-repeat bg-center bg-cover rounded-full"
-      :style="`background-image: url('${props.image}')`"
-    ></div>
-    <slot />
+  <div class="flex items-center flex-col gap-4 bg-gray-800 p-4 rounded-xl hover:bg-slate-950 cursor-pointer">
+    <div>
+      <Avatar :user-info="props.artist" size="lg" />
+    </div>
+    <div class="space-y-2  text-center">
+      <div class="w-full line-clamp-1 text-lg">{{ getFullName(artist) }}</div>
+      <div class="text-sm text-beige">
+        {{ formatNumber(artist._count.subscribers) }} người theo dõi
+      </div>
+    </div>
   </div>
 </template>
 <script setup lang="ts">
+import { Prisma } from '~/prisma/generated/mysql';
+import Avatar from '../User/Avatar/Avatar.vue';
+import { formatNumber, getFullName } from '@/utils/common';
+
 const props = defineProps<{
-  image: string;
+  artist: Prisma.UserGetPayload<{
+    include: {
+      _count: {
+        select: {
+          subscribers: true,
+        }
+      }
+    }
+  }>;
 }>();
 </script>

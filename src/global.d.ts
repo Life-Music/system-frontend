@@ -11,6 +11,15 @@ declare interface ResponseFailed {
   error: string
 }
 
+declare interface ResponseSuccessPagination<T> extends ResponseSuccess<T> {
+  meta: {
+    total_object: number,
+    current_page: number,
+    per_page: number,
+    end_page: number,
+  }
+}
+
 declare interface AxiosResponse<T> extends ResponseSuccess<T>, ResponseFailed {
 
 }

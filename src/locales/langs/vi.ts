@@ -30,5 +30,7 @@ const messages = {
   new_discover: "Phám phá mới",
   follow: "Theo dõi",
   sign_up_successfully: "Đăng ký thành công!",
+  comment: "Bình luận",
+  search_placeholder: "Tên bài hát, album, nghệ sỹ"
 };
 export default messages;

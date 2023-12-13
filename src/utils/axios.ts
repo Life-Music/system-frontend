@@ -24,12 +24,18 @@ requestInstance.interceptors.response.use((response) => response, (error) => {
         localStorage.removeItem("access_token");
         router.push({ name: routerNames["AUTH.LOGIN"] });
       }
-      return
+      return Promise.reject(error);
+
     }
   } catch (e) {
     // Some thing went wrong
   }
+  if (error.code === "ERR_CANCELED") {
+    return Promise.reject(error);
+  }
   toast.error("Something went wrong!");
+  return Promise.reject(error);
+
 })
 
 export default requestInstance

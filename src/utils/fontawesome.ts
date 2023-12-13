@@ -10,15 +10,34 @@ import {
   faChevronRight,
   faMagnifyingGlass,
   faThumbsUp,
+  faThumbsDown,
   faSpinnerThird,
   faFolderMusic,
   faRightFromBracket,
+  faLoader,
+  faCheck,
 } from "@ily1606/pro-regular-svg-fontawesome";
 import {
   faCaretLeft,
   faPlay,
   faPause,
+  faBackwardStep,
+  faForwardStep,
+  faVolumeHigh,
+  faChevronUp,
+  faChevronDown,
+  faThumbsUp as faThumbsUpSolid,
+  faThumbsDown as faThumbsDownSolid,
 } from "@ily1606/pro-solid-svg-fontawesome";
+import {
+  faCirclePlay,
+  faComment,
+  faPaperPlaneTop,
+  faEllipsisVertical,
+  faTrash,
+  faListMusic,
+  faBell,
+} from "@ily1606/pro-light-svg-fontawesome"
 import type { App } from "vue";
 const icons = {
   faCircleExclamation,
@@ -36,6 +55,23 @@ const icons = {
   faSpinnerThird,
   faFolderMusic,
   faRightFromBracket,
+  faLoader,
+  faCirclePlay,
+  faBackwardStep,
+  faForwardStep,
+  faVolumeHigh,
+  faChevronUp,
+  faComment,
+  faPaperPlaneTop,
+  faEllipsisVertical,
+  faTrash,
+  faChevronDown,
+  faThumbsDown,
+  faThumbsUpSolid,
+  faThumbsDownSolid,
+  faListMusic,
+  faCheck,
+  faBell,
 };
 const setup = (app: App) => {
   app.use(Config, icons);

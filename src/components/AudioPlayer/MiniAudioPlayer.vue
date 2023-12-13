@@ -1,50 +1,41 @@
 <template>
-  <div
-    class="p-2 rounded-xl flex gap-x-4 items-center bg-music-gradient pr-6 text-sm fill-white"
-  >
-    <div
-      class="bg-no-repeat bg-cover bg-center rounded-lg w-14 aspect-square"
-      :style="`background-image: url('${props.thumbnail}')`"
-    ></div>
-    <div class="space-y-1 mr-auto">
-      <div>{{ props.name }}</div>
-      <div>{{ props.artist.name }}</div>
+  <div class="cursor-pointer p-2 rounded-xl flex gap-x-4 items-center bg-[#111823] pr-6 text-sm fill-white"
+    @click.self="playMedia(props.media)">
+    <div class="bg-no-repeat bg-cover bg-center rounded-lg w-14 aspect-square flex-shrink-0" :style="`background-image: url('${getThumbnailUrlPrimary(
+      props.media.thumbnails
+    )}')`"></div>
+    <div class="space-y-1 mr-auto overflow-hidden flex-auto" @click="playMedia(props.media)">
+      <div class="line-clamp-2">{{ props.media.title }}</div>
+      <div class="text-xs">{{ getFullName(props.media.owner) }}</div>
     </div>
-    <div>
-      {{ convertDuration(props.duration) }}
+    <div class="flex-shrink-0 ml-auto p-4">
+      <MediaDropDown @add-to-playlist="addToPlayList" />
     </div>
-    <VueFontAwesome
-      :icon="`fa-solid ${isPlaying ? 'fa-pause' : 'fa-play'}`"
-      class="h-4 cursor-pointer"
-      @click="togglePlay()"
-    />
   </div>
+  <ModalAddToPlaylist v-model:open="isOpenModalPlaylist" :media-id="props.media.id" />
 </template>
 <script setup lang="ts">
-import { useAudioStore } from "@/stores/audio";
-import { convertDuration } from "@/utils/common";
+import {
+  playMedia,
+  getThumbnailUrlPrimary,
+  getFullName,
+} from "@/utils/common";
+import MediaDropDown from "../Dropdown/MediaDropDown.vue";
+import ModalAddToPlaylist from "../Modal/ModalAddToPlaylist.vue";
+import { Prisma } from "~/prisma/generated/mysql";
 import { ref } from "vue";
 const props = defineProps<{
-  thumbnail: string;
-  name: string;
-  artist: {
-    name: string;
-  };
-  source: string;
-  duration: number;
+  media: Prisma.MediaGetPayload<{
+    include: {
+      thumbnails: true;
+      owner: true;
+    };
+  }>;
 }>();
 
-const isPlaying = ref(false);
+const isOpenModalPlaylist = ref(false);
 
-let audio = ref<HTMLAudioElement | null>(null);
-
-const togglePlay = () => {
-  isPlaying.value = !isPlaying.value;
-  if (isPlaying.value) {
-    if (!audio.value) audio.value = new Audio(props.source);
-    audio.value.play();
-  } else {
-    if (audio.value) audio.value.pause();
-  }
-};
+const addToPlayList = () => {
+  isOpenModalPlaylist.value = true
+}
 </script>
