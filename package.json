@@ -12,9 +12,9 @@
     "test:e2e": "cypress run",
     "test:unit": "vitest",
     "lint": "eslint",
-    "build:win": "electron-builder --win --config",
-    "build:mac": "npm run build && electron-builder --mac --config",
-    "build:linux": "electron-builder --linux --config"
+    "build:win": "electron-vite build && electron-builder --win --config",
+    "build:mac": "electron-vite build && electron-builder --mac --config",
+    "build:linux": "electron-vite build && electron-builder --linux --config"
   },
   "dependencies": {
     "@capacitor/app": "5.0.6",
