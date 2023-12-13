@@ -2,35 +2,38 @@ import requestInstance from "@/utils/axios";
 import { defineStore } from "pinia";
 import { User } from "~/prisma/generated/mysql";
 
-export const useUserInfoStore = defineStore('user', {
+export const useUserInfoStore = defineStore("user", {
   state(): {
-    handler: Promise<User | false> | null,
-    userInfo: User | false | null,
+    handler: Promise<User | false> | null;
+    userInfo: User | false | null;
   } {
     return {
       handler: null,
-      userInfo: null
-    }
+      userInfo: null,
+    };
   },
   actions: {
     init() {
-      this.handler ??= requestInstance.get<AxiosResponse<User | false>>("/me").then(({ data }) => {
-        if (data.data && data.data.firstName) return data.data
-        return false
-      }).then((data) => {
-        this.userInfo = data
-        return data
-      });
+      this.handler ??= requestInstance
+        .get<AxiosResponse<User | false>>("/me")
+        .then(({ data }) => {
+          if (data.data && data.data.firstName) return data.data;
+          return false;
+        })
+        .then((data) => {
+          this.userInfo = data;
+          return data;
+        });
 
-      return this.handler
+      return this.handler;
     },
     setUserInfo(userInfo: User) {
-      this.userInfo = userInfo
+      this.userInfo = userInfo;
     },
     removeUserInfo() {
-      this.userInfo = null
-    }
+      this.handler = null;
+      this.userInfo = null;
+    },
   },
-  getters: {
-  }
-})
+  getters: {},
+});

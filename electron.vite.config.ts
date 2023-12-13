@@ -29,6 +29,7 @@ export default defineConfig({
   },
   renderer: {
     root: ".",
+    envPrefix: "VITE_",
     build: {
       rollupOptions: {
         input: {

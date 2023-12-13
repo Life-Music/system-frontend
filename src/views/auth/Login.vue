@@ -1,9 +1,7 @@
 <template>
   <div class="shadow-md w-full">
     <div class="w-full flex">
-      <div
-        class="w-80 relative poster bg-no-repeat bg-cover bg-center opacity-70 border-t-2 border-primary"
-      >
+      <div class="w-80 relative poster bg-no-repeat bg-cover bg-center opacity-70 border-t-2 border-primary">
         <div class="absolute bottom-4 left-4 text-xl w-32 rounded-l-md">
           {{ $t("discover_new_music") }}
         </div>
@@ -17,33 +15,19 @@
         </div>
         <form @submit.prevent="submit">
           <div class="space-y-8">
-            <MakodaInput
-              :custom-placeholder="$t('email_or_username')"
-              v-model="formData.username"
-              :errors="validate.username.$errors"
-            />
-            <MakodaInput
-              type="password"
-              :custom-placeholder="$t('password')"
-              v-model="formData.password"
-              :errors="validate.password.$errors"
-            />
+            <MakodaInput :custom-placeholder="$t('email_or_username')" v-model="formData.username"
+              :errors="validate.username.$errors" />
+            <MakodaInput type="password" :custom-placeholder="$t('password')" v-model="formData.password"
+              :errors="validate.password.$errors" />
             <div class="flex justify-between items-center">
-              <router-link
-                :to="{
-                  name: routerNames['AUTH.REGISTER'],
-                }"
-                >{{ $t("no_account") }}</router-link
-              >
+              <router-link :to="{
+                name: routerNames['AUTH.REGISTER'],
+              }">{{ $t("no_account") }}</router-link>
               <button
                 class="btn-base bg-primary disabled:bg-green-200/60 fill-white float-right flex items-center gap-x-2 transition-all"
-                :disabled="isLoading"
-              >
-                <VueFontAwesome
-                  icon="fa-regular fa-spinner-third"
-                  class="w-4 animate-spin fill-inherit"
-                  v-if="isLoading"
-                />
+                :disabled="isLoading">
+                <VueFontAwesome icon="fa-regular fa-spinner-third" class="w-4 animate-spin fill-inherit"
+                  v-if="isLoading" />
                 {{ $t("done") }}
               </button>
             </div>
@@ -64,7 +48,9 @@ import routerNames from "@/router/routerNames";
 import requestInstance from "@/utils/axios";
 import { useRouter } from "vue-router";
 import { useUserInfoStore } from "@/stores/user";
+import { usePlaylistStore } from "@/stores/playlist";
 const userStore = useUserInfoStore();
+const playlistStore = usePlaylistStore();
 
 const formData = ref({
   username: "",
@@ -107,6 +93,9 @@ const submit = async (e: Event) => {
     localStorage.setItem("access_token", res.data.data.token);
     userStore.removeUserInfo();
     userStore.init();
+
+    playlistStore.removePlaylist();
+    playlistStore.init();
     router.push({
       name: routerNames.HOME,
     });

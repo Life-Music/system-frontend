@@ -36,43 +36,9 @@ import SongInAlbums from "@/components/Discover/SongInAlbums.vue";
 
 const playlists = ref(
   new Array(5).fill({
-    image: "/tmp-image/summer-beach.avif",
+    image: new URL("/tmp-image/summer-beach.avif", import.meta.url).href,
     name: "Mùa hè sôi động",
   })
 );
 
-const albums = ref(
-  new Array(3).fill({
-    image: "/tmp-image/summer-beach.avif",
-    name: "Việt Nam Ơi",
-    artist: {
-      name: "Minh Beta",
-    },
-  })
-);
-
-const artists = ref(
-  new Array(5).fill([
-    {
-      image: "/tmp-image/summer-beach.avif",
-      name: "Minh Beta",
-    },
-    {
-      image: "/tmp-image/summer-beach.avif",
-      name: "Minh Beta",
-    },
-  ])
-);
-
-const musics = ref(
-  new Array(6).fill({
-    thumbnail: "/tmp-image/summer-beach.avif",
-    name: "Việt nam ơi",
-    artist: {
-      name: "Minh Beta",
-    },
-    source: "/tmp-audio/VietNamOi-MinhBeta_3bnet.mp3",
-    duration: 180,
-  })
-);
 </script>
