@@ -36,3 +36,4 @@ prisma/generated/mysql/*.*
 prisma/generated/mysql/runtime/*
 !prisma/generated/mysql/runtime/*.d.ts
 !prisma/generated/mysql/**/*.d.ts
+/out

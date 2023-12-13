@@ -5,7 +5,10 @@ export default {
   "AUTH.REGISTER": "auth.register",
   "RADIO": "radio",
   "ARTIST": "artist",
+  "ARTIST_DETAIL": "artist.detail.view",
   "TRENDING": "trending",
   "RECENT_PLAY": "recent-play",
   "LIKED": "liked",
+  "PLAYLIST_DETAIL": "playlist.detail.view",
+  "SEARCH": "search.view",
 }

@@ -16,7 +16,7 @@
       />
     </div>
   </div>
-  <div class="h-full w-full overflow-hidden" ref="slideWrapper">
+  <div class="h-full w-full overflow-hidden snap-x" ref="slideWrapper">
     <div
       class="flex flex-nowrap slide-container transition-transform duration-300"
       ref="container"

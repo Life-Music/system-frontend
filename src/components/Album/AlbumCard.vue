@@ -1,10 +1,10 @@
 <template>
-  <div class="text-center cursor-pointer w-max">
+  <div class="cursor-pointer w-full">
     <div
-      class="w-32 aspect-square rounded-xl bg-no-repeat bg-cover bg-center mb-4"
+      class="w-full aspect-square rounded-xl bg-no-repeat bg-cover bg-center mb-2"
       :style="[`background-image: url('${props.image}')`]"
     ></div>
-    <div class="text-slate-400 font-sans mb-2">
+    <div class="text-slate-400 font-sans text-lg">
       {{ props.name }}
     </div>
     <div class="font-sans">
