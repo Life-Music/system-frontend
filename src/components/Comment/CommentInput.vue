@@ -16,7 +16,9 @@
     </div>
   </form>
   <div v-else class="text-beige">
-    Vui lòng <RouterLink :to="routerNames['AUTH.LOGIN']">
+    Vui lòng <RouterLink :to="{
+      name: routerNames['AUTH.LOGIN'],
+    }">
       đăng nhập
     </RouterLink> để sử dụng tính năng này
   </div>

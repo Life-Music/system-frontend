@@ -8,6 +8,7 @@ import LikeView from "@/views/like/LikeView.vue";
 import ArtistView from "@/views/artist/ArtistView.vue";
 import ArtistDetailView from "@/views/artist/ArtistDetailView.vue";
 import SearchViewVue from "@/views/search/SearchView.vue";
+import TrendingView from "@/views/trending/TrendingView.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -67,6 +68,16 @@ const routes: Array<RouteRecordRaw> = [
         path: "",
         name: routerNames.SEARCH,
         component: SearchViewVue,
+      },
+    ],
+  },
+  {
+    path: "/trending",
+    children: [
+      {
+        path: "",
+        name: routerNames.TRENDING,
+        component: TrendingView,
       },
     ],
   },
