@@ -8,7 +8,10 @@
         </div>
         <div class="space-y-2 max-w-[220px]">
           <div class="text-base line-clamp-1 ">{{ mediaStore.currentMedia.title }}</div>
-          <div class="text-xs text-beige">{{ getFullName(mediaStore.currentMedia.owner) }}</div>
+          <RouterLink :to="{
+            name: routerNames.ARTIST_DETAIL,
+            params: { artistId: mediaStore.currentMedia.owner.id }
+          }" class="text-xs text-beige">{{ getFullName(mediaStore.currentMedia.owner) }}</RouterLink>
         </div>
         <div></div>
       </div>
@@ -46,23 +49,6 @@
       </div>
       <div class="fill-white w-1/4">
         <div class="flex items-center gap-x-4 ml-auto w-max">
-          <div class="space-y-2" v-if="mediaStore.infoCurrentMedia">
-            <div class="flex gap-x-2 items-center">
-              <VueFontAwesome v-if="mediaStore.infoCurrentMedia.reaction.current?.isLike" icon="fa-solid fa-thumbs-up"
-                class="h-5 fill-red-400 cursor-pointer" @click="toggleLike()" />
-              <VueFontAwesome v-else icon="fa-regular fa-thumbs-up" class="h-5 fill-beige cursor-pointer"
-                @click="toggleLike()" />
-              <div>{{ formatNumber(mediaStore.infoCurrentMedia.reaction.total) }}</div>
-            </div>
-            <div class="flex gap-x-2 items-center">
-              <VueFontAwesome v-if="mediaStore.infoCurrentMedia.reaction.current?.isLike === false"
-                icon="fa-solid fa-thumbs-down" class="h-5 fill-red-400 cursor-pointer" @click="toggleDisLike()" />
-              <VueFontAwesome v-else icon="fa-regular fa-thumbs-down" class="h-5 fill-beige cursor-pointer"
-                @click="toggleDisLike()" />
-              <div>{{ formatNumber(mediaStore.infoCurrentMedia.media._count.mediaReaction -
-                mediaStore.infoCurrentMedia.reaction.total) }}</div>
-            </div>
-          </div>
           <div class="space-y-2">
             <div class="flex items-center gap-x-2">
               <VueFontAwesome icon="fa-solid fa-volume-high" class="h-4" />
@@ -100,9 +86,8 @@ import { useMediaStore } from '@/stores/media';
 import { convertDuration, getFullName, getThumbnailUrlPrimary, formatNumber } from '@/utils/common';
 import { reactive, ref, watch } from 'vue';
 import PlayerDetail from './PlayerDetail.vue';
-import requestInstance from '@/utils/axios';
-import { MediaReaction } from '~/prisma/generated/mysql';
 import SelectQualityAudio from '../Select/SelectQualityAudio.vue';
+import routerNames from '@/router/routerNames';
 
 const mediaStore = useMediaStore()
 const isShowDetail = ref(false)
@@ -162,28 +147,6 @@ const currentQuality = ref(mediaStore.currentAudio.currentQuality)
 
 const toggleShowDetail = () => {
   isShowDetail.value = !isShowDetail.value
-}
-
-const sendReaction = async (reaction: string) => {
-  if (!mediaStore.currentMedia) return
-  const res = await requestInstance.post<ResponseSuccess<{
-    current: MediaReaction,
-    total: number,
-    like: number,
-  }>>(`/media/${mediaStore.currentMedia.id}/reaction`, {
-    type: reaction
-  })
-
-  mediaStore.setReaction(res.data.data.current, res.data.data.total, res.data.data.like)
-
-}
-
-const toggleLike = () => {
-  sendReaction('like')
-}
-
-const toggleDisLike = () => {
-  sendReaction('dislike')
 }
 
 watch(() => mediaStore.currentAudio.currentQuality, () => {

@@ -38,6 +38,7 @@ import {
   faTrash,
   faListMusic,
   faBell,
+  faEye,
 } from "@ily1606/pro-light-svg-fontawesome";
 import type { App } from "vue";
 const icons = {
@@ -74,6 +75,7 @@ const icons = {
   faCheck,
   faBell,
   faCloudArrowDown,
+  faEye,
 };
 const setup = (app: App) => {
   app.use(Config, icons);

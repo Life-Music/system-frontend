@@ -29,13 +29,39 @@
           </template>
         </Pulse>
       </div>
-      <div class="w-1/2 flex flex-col justify-center gap-x-4 items-center">
-        <div class="w-[300px] aspect-square rounded-full bg-center relative" :style="{
-          backgroundImage: 'url(' + getThumbnailUrlPrimary(mediaStore.currentMedia.thumbnails) + ')'
-        }" :class="[mediaStore.isPlaying ? 'animate-[spin_5000ms_linear_0ms_infinite]' : '']">
-          <!-- <div
-            class="w-12 aspect-square rounded-full bg-[#070c14] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-          </div> -->
+      <div class="w-1/2 flex flex-col justify-between gap-x-4 items-center">
+        <div class="flex flex-auto items-center">
+          <div class="w-[300px] aspect-square rounded-full bg-center relative" :style="{
+            backgroundImage: 'url(' + getThumbnailUrlPrimary(mediaStore.currentMedia.thumbnails) + ')'
+          }" :class="[mediaStore.isPlaying ? 'animate-[spin_5000ms_linear_0ms_infinite]' : '']">
+            <!-- <div
+              class="w-12 aspect-square rounded-full bg-[#070c14] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+            </div> -->
+          </div>
+        </div>
+        <div v-if="mediaStore.infoCurrentMedia" class="flex items-center gap-x-4">
+          <div class="inline-flex items-center gap-x-2 py-2 px-4 bg-slate-800 rounded-lg">
+            <VueFontAwesome icon="fa-light fa-eye" class="fill-beige h-5" />
+            <span>{{ mediaStore.infoCurrentMedia.media.plays }}</span>
+            <span>lượt phát</span>
+          </div>
+          <div class="flex items-center divide-x">
+            <div class="flex gap-x-2 items-center py-2 px-4 hover:bg-slate-900 rounded-l-lg bg-slate-800 cursor-pointer"
+              @click="toggleLike()">
+              <VueFontAwesome v-if="mediaStore.infoCurrentMedia.reaction.current?.isLike" icon="fa-solid fa-thumbs-up"
+                class="h-5 fill-white" />
+              <VueFontAwesome v-else icon="fa-regular fa-thumbs-up" class="h-5 fill-beige" />
+              <div>{{ formatNumber(mediaStore.infoCurrentMedia.reaction.total) }}</div>
+            </div>
+            <div class="flex gap-x-2 items-center py-2 px-4 hover:bg-slate-900 rounded-r-lg bg-slate-800 cursor-pointer"
+              @click="toggleDisLike()">
+              <VueFontAwesome v-if="mediaStore.infoCurrentMedia.reaction.current?.isLike === false"
+                icon="fa-solid fa-thumbs-down" class="h-5 fill-white" />
+              <VueFontAwesome v-else icon="fa-regular fa-thumbs-down" class="h-5 fill-beige" />
+              <div>{{ formatNumber(mediaStore.infoCurrentMedia.media._count.mediaReaction -
+                mediaStore.infoCurrentMedia.reaction.total) }}</div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="w-1/4 h-full">
@@ -46,11 +72,11 @@
 </template>
 <script setup lang="ts">
 import { useMediaStore } from '@/stores/media';
-import { getThumbnailUrlPrimary } from '@/utils/common';
+import { formatNumber, getThumbnailUrlPrimary } from '@/utils/common';
 import Comment from '../Comment/Comment.vue';
 import Card from '../Card/Card.vue';
 import requestInstance from '@/utils/axios';
-import { Prisma } from '~/prisma/generated/mysql';
+import { MediaReaction, Prisma } from '~/prisma/generated/mysql';
 import { ref, watch } from 'vue';
 import Pulse from '../Lazy/Pulse.vue';
 import PulseCommentTemplate from '../Lazy/PulseCommentTemplate.vue';
@@ -81,6 +107,28 @@ const getMediaRelated = async () => {
     mediaRelated.value = res.data.data
   })
   return res
+}
+
+const sendReaction = async (reaction: string) => {
+  if (!mediaStore.currentMedia) return
+  const res = await requestInstance.post<ResponseSuccess<{
+    current: MediaReaction,
+    total: number,
+    like: number,
+  }>>(`/media/${mediaStore.currentMedia.id}/reaction`, {
+    type: reaction
+  })
+
+  mediaStore.setReaction(res.data.data.current, res.data.data.total, res.data.data.like)
+
+}
+
+const toggleLike = () => {
+  sendReaction('like')
+}
+
+const toggleDisLike = () => {
+  sendReaction('dislike')
 }
 
 const handleRelated = ref(getMediaRelated())
