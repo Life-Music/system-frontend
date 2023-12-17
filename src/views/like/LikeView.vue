@@ -45,7 +45,42 @@ import requestInstance from '@/utils/axios';
 import { ref } from 'vue';
 import { Prisma } from '~/prisma/generated/mysql';
 
-type ResourceType = Prisma.MediaGetPayload<{
+type ResourceType = Prisma.MediaReactionGetPayload<{
+  select: {
+    media: {
+      include: {
+        detail: true,
+        thumbnails: true,
+        audioResources: true,
+        videoResources: true,
+        owner: true,
+        _count: {
+          select: {
+            comment: true,
+            mediaReaction: {
+              where: {
+                isLike: true,
+              },
+            },
+          },
+        },
+        mediaOnAlbum: {
+          select: {
+            album: true,
+          },
+        },
+        mediaOnCategory: {
+          select: {
+            category: true,
+          },
+        },
+      },
+    },
+    createdAt: true
+  }
+}>
+
+type DataSourceType = Prisma.MediaGetPayload<{
   include: {
     detail: true,
     thumbnails: true,
@@ -77,24 +112,24 @@ type ResourceType = Prisma.MediaGetPayload<{
 
 const userStore = useUserInfoStore()
 const dataSource = ref<Array<{
-  media: ResourceType,
+  media: DataSourceType,
   createdAt: Date,
 }>>()
 
 const getHistory = async () => {
   const user = await userStore.init()
   if (!user) return
-  const res = await requestInstance.get<ResponseSuccessPagination<ResourceType[]>>(`/media`, {
+  const res = await requestInstance.get<ResponseSuccessPagination<ResourceType[]>>(`/media/liked`, {
     params: {
       page: 1,
       take: 9999,
       isLike: 1,
     }
   })
-  dataSource.value = res.data.data.map((media) => {
+  dataSource.value = res.data.data.map((mediaReaction) => {
     return {
-      media,
-      createdAt: new Date(media.createdAt),
+      media: mediaReaction.media,
+      createdAt: new Date(mediaReaction.createdAt),
     }
   })
 }

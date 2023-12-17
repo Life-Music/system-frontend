@@ -61,16 +61,16 @@ const menus: Ref<
           });
         },
       },
-      {
-        icon: "fa-regular fa-radio",
-        text: "sidebar.radio",
-        routerName: routerNames.RADIO,
-        onClick() {
-          router.push({
-            name: this.routerName,
-          });
-        },
-      },
+      // {
+      //   icon: "fa-regular fa-radio",
+      //   text: "sidebar.radio",
+      //   routerName: routerNames.RADIO,
+      //   onClick() {
+      //     router.push({
+      //       name: this.routerName,
+      //     });
+      //   },
+      // },
       {
         icon: "fa-regular fa-microphone-stand",
         text: "sidebar.artist",

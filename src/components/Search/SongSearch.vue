@@ -5,9 +5,9 @@
         Bài hát
       </div>
       <template v-if="dataSource.length">
-        <div class="flex gap-x-4 flex-wrap">
-          <div class="w-1/6">
-            <SongCard v-for="media in dataSource" :media="media" :key="media.id" />
+        <div class="flex gap-4 flex-wrap w-full">
+          <div class="w-1/6" :key="media.id" v-for="media in dataSource">
+            <SongCard :media="media" />
           </div>
         </div>
       </template>

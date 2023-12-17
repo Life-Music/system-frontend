@@ -5,9 +5,9 @@
         Nghệ sỹ
       </div>
       <template v-if="dataSource.length">
-        <div class="flex gap-x-4 flex-wrap">
-          <div class="w-1/6">
-            <ArtistCard v-for="artist in dataSource" :artist="artist" :key="artist.id" />
+        <div class="flex gap-4 flex-wrap w-full">
+          <div class="w-1/6" v-for="artist in dataSource" :key="artist.id">
+            <ArtistCard :artist="artist" />
           </div>
         </div>
       </template>
@@ -36,7 +36,7 @@ type ResourceType = Prisma.UserGetPayload<{
   include: {
     _count: {
       select: {
-        subscribers: true,
+        channel: true,
         media: true,
       },
     },

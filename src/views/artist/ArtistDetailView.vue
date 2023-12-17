@@ -10,7 +10,7 @@
                   {{ getFullName(dataSource.artist) }}
                 </h1>
                 <div class="text-beige">
-                  <p><span class="text-xl font-bold">{{ dataSource.artist._count.subscribers }}</span> người đăng ký</p>
+                  <p><span class="text-xl font-bold">{{ dataSource.artist._count.channel }}</span> người đăng ký</p>
                   <p><span class="text-xl font-bold">{{ dataSource.artist._count.media }}</span> tác phẩm</p>
                 </div>
               </div>
@@ -56,7 +56,7 @@ type ResourceType = {
     include: {
       _count: {
         select: {
-          subscribers: true,
+          channel: true,
           media: true,
         },
       },

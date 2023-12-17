@@ -6,7 +6,7 @@
     <div class="space-y-2  text-center">
       <div class="w-full line-clamp-1 text-lg">{{ getFullName(artist) }}</div>
       <div class="text-sm text-beige">
-        {{ formatNumber(artist._count.subscribers) }} người theo dõi
+        {{ formatNumber(artist._count.channel) }} người theo dõi
       </div>
     </div>
   </div>
@@ -21,7 +21,7 @@ const props = defineProps<{
     include: {
       _count: {
         select: {
-          subscribers: true,
+          channel: true,
         }
       }
     }

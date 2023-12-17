@@ -64,7 +64,7 @@ type ResourceType = Prisma.UserGetPayload<{
   include: {
     _count: {
       select: {
-        subscribers: true,
+        channel: true,
         media: true,
       },
     },
