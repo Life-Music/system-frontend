@@ -98,6 +98,7 @@ export const useMediaStore = defineStore('media', {
       if (!this.infoCurrentMedia) return;
       if (!this.currentAudio.player) {
         const resource = this.infoCurrentMedia?.media.audioResources.find((resource) => resource.label === this.currentAudio.currentQuality) ?? this.infoCurrentMedia?.media.audioResources[0]
+        this.currentAudio.duration = this.currentMedia?.duration ?? 0
         const audio = new Audio(getAudioSource(resource.id));
         audio.addEventListener("stalled", () => {
           this.audioLoading = true;
@@ -121,7 +122,10 @@ export const useMediaStore = defineStore('media', {
         })
         this.currentAudio.player = audio
       }
-      this.currentAudio.player.play();
+      this.currentAudio.player.play().catch(() => {
+        this.audioLoading = false;
+        this.isPlaying = false;
+      });
     },
     pauseAudio() {
       if (!this.currentAudio.player) return;

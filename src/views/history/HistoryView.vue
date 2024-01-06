@@ -9,7 +9,7 @@
         </div>
         <template v-if="userStore.userInfo">
           <template v-if="dataSource">
-            <TableListMedia :data-source="dataSource" />
+            <TableListMedia :data-source="dataSource" :show-action="true" />
           </template>
         </template>
         <template v-else>

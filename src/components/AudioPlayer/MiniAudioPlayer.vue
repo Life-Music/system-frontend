@@ -9,10 +9,9 @@
       <div class="text-xs">{{ getFullName(props.media.owner) }}</div>
     </div>
     <div class="flex-shrink-0 ml-auto p-4">
-      <MediaDropDown @add-to-playlist="addToPlayList" />
+      <MediaDropDown :media="media" />
     </div>
   </div>
-  <ModalAddToPlaylist v-model:open="isOpenModalPlaylist" :media-id="props.media.id" />
 </template>
 <script setup lang="ts">
 import {
@@ -21,9 +20,7 @@ import {
   getFullName,
 } from "@/utils/common";
 import MediaDropDown from "../Dropdown/MediaDropDown.vue";
-import ModalAddToPlaylist from "../Modal/ModalAddToPlaylist.vue";
 import { Prisma } from "~/prisma/generated/mysql";
-import { ref } from "vue";
 const props = defineProps<{
   media: Prisma.MediaGetPayload<{
     include: {
@@ -33,9 +30,5 @@ const props = defineProps<{
   }>;
 }>();
 
-const isOpenModalPlaylist = ref(false);
 
-const addToPlayList = () => {
-  isOpenModalPlaylist.value = true
-}
 </script>

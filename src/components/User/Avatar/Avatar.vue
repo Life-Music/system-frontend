@@ -1,5 +1,9 @@
 <template>
-  <div class="flex aspect-square rounded-full items-center justify-center bg-slate-500" :class="size[props.size]">
+  <div class="flex aspect-square rounded-full items-center justify-center bg-cover bg-center bg-no-repeat"
+    :class="size[props.size]" :style="`background-image: url('${userInfo.avatar}')`"   v-if="props.userInfo.avatar">
+  </div>
+  <div class="flex aspect-square rounded-full items-center justify-center bg-slate-500" :class="size[props.size]"
+    v-else>
     {{ props.userInfo.firstName[0].toUpperCase() }}
   </div>
 </template>

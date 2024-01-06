@@ -11,4 +11,6 @@ export default {
   "LIKED": "liked",
   "PLAYLIST_DETAIL": "playlist.detail.view",
   "SEARCH": "search.view",
+  "ALBUM_DETAIL": "album.detail.view",
+  "CATEGORY_DETAIL": "category.detail.view",
 }

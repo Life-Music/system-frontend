@@ -83,11 +83,12 @@
 </template>
 <script setup lang="ts">
 import { useMediaStore } from '@/stores/media';
-import { convertDuration, getFullName, getThumbnailUrlPrimary, formatNumber } from '@/utils/common';
+import { convertDuration, getFullName, getThumbnailUrlPrimary, formatNumber, playMedia } from '@/utils/common';
 import { reactive, ref, watch } from 'vue';
 import PlayerDetail from './PlayerDetail.vue';
 import SelectQualityAudio from '../Select/SelectQualityAudio.vue';
 import routerNames from '@/router/routerNames';
+import requestInstance from '@/utils/axios';
 
 const mediaStore = useMediaStore()
 const isShowDetail = ref(false)
@@ -143,6 +144,13 @@ const volumeTooltip = reactive({
   }
 })
 
+const mediaLastPlayed = localStorage.getItem('last_played')
+if (mediaLastPlayed) {
+  requestInstance.get<ResponseSuccess<any>>(`media/${mediaLastPlayed}`)
+    .then((res) => {
+      playMedia(res.data.data.media)
+    })
+}
 const currentQuality = ref(mediaStore.currentAudio.currentQuality)
 
 const toggleShowDetail = () => {

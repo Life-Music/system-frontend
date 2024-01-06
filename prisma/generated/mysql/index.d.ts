@@ -118,6 +118,16 @@ export type MediaOnAlbum = $Result.DefaultSelection<Prisma.$MediaOnAlbumPayload>
  * 
  */
 export type Album = $Result.DefaultSelection<Prisma.$AlbumPayload>
+/**
+ * Model MediaOnSocialAccount
+ * 
+ */
+export type MediaOnSocialAccount = $Result.DefaultSelection<Prisma.$MediaOnSocialAccountPayload>
+/**
+ * Model SocialAccount
+ * 
+ */
+export type SocialAccount = $Result.DefaultSelection<Prisma.$SocialAccountPayload>
 
 /**
  * Enums
@@ -158,6 +168,13 @@ export const AudioQuality: {
 
 export type AudioQuality = (typeof AudioQuality)[keyof typeof AudioQuality]
 
+
+export const AccountType: {
+  YOUTUBE: 'YOUTUBE'
+};
+
+export type AccountType = (typeof AccountType)[keyof typeof AccountType]
+
 }
 
 export type PaymentMethod = $Enums.PaymentMethod
@@ -175,6 +192,10 @@ export const Status: typeof $Enums.Status
 export type AudioQuality = $Enums.AudioQuality
 
 export const AudioQuality: typeof $Enums.AudioQuality
+
+export type AccountType = $Enums.AccountType
+
+export const AccountType: typeof $Enums.AccountType
 
 /**
  * ##  Prisma Client ʲˢ
@@ -507,6 +528,26 @@ export class PrismaClient<
     * ```
     */
   get album(): Prisma.AlbumDelegate<ExtArgs>;
+
+  /**
+   * `prisma.mediaOnSocialAccount`: Exposes CRUD operations for the **MediaOnSocialAccount** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more MediaOnSocialAccounts
+    * const mediaOnSocialAccounts = await prisma.mediaOnSocialAccount.findMany()
+    * ```
+    */
+  get mediaOnSocialAccount(): Prisma.MediaOnSocialAccountDelegate<ExtArgs>;
+
+  /**
+   * `prisma.socialAccount`: Exposes CRUD operations for the **SocialAccount** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more SocialAccounts
+    * const socialAccounts = await prisma.socialAccount.findMany()
+    * ```
+    */
+  get socialAccount(): Prisma.SocialAccountDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -997,7 +1038,9 @@ export namespace Prisma {
     PaymentTransaction: 'PaymentTransaction',
     PaymentTransactionDetail: 'PaymentTransactionDetail',
     MediaOnAlbum: 'MediaOnAlbum',
-    Album: 'Album'
+    Album: 'Album',
+    MediaOnSocialAccount: 'MediaOnSocialAccount',
+    SocialAccount: 'SocialAccount'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1014,7 +1057,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'user' | 'userPaymentMethod' | 'category' | 'mediaOnCategory' | 'sessionUpload' | 'media' | 'mediaReaction' | 'comment' | 'playlist' | 'mediaOnPlaylist' | 'history' | 'subscriber' | 'notificationSubscriptions' | 'videoResource' | 'audioResource' | 'mediaDetail' | 'thumbnail' | 'paymentTransaction' | 'paymentTransactionDetail' | 'mediaOnAlbum' | 'album'
+      modelProps: 'user' | 'userPaymentMethod' | 'category' | 'mediaOnCategory' | 'sessionUpload' | 'media' | 'mediaReaction' | 'comment' | 'playlist' | 'mediaOnPlaylist' | 'history' | 'subscriber' | 'notificationSubscriptions' | 'videoResource' | 'audioResource' | 'mediaDetail' | 'thumbnail' | 'paymentTransaction' | 'paymentTransactionDetail' | 'mediaOnAlbum' | 'album' | 'mediaOnSocialAccount' | 'socialAccount'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -2404,6 +2447,138 @@ export namespace Prisma {
           }
         }
       }
+      MediaOnSocialAccount: {
+        payload: Prisma.$MediaOnSocialAccountPayload<ExtArgs>
+        fields: Prisma.MediaOnSocialAccountFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MediaOnSocialAccountFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$MediaOnSocialAccountPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MediaOnSocialAccountFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$MediaOnSocialAccountPayload>
+          }
+          findFirst: {
+            args: Prisma.MediaOnSocialAccountFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$MediaOnSocialAccountPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MediaOnSocialAccountFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$MediaOnSocialAccountPayload>
+          }
+          findMany: {
+            args: Prisma.MediaOnSocialAccountFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$MediaOnSocialAccountPayload>[]
+          }
+          create: {
+            args: Prisma.MediaOnSocialAccountCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$MediaOnSocialAccountPayload>
+          }
+          createMany: {
+            args: Prisma.MediaOnSocialAccountCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.MediaOnSocialAccountDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$MediaOnSocialAccountPayload>
+          }
+          update: {
+            args: Prisma.MediaOnSocialAccountUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$MediaOnSocialAccountPayload>
+          }
+          deleteMany: {
+            args: Prisma.MediaOnSocialAccountDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MediaOnSocialAccountUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.MediaOnSocialAccountUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$MediaOnSocialAccountPayload>
+          }
+          aggregate: {
+            args: Prisma.MediaOnSocialAccountAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateMediaOnSocialAccount>
+          }
+          groupBy: {
+            args: Prisma.MediaOnSocialAccountGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<MediaOnSocialAccountGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MediaOnSocialAccountCountArgs<ExtArgs>,
+            result: $Utils.Optional<MediaOnSocialAccountCountAggregateOutputType> | number
+          }
+        }
+      }
+      SocialAccount: {
+        payload: Prisma.$SocialAccountPayload<ExtArgs>
+        fields: Prisma.SocialAccountFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SocialAccountFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$SocialAccountPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SocialAccountFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$SocialAccountPayload>
+          }
+          findFirst: {
+            args: Prisma.SocialAccountFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$SocialAccountPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SocialAccountFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$SocialAccountPayload>
+          }
+          findMany: {
+            args: Prisma.SocialAccountFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$SocialAccountPayload>[]
+          }
+          create: {
+            args: Prisma.SocialAccountCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$SocialAccountPayload>
+          }
+          createMany: {
+            args: Prisma.SocialAccountCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.SocialAccountDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$SocialAccountPayload>
+          }
+          update: {
+            args: Prisma.SocialAccountUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$SocialAccountPayload>
+          }
+          deleteMany: {
+            args: Prisma.SocialAccountDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SocialAccountUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.SocialAccountUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$SocialAccountPayload>
+          }
+          aggregate: {
+            args: Prisma.SocialAccountAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateSocialAccount>
+          }
+          groupBy: {
+            args: Prisma.SocialAccountGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<SocialAccountGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SocialAccountCountArgs<ExtArgs>,
+            result: $Utils.Optional<SocialAccountCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2563,6 +2738,7 @@ export namespace Prisma {
     Playlist: number
     UserPaymentMethod: number
     Album: number
+    SocialAccount: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2576,6 +2752,7 @@ export namespace Prisma {
     Playlist?: boolean | UserCountOutputTypeCountPlaylistArgs
     UserPaymentMethod?: boolean | UserCountOutputTypeCountUserPaymentMethodArgs
     Album?: boolean | UserCountOutputTypeCountAlbumArgs
+    SocialAccount?: boolean | UserCountOutputTypeCountSocialAccountArgs
   }
 
   // Custom InputTypes
@@ -2671,6 +2848,14 @@ export namespace Prisma {
   }
 
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountSocialAccountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SocialAccountWhereInput
+  }
+
+
 
   /**
    * Count Type CategoryCountOutputType
@@ -2721,6 +2906,7 @@ export namespace Prisma {
     mediaOnPlaylist: number
     sessionUpload: number
     mediaOnAlbum: number
+    MediaOnSocialAccount: number
   }
 
   export type MediaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2734,6 +2920,7 @@ export namespace Prisma {
     mediaOnPlaylist?: boolean | MediaCountOutputTypeCountMediaOnPlaylistArgs
     sessionUpload?: boolean | MediaCountOutputTypeCountSessionUploadArgs
     mediaOnAlbum?: boolean | MediaCountOutputTypeCountMediaOnAlbumArgs
+    MediaOnSocialAccount?: boolean | MediaCountOutputTypeCountMediaOnSocialAccountArgs
   }
 
   // Custom InputTypes
@@ -2826,6 +3013,14 @@ export namespace Prisma {
    */
   export type MediaCountOutputTypeCountMediaOnAlbumArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: MediaOnAlbumWhereInput
+  }
+
+
+  /**
+   * MediaCountOutputType without action
+   */
+  export type MediaCountOutputTypeCountMediaOnSocialAccountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MediaOnSocialAccountWhereInput
   }
 
 
@@ -2933,6 +3128,40 @@ export namespace Prisma {
 
 
   /**
+   * Count Type SocialAccountCountOutputType
+   */
+
+  export type SocialAccountCountOutputType = {
+    MediaOnSocialAccount: number
+  }
+
+  export type SocialAccountCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    MediaOnSocialAccount?: boolean | SocialAccountCountOutputTypeCountMediaOnSocialAccountArgs
+  }
+
+  // Custom InputTypes
+
+  /**
+   * SocialAccountCountOutputType without action
+   */
+  export type SocialAccountCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SocialAccountCountOutputType
+     */
+    select?: SocialAccountCountOutputTypeSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * SocialAccountCountOutputType without action
+   */
+  export type SocialAccountCountOutputTypeCountMediaOnSocialAccountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MediaOnSocialAccountWhereInput
+  }
+
+
+
+  /**
    * Models
    */
 
@@ -2954,6 +3183,7 @@ export namespace Prisma {
     username: string | null
     password: string | null
     avatar: string | null
+    cover: string | null
     createdAt: Date | null
     updatedAt: Date | null
     lockedAt: Date | null
@@ -2967,6 +3197,7 @@ export namespace Prisma {
     username: string | null
     password: string | null
     avatar: string | null
+    cover: string | null
     createdAt: Date | null
     updatedAt: Date | null
     lockedAt: Date | null
@@ -2980,6 +3211,7 @@ export namespace Prisma {
     username: number
     password: number
     avatar: number
+    cover: number
     createdAt: number
     updatedAt: number
     lockedAt: number
@@ -2995,6 +3227,7 @@ export namespace Prisma {
     username?: true
     password?: true
     avatar?: true
+    cover?: true
     createdAt?: true
     updatedAt?: true
     lockedAt?: true
@@ -3008,6 +3241,7 @@ export namespace Prisma {
     username?: true
     password?: true
     avatar?: true
+    cover?: true
     createdAt?: true
     updatedAt?: true
     lockedAt?: true
@@ -3021,6 +3255,7 @@ export namespace Prisma {
     username?: true
     password?: true
     avatar?: true
+    cover?: true
     createdAt?: true
     updatedAt?: true
     lockedAt?: true
@@ -3107,6 +3342,7 @@ export namespace Prisma {
     username: string
     password: string
     avatar: string | null
+    cover: string | null
     createdAt: Date
     updatedAt: Date
     lockedAt: Date | null
@@ -3137,6 +3373,7 @@ export namespace Prisma {
     username?: boolean
     password?: boolean
     avatar?: boolean
+    cover?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     lockedAt?: boolean
@@ -3150,6 +3387,7 @@ export namespace Prisma {
     Playlist?: boolean | User$PlaylistArgs<ExtArgs>
     UserPaymentMethod?: boolean | User$UserPaymentMethodArgs<ExtArgs>
     Album?: boolean | User$AlbumArgs<ExtArgs>
+    SocialAccount?: boolean | User$SocialAccountArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -3161,6 +3399,7 @@ export namespace Prisma {
     username?: boolean
     password?: boolean
     avatar?: boolean
+    cover?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     lockedAt?: boolean
@@ -3177,6 +3416,7 @@ export namespace Prisma {
     Playlist?: boolean | User$PlaylistArgs<ExtArgs>
     UserPaymentMethod?: boolean | User$UserPaymentMethodArgs<ExtArgs>
     Album?: boolean | User$AlbumArgs<ExtArgs>
+    SocialAccount?: boolean | User$SocialAccountArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -3194,6 +3434,7 @@ export namespace Prisma {
       Playlist: Prisma.$PlaylistPayload<ExtArgs>[]
       UserPaymentMethod: Prisma.$UserPaymentMethodPayload<ExtArgs>[]
       Album: Prisma.$AlbumPayload<ExtArgs>[]
+      SocialAccount: Prisma.$SocialAccountPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3203,6 +3444,7 @@ export namespace Prisma {
       username: string
       password: string
       avatar: string | null
+      cover: string | null
       createdAt: Date
       updatedAt: Date
       lockedAt: Date | null
@@ -3591,6 +3833,8 @@ export namespace Prisma {
 
     Album<T extends User$AlbumArgs<ExtArgs> = {}>(args?: Subset<T, User$AlbumArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AlbumPayload<ExtArgs>, T, 'findMany'> | Null>;
 
+    SocialAccount<T extends User$SocialAccountArgs<ExtArgs> = {}>(args?: Subset<T, User$SocialAccountArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SocialAccountPayload<ExtArgs>, T, 'findMany'> | Null>;
+
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3626,6 +3870,7 @@ export namespace Prisma {
     readonly username: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
     readonly avatar: FieldRef<"User", 'String'>
+    readonly cover: FieldRef<"User", 'String'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
     readonly lockedAt: FieldRef<"User", 'DateTime'>
@@ -4147,6 +4392,27 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: AlbumScalarFieldEnum | AlbumScalarFieldEnum[]
+  }
+
+
+  /**
+   * User.SocialAccount
+   */
+  export type User$SocialAccountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SocialAccount
+     */
+    select?: SocialAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SocialAccountInclude<ExtArgs> | null
+    where?: SocialAccountWhereInput
+    orderBy?: SocialAccountOrderByWithRelationInput | SocialAccountOrderByWithRelationInput[]
+    cursor?: SocialAccountWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SocialAccountScalarFieldEnum | SocialAccountScalarFieldEnum[]
   }
 
 
@@ -8208,6 +8474,7 @@ export namespace Prisma {
     mediaOnPlaylist?: boolean | Media$mediaOnPlaylistArgs<ExtArgs>
     sessionUpload?: boolean | Media$sessionUploadArgs<ExtArgs>
     mediaOnAlbum?: boolean | Media$mediaOnAlbumArgs<ExtArgs>
+    MediaOnSocialAccount?: boolean | Media$MediaOnSocialAccountArgs<ExtArgs>
     _count?: boolean | MediaCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["media"]>
 
@@ -8239,6 +8506,7 @@ export namespace Prisma {
     mediaOnPlaylist?: boolean | Media$mediaOnPlaylistArgs<ExtArgs>
     sessionUpload?: boolean | Media$sessionUploadArgs<ExtArgs>
     mediaOnAlbum?: boolean | Media$mediaOnAlbumArgs<ExtArgs>
+    MediaOnSocialAccount?: boolean | Media$MediaOnSocialAccountArgs<ExtArgs>
     _count?: boolean | MediaCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -8258,6 +8526,7 @@ export namespace Prisma {
       mediaOnPlaylist: Prisma.$MediaOnPlaylistPayload<ExtArgs>[]
       sessionUpload: Prisma.$SessionUploadPayload<ExtArgs>[]
       mediaOnAlbum: Prisma.$MediaOnAlbumPayload<ExtArgs>[]
+      MediaOnSocialAccount: Prisma.$MediaOnSocialAccountPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -8660,6 +8929,8 @@ export namespace Prisma {
     sessionUpload<T extends Media$sessionUploadArgs<ExtArgs> = {}>(args?: Subset<T, Media$sessionUploadArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionUploadPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     mediaOnAlbum<T extends Media$mediaOnAlbumArgs<ExtArgs> = {}>(args?: Subset<T, Media$mediaOnAlbumArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MediaOnAlbumPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    MediaOnSocialAccount<T extends Media$MediaOnSocialAccountArgs<ExtArgs> = {}>(args?: Subset<T, Media$MediaOnSocialAccountArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MediaOnSocialAccountPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -9235,6 +9506,27 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: MediaOnAlbumScalarFieldEnum | MediaOnAlbumScalarFieldEnum[]
+  }
+
+
+  /**
+   * Media.MediaOnSocialAccount
+   */
+  export type Media$MediaOnSocialAccountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaOnSocialAccount
+     */
+    select?: MediaOnSocialAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: MediaOnSocialAccountInclude<ExtArgs> | null
+    where?: MediaOnSocialAccountWhereInput
+    orderBy?: MediaOnSocialAccountOrderByWithRelationInput | MediaOnSocialAccountOrderByWithRelationInput[]
+    cursor?: MediaOnSocialAccountWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MediaOnSocialAccountScalarFieldEnum | MediaOnSocialAccountScalarFieldEnum[]
   }
 
 
@@ -23424,6 +23716,2035 @@ export namespace Prisma {
 
 
   /**
+   * Model MediaOnSocialAccount
+   */
+
+  export type AggregateMediaOnSocialAccount = {
+    _count: MediaOnSocialAccountCountAggregateOutputType | null
+    _avg: MediaOnSocialAccountAvgAggregateOutputType | null
+    _sum: MediaOnSocialAccountSumAggregateOutputType | null
+    _min: MediaOnSocialAccountMinAggregateOutputType | null
+    _max: MediaOnSocialAccountMaxAggregateOutputType | null
+  }
+
+  export type MediaOnSocialAccountAvgAggregateOutputType = {
+    id: number | null
+    socialAccountId: number | null
+  }
+
+  export type MediaOnSocialAccountSumAggregateOutputType = {
+    id: number | null
+    socialAccountId: number | null
+  }
+
+  export type MediaOnSocialAccountMinAggregateOutputType = {
+    id: number | null
+    socialAccountId: number | null
+    mediaSocialId: string | null
+    mediaId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type MediaOnSocialAccountMaxAggregateOutputType = {
+    id: number | null
+    socialAccountId: number | null
+    mediaSocialId: string | null
+    mediaId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type MediaOnSocialAccountCountAggregateOutputType = {
+    id: number
+    socialAccountId: number
+    mediaSocialId: number
+    mediaId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type MediaOnSocialAccountAvgAggregateInputType = {
+    id?: true
+    socialAccountId?: true
+  }
+
+  export type MediaOnSocialAccountSumAggregateInputType = {
+    id?: true
+    socialAccountId?: true
+  }
+
+  export type MediaOnSocialAccountMinAggregateInputType = {
+    id?: true
+    socialAccountId?: true
+    mediaSocialId?: true
+    mediaId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type MediaOnSocialAccountMaxAggregateInputType = {
+    id?: true
+    socialAccountId?: true
+    mediaSocialId?: true
+    mediaId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type MediaOnSocialAccountCountAggregateInputType = {
+    id?: true
+    socialAccountId?: true
+    mediaSocialId?: true
+    mediaId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type MediaOnSocialAccountAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MediaOnSocialAccount to aggregate.
+     */
+    where?: MediaOnSocialAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MediaOnSocialAccounts to fetch.
+     */
+    orderBy?: MediaOnSocialAccountOrderByWithRelationInput | MediaOnSocialAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MediaOnSocialAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MediaOnSocialAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MediaOnSocialAccounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned MediaOnSocialAccounts
+    **/
+    _count?: true | MediaOnSocialAccountCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: MediaOnSocialAccountAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: MediaOnSocialAccountSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MediaOnSocialAccountMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MediaOnSocialAccountMaxAggregateInputType
+  }
+
+  export type GetMediaOnSocialAccountAggregateType<T extends MediaOnSocialAccountAggregateArgs> = {
+        [P in keyof T & keyof AggregateMediaOnSocialAccount]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMediaOnSocialAccount[P]>
+      : GetScalarType<T[P], AggregateMediaOnSocialAccount[P]>
+  }
+
+
+
+
+  export type MediaOnSocialAccountGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MediaOnSocialAccountWhereInput
+    orderBy?: MediaOnSocialAccountOrderByWithAggregationInput | MediaOnSocialAccountOrderByWithAggregationInput[]
+    by: MediaOnSocialAccountScalarFieldEnum[] | MediaOnSocialAccountScalarFieldEnum
+    having?: MediaOnSocialAccountScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MediaOnSocialAccountCountAggregateInputType | true
+    _avg?: MediaOnSocialAccountAvgAggregateInputType
+    _sum?: MediaOnSocialAccountSumAggregateInputType
+    _min?: MediaOnSocialAccountMinAggregateInputType
+    _max?: MediaOnSocialAccountMaxAggregateInputType
+  }
+
+  export type MediaOnSocialAccountGroupByOutputType = {
+    id: number
+    socialAccountId: number
+    mediaSocialId: string
+    mediaId: string
+    createdAt: Date
+    updatedAt: Date
+    _count: MediaOnSocialAccountCountAggregateOutputType | null
+    _avg: MediaOnSocialAccountAvgAggregateOutputType | null
+    _sum: MediaOnSocialAccountSumAggregateOutputType | null
+    _min: MediaOnSocialAccountMinAggregateOutputType | null
+    _max: MediaOnSocialAccountMaxAggregateOutputType | null
+  }
+
+  type GetMediaOnSocialAccountGroupByPayload<T extends MediaOnSocialAccountGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MediaOnSocialAccountGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MediaOnSocialAccountGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MediaOnSocialAccountGroupByOutputType[P]>
+            : GetScalarType<T[P], MediaOnSocialAccountGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MediaOnSocialAccountSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    socialAccountId?: boolean
+    mediaSocialId?: boolean
+    mediaId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    media?: boolean | MediaDefaultArgs<ExtArgs>
+    socialAccount?: boolean | SocialAccountDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["mediaOnSocialAccount"]>
+
+  export type MediaOnSocialAccountSelectScalar = {
+    id?: boolean
+    socialAccountId?: boolean
+    mediaSocialId?: boolean
+    mediaId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type MediaOnSocialAccountInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    media?: boolean | MediaDefaultArgs<ExtArgs>
+    socialAccount?: boolean | SocialAccountDefaultArgs<ExtArgs>
+  }
+
+
+  export type $MediaOnSocialAccountPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "MediaOnSocialAccount"
+    objects: {
+      media: Prisma.$MediaPayload<ExtArgs>
+      socialAccount: Prisma.$SocialAccountPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      socialAccountId: number
+      mediaSocialId: string
+      mediaId: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["mediaOnSocialAccount"]>
+    composites: {}
+  }
+
+
+  type MediaOnSocialAccountGetPayload<S extends boolean | null | undefined | MediaOnSocialAccountDefaultArgs> = $Result.GetResult<Prisma.$MediaOnSocialAccountPayload, S>
+
+  type MediaOnSocialAccountCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<MediaOnSocialAccountFindManyArgs, 'select' | 'include'> & {
+      select?: MediaOnSocialAccountCountAggregateInputType | true
+    }
+
+  export interface MediaOnSocialAccountDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MediaOnSocialAccount'], meta: { name: 'MediaOnSocialAccount' } }
+    /**
+     * Find zero or one MediaOnSocialAccount that matches the filter.
+     * @param {MediaOnSocialAccountFindUniqueArgs} args - Arguments to find a MediaOnSocialAccount
+     * @example
+     * // Get one MediaOnSocialAccount
+     * const mediaOnSocialAccount = await prisma.mediaOnSocialAccount.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends MediaOnSocialAccountFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, MediaOnSocialAccountFindUniqueArgs<ExtArgs>>
+    ): Prisma__MediaOnSocialAccountClient<$Result.GetResult<Prisma.$MediaOnSocialAccountPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one MediaOnSocialAccount that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {MediaOnSocialAccountFindUniqueOrThrowArgs} args - Arguments to find a MediaOnSocialAccount
+     * @example
+     * // Get one MediaOnSocialAccount
+     * const mediaOnSocialAccount = await prisma.mediaOnSocialAccount.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends MediaOnSocialAccountFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, MediaOnSocialAccountFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__MediaOnSocialAccountClient<$Result.GetResult<Prisma.$MediaOnSocialAccountPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first MediaOnSocialAccount that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MediaOnSocialAccountFindFirstArgs} args - Arguments to find a MediaOnSocialAccount
+     * @example
+     * // Get one MediaOnSocialAccount
+     * const mediaOnSocialAccount = await prisma.mediaOnSocialAccount.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends MediaOnSocialAccountFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, MediaOnSocialAccountFindFirstArgs<ExtArgs>>
+    ): Prisma__MediaOnSocialAccountClient<$Result.GetResult<Prisma.$MediaOnSocialAccountPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first MediaOnSocialAccount that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MediaOnSocialAccountFindFirstOrThrowArgs} args - Arguments to find a MediaOnSocialAccount
+     * @example
+     * // Get one MediaOnSocialAccount
+     * const mediaOnSocialAccount = await prisma.mediaOnSocialAccount.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends MediaOnSocialAccountFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, MediaOnSocialAccountFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__MediaOnSocialAccountClient<$Result.GetResult<Prisma.$MediaOnSocialAccountPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more MediaOnSocialAccounts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MediaOnSocialAccountFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all MediaOnSocialAccounts
+     * const mediaOnSocialAccounts = await prisma.mediaOnSocialAccount.findMany()
+     * 
+     * // Get first 10 MediaOnSocialAccounts
+     * const mediaOnSocialAccounts = await prisma.mediaOnSocialAccount.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const mediaOnSocialAccountWithIdOnly = await prisma.mediaOnSocialAccount.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends MediaOnSocialAccountFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, MediaOnSocialAccountFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MediaOnSocialAccountPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a MediaOnSocialAccount.
+     * @param {MediaOnSocialAccountCreateArgs} args - Arguments to create a MediaOnSocialAccount.
+     * @example
+     * // Create one MediaOnSocialAccount
+     * const MediaOnSocialAccount = await prisma.mediaOnSocialAccount.create({
+     *   data: {
+     *     // ... data to create a MediaOnSocialAccount
+     *   }
+     * })
+     * 
+    **/
+    create<T extends MediaOnSocialAccountCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, MediaOnSocialAccountCreateArgs<ExtArgs>>
+    ): Prisma__MediaOnSocialAccountClient<$Result.GetResult<Prisma.$MediaOnSocialAccountPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many MediaOnSocialAccounts.
+     *     @param {MediaOnSocialAccountCreateManyArgs} args - Arguments to create many MediaOnSocialAccounts.
+     *     @example
+     *     // Create many MediaOnSocialAccounts
+     *     const mediaOnSocialAccount = await prisma.mediaOnSocialAccount.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends MediaOnSocialAccountCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, MediaOnSocialAccountCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a MediaOnSocialAccount.
+     * @param {MediaOnSocialAccountDeleteArgs} args - Arguments to delete one MediaOnSocialAccount.
+     * @example
+     * // Delete one MediaOnSocialAccount
+     * const MediaOnSocialAccount = await prisma.mediaOnSocialAccount.delete({
+     *   where: {
+     *     // ... filter to delete one MediaOnSocialAccount
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends MediaOnSocialAccountDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, MediaOnSocialAccountDeleteArgs<ExtArgs>>
+    ): Prisma__MediaOnSocialAccountClient<$Result.GetResult<Prisma.$MediaOnSocialAccountPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one MediaOnSocialAccount.
+     * @param {MediaOnSocialAccountUpdateArgs} args - Arguments to update one MediaOnSocialAccount.
+     * @example
+     * // Update one MediaOnSocialAccount
+     * const mediaOnSocialAccount = await prisma.mediaOnSocialAccount.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends MediaOnSocialAccountUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, MediaOnSocialAccountUpdateArgs<ExtArgs>>
+    ): Prisma__MediaOnSocialAccountClient<$Result.GetResult<Prisma.$MediaOnSocialAccountPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more MediaOnSocialAccounts.
+     * @param {MediaOnSocialAccountDeleteManyArgs} args - Arguments to filter MediaOnSocialAccounts to delete.
+     * @example
+     * // Delete a few MediaOnSocialAccounts
+     * const { count } = await prisma.mediaOnSocialAccount.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends MediaOnSocialAccountDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, MediaOnSocialAccountDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MediaOnSocialAccounts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MediaOnSocialAccountUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many MediaOnSocialAccounts
+     * const mediaOnSocialAccount = await prisma.mediaOnSocialAccount.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends MediaOnSocialAccountUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, MediaOnSocialAccountUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one MediaOnSocialAccount.
+     * @param {MediaOnSocialAccountUpsertArgs} args - Arguments to update or create a MediaOnSocialAccount.
+     * @example
+     * // Update or create a MediaOnSocialAccount
+     * const mediaOnSocialAccount = await prisma.mediaOnSocialAccount.upsert({
+     *   create: {
+     *     // ... data to create a MediaOnSocialAccount
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the MediaOnSocialAccount we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends MediaOnSocialAccountUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, MediaOnSocialAccountUpsertArgs<ExtArgs>>
+    ): Prisma__MediaOnSocialAccountClient<$Result.GetResult<Prisma.$MediaOnSocialAccountPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of MediaOnSocialAccounts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MediaOnSocialAccountCountArgs} args - Arguments to filter MediaOnSocialAccounts to count.
+     * @example
+     * // Count the number of MediaOnSocialAccounts
+     * const count = await prisma.mediaOnSocialAccount.count({
+     *   where: {
+     *     // ... the filter for the MediaOnSocialAccounts we want to count
+     *   }
+     * })
+    **/
+    count<T extends MediaOnSocialAccountCountArgs>(
+      args?: Subset<T, MediaOnSocialAccountCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MediaOnSocialAccountCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a MediaOnSocialAccount.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MediaOnSocialAccountAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MediaOnSocialAccountAggregateArgs>(args: Subset<T, MediaOnSocialAccountAggregateArgs>): Prisma.PrismaPromise<GetMediaOnSocialAccountAggregateType<T>>
+
+    /**
+     * Group by MediaOnSocialAccount.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MediaOnSocialAccountGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MediaOnSocialAccountGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MediaOnSocialAccountGroupByArgs['orderBy'] }
+        : { orderBy?: MediaOnSocialAccountGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MediaOnSocialAccountGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMediaOnSocialAccountGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the MediaOnSocialAccount model
+   */
+  readonly fields: MediaOnSocialAccountFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for MediaOnSocialAccount.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MediaOnSocialAccountClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    media<T extends MediaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MediaDefaultArgs<ExtArgs>>): Prisma__MediaClient<$Result.GetResult<Prisma.$MediaPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    socialAccount<T extends SocialAccountDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SocialAccountDefaultArgs<ExtArgs>>): Prisma__SocialAccountClient<$Result.GetResult<Prisma.$SocialAccountPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the MediaOnSocialAccount model
+   */ 
+  interface MediaOnSocialAccountFieldRefs {
+    readonly id: FieldRef<"MediaOnSocialAccount", 'Int'>
+    readonly socialAccountId: FieldRef<"MediaOnSocialAccount", 'Int'>
+    readonly mediaSocialId: FieldRef<"MediaOnSocialAccount", 'String'>
+    readonly mediaId: FieldRef<"MediaOnSocialAccount", 'String'>
+    readonly createdAt: FieldRef<"MediaOnSocialAccount", 'DateTime'>
+    readonly updatedAt: FieldRef<"MediaOnSocialAccount", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * MediaOnSocialAccount findUnique
+   */
+  export type MediaOnSocialAccountFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaOnSocialAccount
+     */
+    select?: MediaOnSocialAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: MediaOnSocialAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which MediaOnSocialAccount to fetch.
+     */
+    where: MediaOnSocialAccountWhereUniqueInput
+  }
+
+
+  /**
+   * MediaOnSocialAccount findUniqueOrThrow
+   */
+  export type MediaOnSocialAccountFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaOnSocialAccount
+     */
+    select?: MediaOnSocialAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: MediaOnSocialAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which MediaOnSocialAccount to fetch.
+     */
+    where: MediaOnSocialAccountWhereUniqueInput
+  }
+
+
+  /**
+   * MediaOnSocialAccount findFirst
+   */
+  export type MediaOnSocialAccountFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaOnSocialAccount
+     */
+    select?: MediaOnSocialAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: MediaOnSocialAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which MediaOnSocialAccount to fetch.
+     */
+    where?: MediaOnSocialAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MediaOnSocialAccounts to fetch.
+     */
+    orderBy?: MediaOnSocialAccountOrderByWithRelationInput | MediaOnSocialAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MediaOnSocialAccounts.
+     */
+    cursor?: MediaOnSocialAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MediaOnSocialAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MediaOnSocialAccounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MediaOnSocialAccounts.
+     */
+    distinct?: MediaOnSocialAccountScalarFieldEnum | MediaOnSocialAccountScalarFieldEnum[]
+  }
+
+
+  /**
+   * MediaOnSocialAccount findFirstOrThrow
+   */
+  export type MediaOnSocialAccountFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaOnSocialAccount
+     */
+    select?: MediaOnSocialAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: MediaOnSocialAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which MediaOnSocialAccount to fetch.
+     */
+    where?: MediaOnSocialAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MediaOnSocialAccounts to fetch.
+     */
+    orderBy?: MediaOnSocialAccountOrderByWithRelationInput | MediaOnSocialAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MediaOnSocialAccounts.
+     */
+    cursor?: MediaOnSocialAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MediaOnSocialAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MediaOnSocialAccounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MediaOnSocialAccounts.
+     */
+    distinct?: MediaOnSocialAccountScalarFieldEnum | MediaOnSocialAccountScalarFieldEnum[]
+  }
+
+
+  /**
+   * MediaOnSocialAccount findMany
+   */
+  export type MediaOnSocialAccountFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaOnSocialAccount
+     */
+    select?: MediaOnSocialAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: MediaOnSocialAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which MediaOnSocialAccounts to fetch.
+     */
+    where?: MediaOnSocialAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MediaOnSocialAccounts to fetch.
+     */
+    orderBy?: MediaOnSocialAccountOrderByWithRelationInput | MediaOnSocialAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing MediaOnSocialAccounts.
+     */
+    cursor?: MediaOnSocialAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MediaOnSocialAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MediaOnSocialAccounts.
+     */
+    skip?: number
+    distinct?: MediaOnSocialAccountScalarFieldEnum | MediaOnSocialAccountScalarFieldEnum[]
+  }
+
+
+  /**
+   * MediaOnSocialAccount create
+   */
+  export type MediaOnSocialAccountCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaOnSocialAccount
+     */
+    select?: MediaOnSocialAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: MediaOnSocialAccountInclude<ExtArgs> | null
+    /**
+     * The data needed to create a MediaOnSocialAccount.
+     */
+    data: XOR<MediaOnSocialAccountCreateInput, MediaOnSocialAccountUncheckedCreateInput>
+  }
+
+
+  /**
+   * MediaOnSocialAccount createMany
+   */
+  export type MediaOnSocialAccountCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many MediaOnSocialAccounts.
+     */
+    data: MediaOnSocialAccountCreateManyInput | MediaOnSocialAccountCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * MediaOnSocialAccount update
+   */
+  export type MediaOnSocialAccountUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaOnSocialAccount
+     */
+    select?: MediaOnSocialAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: MediaOnSocialAccountInclude<ExtArgs> | null
+    /**
+     * The data needed to update a MediaOnSocialAccount.
+     */
+    data: XOR<MediaOnSocialAccountUpdateInput, MediaOnSocialAccountUncheckedUpdateInput>
+    /**
+     * Choose, which MediaOnSocialAccount to update.
+     */
+    where: MediaOnSocialAccountWhereUniqueInput
+  }
+
+
+  /**
+   * MediaOnSocialAccount updateMany
+   */
+  export type MediaOnSocialAccountUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update MediaOnSocialAccounts.
+     */
+    data: XOR<MediaOnSocialAccountUpdateManyMutationInput, MediaOnSocialAccountUncheckedUpdateManyInput>
+    /**
+     * Filter which MediaOnSocialAccounts to update
+     */
+    where?: MediaOnSocialAccountWhereInput
+  }
+
+
+  /**
+   * MediaOnSocialAccount upsert
+   */
+  export type MediaOnSocialAccountUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaOnSocialAccount
+     */
+    select?: MediaOnSocialAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: MediaOnSocialAccountInclude<ExtArgs> | null
+    /**
+     * The filter to search for the MediaOnSocialAccount to update in case it exists.
+     */
+    where: MediaOnSocialAccountWhereUniqueInput
+    /**
+     * In case the MediaOnSocialAccount found by the `where` argument doesn't exist, create a new MediaOnSocialAccount with this data.
+     */
+    create: XOR<MediaOnSocialAccountCreateInput, MediaOnSocialAccountUncheckedCreateInput>
+    /**
+     * In case the MediaOnSocialAccount was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MediaOnSocialAccountUpdateInput, MediaOnSocialAccountUncheckedUpdateInput>
+  }
+
+
+  /**
+   * MediaOnSocialAccount delete
+   */
+  export type MediaOnSocialAccountDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaOnSocialAccount
+     */
+    select?: MediaOnSocialAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: MediaOnSocialAccountInclude<ExtArgs> | null
+    /**
+     * Filter which MediaOnSocialAccount to delete.
+     */
+    where: MediaOnSocialAccountWhereUniqueInput
+  }
+
+
+  /**
+   * MediaOnSocialAccount deleteMany
+   */
+  export type MediaOnSocialAccountDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MediaOnSocialAccounts to delete
+     */
+    where?: MediaOnSocialAccountWhereInput
+  }
+
+
+  /**
+   * MediaOnSocialAccount without action
+   */
+  export type MediaOnSocialAccountDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaOnSocialAccount
+     */
+    select?: MediaOnSocialAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: MediaOnSocialAccountInclude<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model SocialAccount
+   */
+
+  export type AggregateSocialAccount = {
+    _count: SocialAccountCountAggregateOutputType | null
+    _avg: SocialAccountAvgAggregateOutputType | null
+    _sum: SocialAccountSumAggregateOutputType | null
+    _min: SocialAccountMinAggregateOutputType | null
+    _max: SocialAccountMaxAggregateOutputType | null
+  }
+
+  export type SocialAccountAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type SocialAccountSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type SocialAccountMinAggregateOutputType = {
+    id: number | null
+    userId: string | null
+    type: $Enums.AccountType | null
+    fullName: string | null
+    avatarUrl: string | null
+    accountUrl: string | null
+    accessToken: string | null
+    refreshToken: string | null
+    expiredAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    disabledAt: Date | null
+  }
+
+  export type SocialAccountMaxAggregateOutputType = {
+    id: number | null
+    userId: string | null
+    type: $Enums.AccountType | null
+    fullName: string | null
+    avatarUrl: string | null
+    accountUrl: string | null
+    accessToken: string | null
+    refreshToken: string | null
+    expiredAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    disabledAt: Date | null
+  }
+
+  export type SocialAccountCountAggregateOutputType = {
+    id: number
+    userId: number
+    type: number
+    fullName: number
+    avatarUrl: number
+    accountUrl: number
+    accessToken: number
+    refreshToken: number
+    expiredAt: number
+    createdAt: number
+    updatedAt: number
+    disabledAt: number
+    _all: number
+  }
+
+
+  export type SocialAccountAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type SocialAccountSumAggregateInputType = {
+    id?: true
+  }
+
+  export type SocialAccountMinAggregateInputType = {
+    id?: true
+    userId?: true
+    type?: true
+    fullName?: true
+    avatarUrl?: true
+    accountUrl?: true
+    accessToken?: true
+    refreshToken?: true
+    expiredAt?: true
+    createdAt?: true
+    updatedAt?: true
+    disabledAt?: true
+  }
+
+  export type SocialAccountMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    type?: true
+    fullName?: true
+    avatarUrl?: true
+    accountUrl?: true
+    accessToken?: true
+    refreshToken?: true
+    expiredAt?: true
+    createdAt?: true
+    updatedAt?: true
+    disabledAt?: true
+  }
+
+  export type SocialAccountCountAggregateInputType = {
+    id?: true
+    userId?: true
+    type?: true
+    fullName?: true
+    avatarUrl?: true
+    accountUrl?: true
+    accessToken?: true
+    refreshToken?: true
+    expiredAt?: true
+    createdAt?: true
+    updatedAt?: true
+    disabledAt?: true
+    _all?: true
+  }
+
+  export type SocialAccountAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SocialAccount to aggregate.
+     */
+    where?: SocialAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SocialAccounts to fetch.
+     */
+    orderBy?: SocialAccountOrderByWithRelationInput | SocialAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SocialAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SocialAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SocialAccounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned SocialAccounts
+    **/
+    _count?: true | SocialAccountCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: SocialAccountAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SocialAccountSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SocialAccountMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SocialAccountMaxAggregateInputType
+  }
+
+  export type GetSocialAccountAggregateType<T extends SocialAccountAggregateArgs> = {
+        [P in keyof T & keyof AggregateSocialAccount]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSocialAccount[P]>
+      : GetScalarType<T[P], AggregateSocialAccount[P]>
+  }
+
+
+
+
+  export type SocialAccountGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SocialAccountWhereInput
+    orderBy?: SocialAccountOrderByWithAggregationInput | SocialAccountOrderByWithAggregationInput[]
+    by: SocialAccountScalarFieldEnum[] | SocialAccountScalarFieldEnum
+    having?: SocialAccountScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SocialAccountCountAggregateInputType | true
+    _avg?: SocialAccountAvgAggregateInputType
+    _sum?: SocialAccountSumAggregateInputType
+    _min?: SocialAccountMinAggregateInputType
+    _max?: SocialAccountMaxAggregateInputType
+  }
+
+  export type SocialAccountGroupByOutputType = {
+    id: number
+    userId: string
+    type: $Enums.AccountType
+    fullName: string
+    avatarUrl: string | null
+    accountUrl: string | null
+    accessToken: string | null
+    refreshToken: string | null
+    expiredAt: Date
+    createdAt: Date
+    updatedAt: Date
+    disabledAt: Date | null
+    _count: SocialAccountCountAggregateOutputType | null
+    _avg: SocialAccountAvgAggregateOutputType | null
+    _sum: SocialAccountSumAggregateOutputType | null
+    _min: SocialAccountMinAggregateOutputType | null
+    _max: SocialAccountMaxAggregateOutputType | null
+  }
+
+  type GetSocialAccountGroupByPayload<T extends SocialAccountGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SocialAccountGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SocialAccountGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SocialAccountGroupByOutputType[P]>
+            : GetScalarType<T[P], SocialAccountGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SocialAccountSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    type?: boolean
+    fullName?: boolean
+    avatarUrl?: boolean
+    accountUrl?: boolean
+    accessToken?: boolean
+    refreshToken?: boolean
+    expiredAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    disabledAt?: boolean
+    owner?: boolean | UserDefaultArgs<ExtArgs>
+    MediaOnSocialAccount?: boolean | SocialAccount$MediaOnSocialAccountArgs<ExtArgs>
+    _count?: boolean | SocialAccountCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["socialAccount"]>
+
+  export type SocialAccountSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    type?: boolean
+    fullName?: boolean
+    avatarUrl?: boolean
+    accountUrl?: boolean
+    accessToken?: boolean
+    refreshToken?: boolean
+    expiredAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    disabledAt?: boolean
+  }
+
+  export type SocialAccountInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    owner?: boolean | UserDefaultArgs<ExtArgs>
+    MediaOnSocialAccount?: boolean | SocialAccount$MediaOnSocialAccountArgs<ExtArgs>
+    _count?: boolean | SocialAccountCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+
+  export type $SocialAccountPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "SocialAccount"
+    objects: {
+      owner: Prisma.$UserPayload<ExtArgs>
+      MediaOnSocialAccount: Prisma.$MediaOnSocialAccountPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      userId: string
+      type: $Enums.AccountType
+      fullName: string
+      avatarUrl: string | null
+      accountUrl: string | null
+      accessToken: string | null
+      refreshToken: string | null
+      expiredAt: Date
+      createdAt: Date
+      updatedAt: Date
+      disabledAt: Date | null
+    }, ExtArgs["result"]["socialAccount"]>
+    composites: {}
+  }
+
+
+  type SocialAccountGetPayload<S extends boolean | null | undefined | SocialAccountDefaultArgs> = $Result.GetResult<Prisma.$SocialAccountPayload, S>
+
+  type SocialAccountCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<SocialAccountFindManyArgs, 'select' | 'include'> & {
+      select?: SocialAccountCountAggregateInputType | true
+    }
+
+  export interface SocialAccountDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SocialAccount'], meta: { name: 'SocialAccount' } }
+    /**
+     * Find zero or one SocialAccount that matches the filter.
+     * @param {SocialAccountFindUniqueArgs} args - Arguments to find a SocialAccount
+     * @example
+     * // Get one SocialAccount
+     * const socialAccount = await prisma.socialAccount.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends SocialAccountFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, SocialAccountFindUniqueArgs<ExtArgs>>
+    ): Prisma__SocialAccountClient<$Result.GetResult<Prisma.$SocialAccountPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one SocialAccount that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {SocialAccountFindUniqueOrThrowArgs} args - Arguments to find a SocialAccount
+     * @example
+     * // Get one SocialAccount
+     * const socialAccount = await prisma.socialAccount.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends SocialAccountFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, SocialAccountFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__SocialAccountClient<$Result.GetResult<Prisma.$SocialAccountPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first SocialAccount that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SocialAccountFindFirstArgs} args - Arguments to find a SocialAccount
+     * @example
+     * // Get one SocialAccount
+     * const socialAccount = await prisma.socialAccount.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends SocialAccountFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, SocialAccountFindFirstArgs<ExtArgs>>
+    ): Prisma__SocialAccountClient<$Result.GetResult<Prisma.$SocialAccountPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first SocialAccount that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SocialAccountFindFirstOrThrowArgs} args - Arguments to find a SocialAccount
+     * @example
+     * // Get one SocialAccount
+     * const socialAccount = await prisma.socialAccount.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends SocialAccountFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, SocialAccountFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__SocialAccountClient<$Result.GetResult<Prisma.$SocialAccountPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more SocialAccounts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SocialAccountFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all SocialAccounts
+     * const socialAccounts = await prisma.socialAccount.findMany()
+     * 
+     * // Get first 10 SocialAccounts
+     * const socialAccounts = await prisma.socialAccount.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const socialAccountWithIdOnly = await prisma.socialAccount.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends SocialAccountFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, SocialAccountFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SocialAccountPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a SocialAccount.
+     * @param {SocialAccountCreateArgs} args - Arguments to create a SocialAccount.
+     * @example
+     * // Create one SocialAccount
+     * const SocialAccount = await prisma.socialAccount.create({
+     *   data: {
+     *     // ... data to create a SocialAccount
+     *   }
+     * })
+     * 
+    **/
+    create<T extends SocialAccountCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, SocialAccountCreateArgs<ExtArgs>>
+    ): Prisma__SocialAccountClient<$Result.GetResult<Prisma.$SocialAccountPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many SocialAccounts.
+     *     @param {SocialAccountCreateManyArgs} args - Arguments to create many SocialAccounts.
+     *     @example
+     *     // Create many SocialAccounts
+     *     const socialAccount = await prisma.socialAccount.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends SocialAccountCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, SocialAccountCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a SocialAccount.
+     * @param {SocialAccountDeleteArgs} args - Arguments to delete one SocialAccount.
+     * @example
+     * // Delete one SocialAccount
+     * const SocialAccount = await prisma.socialAccount.delete({
+     *   where: {
+     *     // ... filter to delete one SocialAccount
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends SocialAccountDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, SocialAccountDeleteArgs<ExtArgs>>
+    ): Prisma__SocialAccountClient<$Result.GetResult<Prisma.$SocialAccountPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one SocialAccount.
+     * @param {SocialAccountUpdateArgs} args - Arguments to update one SocialAccount.
+     * @example
+     * // Update one SocialAccount
+     * const socialAccount = await prisma.socialAccount.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends SocialAccountUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, SocialAccountUpdateArgs<ExtArgs>>
+    ): Prisma__SocialAccountClient<$Result.GetResult<Prisma.$SocialAccountPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more SocialAccounts.
+     * @param {SocialAccountDeleteManyArgs} args - Arguments to filter SocialAccounts to delete.
+     * @example
+     * // Delete a few SocialAccounts
+     * const { count } = await prisma.socialAccount.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends SocialAccountDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, SocialAccountDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SocialAccounts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SocialAccountUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many SocialAccounts
+     * const socialAccount = await prisma.socialAccount.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends SocialAccountUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, SocialAccountUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one SocialAccount.
+     * @param {SocialAccountUpsertArgs} args - Arguments to update or create a SocialAccount.
+     * @example
+     * // Update or create a SocialAccount
+     * const socialAccount = await prisma.socialAccount.upsert({
+     *   create: {
+     *     // ... data to create a SocialAccount
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the SocialAccount we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends SocialAccountUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, SocialAccountUpsertArgs<ExtArgs>>
+    ): Prisma__SocialAccountClient<$Result.GetResult<Prisma.$SocialAccountPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of SocialAccounts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SocialAccountCountArgs} args - Arguments to filter SocialAccounts to count.
+     * @example
+     * // Count the number of SocialAccounts
+     * const count = await prisma.socialAccount.count({
+     *   where: {
+     *     // ... the filter for the SocialAccounts we want to count
+     *   }
+     * })
+    **/
+    count<T extends SocialAccountCountArgs>(
+      args?: Subset<T, SocialAccountCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SocialAccountCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a SocialAccount.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SocialAccountAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SocialAccountAggregateArgs>(args: Subset<T, SocialAccountAggregateArgs>): Prisma.PrismaPromise<GetSocialAccountAggregateType<T>>
+
+    /**
+     * Group by SocialAccount.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SocialAccountGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SocialAccountGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SocialAccountGroupByArgs['orderBy'] }
+        : { orderBy?: SocialAccountGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SocialAccountGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSocialAccountGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the SocialAccount model
+   */
+  readonly fields: SocialAccountFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for SocialAccount.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SocialAccountClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    owner<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    MediaOnSocialAccount<T extends SocialAccount$MediaOnSocialAccountArgs<ExtArgs> = {}>(args?: Subset<T, SocialAccount$MediaOnSocialAccountArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MediaOnSocialAccountPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the SocialAccount model
+   */ 
+  interface SocialAccountFieldRefs {
+    readonly id: FieldRef<"SocialAccount", 'Int'>
+    readonly userId: FieldRef<"SocialAccount", 'String'>
+    readonly type: FieldRef<"SocialAccount", 'AccountType'>
+    readonly fullName: FieldRef<"SocialAccount", 'String'>
+    readonly avatarUrl: FieldRef<"SocialAccount", 'String'>
+    readonly accountUrl: FieldRef<"SocialAccount", 'String'>
+    readonly accessToken: FieldRef<"SocialAccount", 'String'>
+    readonly refreshToken: FieldRef<"SocialAccount", 'String'>
+    readonly expiredAt: FieldRef<"SocialAccount", 'DateTime'>
+    readonly createdAt: FieldRef<"SocialAccount", 'DateTime'>
+    readonly updatedAt: FieldRef<"SocialAccount", 'DateTime'>
+    readonly disabledAt: FieldRef<"SocialAccount", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * SocialAccount findUnique
+   */
+  export type SocialAccountFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SocialAccount
+     */
+    select?: SocialAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SocialAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which SocialAccount to fetch.
+     */
+    where: SocialAccountWhereUniqueInput
+  }
+
+
+  /**
+   * SocialAccount findUniqueOrThrow
+   */
+  export type SocialAccountFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SocialAccount
+     */
+    select?: SocialAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SocialAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which SocialAccount to fetch.
+     */
+    where: SocialAccountWhereUniqueInput
+  }
+
+
+  /**
+   * SocialAccount findFirst
+   */
+  export type SocialAccountFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SocialAccount
+     */
+    select?: SocialAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SocialAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which SocialAccount to fetch.
+     */
+    where?: SocialAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SocialAccounts to fetch.
+     */
+    orderBy?: SocialAccountOrderByWithRelationInput | SocialAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SocialAccounts.
+     */
+    cursor?: SocialAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SocialAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SocialAccounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SocialAccounts.
+     */
+    distinct?: SocialAccountScalarFieldEnum | SocialAccountScalarFieldEnum[]
+  }
+
+
+  /**
+   * SocialAccount findFirstOrThrow
+   */
+  export type SocialAccountFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SocialAccount
+     */
+    select?: SocialAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SocialAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which SocialAccount to fetch.
+     */
+    where?: SocialAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SocialAccounts to fetch.
+     */
+    orderBy?: SocialAccountOrderByWithRelationInput | SocialAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SocialAccounts.
+     */
+    cursor?: SocialAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SocialAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SocialAccounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SocialAccounts.
+     */
+    distinct?: SocialAccountScalarFieldEnum | SocialAccountScalarFieldEnum[]
+  }
+
+
+  /**
+   * SocialAccount findMany
+   */
+  export type SocialAccountFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SocialAccount
+     */
+    select?: SocialAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SocialAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which SocialAccounts to fetch.
+     */
+    where?: SocialAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SocialAccounts to fetch.
+     */
+    orderBy?: SocialAccountOrderByWithRelationInput | SocialAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing SocialAccounts.
+     */
+    cursor?: SocialAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SocialAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SocialAccounts.
+     */
+    skip?: number
+    distinct?: SocialAccountScalarFieldEnum | SocialAccountScalarFieldEnum[]
+  }
+
+
+  /**
+   * SocialAccount create
+   */
+  export type SocialAccountCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SocialAccount
+     */
+    select?: SocialAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SocialAccountInclude<ExtArgs> | null
+    /**
+     * The data needed to create a SocialAccount.
+     */
+    data: XOR<SocialAccountCreateInput, SocialAccountUncheckedCreateInput>
+  }
+
+
+  /**
+   * SocialAccount createMany
+   */
+  export type SocialAccountCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many SocialAccounts.
+     */
+    data: SocialAccountCreateManyInput | SocialAccountCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * SocialAccount update
+   */
+  export type SocialAccountUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SocialAccount
+     */
+    select?: SocialAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SocialAccountInclude<ExtArgs> | null
+    /**
+     * The data needed to update a SocialAccount.
+     */
+    data: XOR<SocialAccountUpdateInput, SocialAccountUncheckedUpdateInput>
+    /**
+     * Choose, which SocialAccount to update.
+     */
+    where: SocialAccountWhereUniqueInput
+  }
+
+
+  /**
+   * SocialAccount updateMany
+   */
+  export type SocialAccountUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update SocialAccounts.
+     */
+    data: XOR<SocialAccountUpdateManyMutationInput, SocialAccountUncheckedUpdateManyInput>
+    /**
+     * Filter which SocialAccounts to update
+     */
+    where?: SocialAccountWhereInput
+  }
+
+
+  /**
+   * SocialAccount upsert
+   */
+  export type SocialAccountUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SocialAccount
+     */
+    select?: SocialAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SocialAccountInclude<ExtArgs> | null
+    /**
+     * The filter to search for the SocialAccount to update in case it exists.
+     */
+    where: SocialAccountWhereUniqueInput
+    /**
+     * In case the SocialAccount found by the `where` argument doesn't exist, create a new SocialAccount with this data.
+     */
+    create: XOR<SocialAccountCreateInput, SocialAccountUncheckedCreateInput>
+    /**
+     * In case the SocialAccount was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SocialAccountUpdateInput, SocialAccountUncheckedUpdateInput>
+  }
+
+
+  /**
+   * SocialAccount delete
+   */
+  export type SocialAccountDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SocialAccount
+     */
+    select?: SocialAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SocialAccountInclude<ExtArgs> | null
+    /**
+     * Filter which SocialAccount to delete.
+     */
+    where: SocialAccountWhereUniqueInput
+  }
+
+
+  /**
+   * SocialAccount deleteMany
+   */
+  export type SocialAccountDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SocialAccounts to delete
+     */
+    where?: SocialAccountWhereInput
+  }
+
+
+  /**
+   * SocialAccount.MediaOnSocialAccount
+   */
+  export type SocialAccount$MediaOnSocialAccountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaOnSocialAccount
+     */
+    select?: MediaOnSocialAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: MediaOnSocialAccountInclude<ExtArgs> | null
+    where?: MediaOnSocialAccountWhereInput
+    orderBy?: MediaOnSocialAccountOrderByWithRelationInput | MediaOnSocialAccountOrderByWithRelationInput[]
+    cursor?: MediaOnSocialAccountWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MediaOnSocialAccountScalarFieldEnum | MediaOnSocialAccountScalarFieldEnum[]
+  }
+
+
+  /**
+   * SocialAccount without action
+   */
+  export type SocialAccountDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SocialAccount
+     */
+    select?: SocialAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SocialAccountInclude<ExtArgs> | null
+  }
+
+
+
+  /**
    * Enums
    */
 
@@ -23445,6 +25766,7 @@ export namespace Prisma {
     username: 'username',
     password: 'password',
     avatar: 'avatar',
+    cover: 'cover',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     lockedAt: 'lockedAt'
@@ -23684,6 +26006,36 @@ export namespace Prisma {
   export type AlbumScalarFieldEnum = (typeof AlbumScalarFieldEnum)[keyof typeof AlbumScalarFieldEnum]
 
 
+  export const MediaOnSocialAccountScalarFieldEnum: {
+    id: 'id',
+    socialAccountId: 'socialAccountId',
+    mediaSocialId: 'mediaSocialId',
+    mediaId: 'mediaId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type MediaOnSocialAccountScalarFieldEnum = (typeof MediaOnSocialAccountScalarFieldEnum)[keyof typeof MediaOnSocialAccountScalarFieldEnum]
+
+
+  export const SocialAccountScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    type: 'type',
+    fullName: 'fullName',
+    avatarUrl: 'avatarUrl',
+    accountUrl: 'accountUrl',
+    accessToken: 'accessToken',
+    refreshToken: 'refreshToken',
+    expiredAt: 'expiredAt',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    disabledAt: 'disabledAt'
+  };
+
+  export type SocialAccountScalarFieldEnum = (typeof SocialAccountScalarFieldEnum)[keyof typeof SocialAccountScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -23766,6 +26118,13 @@ export namespace Prisma {
    */
   export type EnumAudioQualityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AudioQuality'>
     
+
+
+  /**
+   * Reference to a field of type 'AccountType'
+   */
+  export type EnumAccountTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AccountType'>
+    
   /**
    * Deep Input Types
    */
@@ -23782,6 +26141,7 @@ export namespace Prisma {
     username?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     avatar?: StringNullableFilter<"User"> | string | null
+    cover?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     lockedAt?: DateTimeNullableFilter<"User"> | Date | string | null
@@ -23795,6 +26155,7 @@ export namespace Prisma {
     Playlist?: PlaylistListRelationFilter
     UserPaymentMethod?: UserPaymentMethodListRelationFilter
     Album?: AlbumListRelationFilter
+    SocialAccount?: SocialAccountListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -23805,6 +26166,7 @@ export namespace Prisma {
     username?: SortOrder
     password?: SortOrder
     avatar?: SortOrderInput | SortOrder
+    cover?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     lockedAt?: SortOrderInput | SortOrder
@@ -23818,6 +26180,7 @@ export namespace Prisma {
     Playlist?: PlaylistOrderByRelationAggregateInput
     UserPaymentMethod?: UserPaymentMethodOrderByRelationAggregateInput
     Album?: AlbumOrderByRelationAggregateInput
+    SocialAccount?: SocialAccountOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -23831,6 +26194,7 @@ export namespace Prisma {
     lastName?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     avatar?: StringNullableFilter<"User"> | string | null
+    cover?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     lockedAt?: DateTimeNullableFilter<"User"> | Date | string | null
@@ -23844,6 +26208,7 @@ export namespace Prisma {
     Playlist?: PlaylistListRelationFilter
     UserPaymentMethod?: UserPaymentMethodListRelationFilter
     Album?: AlbumListRelationFilter
+    SocialAccount?: SocialAccountListRelationFilter
   }, "id" | "email" | "username">
 
   export type UserOrderByWithAggregationInput = {
@@ -23854,6 +26219,7 @@ export namespace Prisma {
     username?: SortOrder
     password?: SortOrder
     avatar?: SortOrderInput | SortOrder
+    cover?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     lockedAt?: SortOrderInput | SortOrder
@@ -23873,6 +26239,7 @@ export namespace Prisma {
     username?: StringWithAggregatesFilter<"User"> | string
     password?: StringWithAggregatesFilter<"User"> | string
     avatar?: StringNullableWithAggregatesFilter<"User"> | string | null
+    cover?: StringNullableWithAggregatesFilter<"User"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     lockedAt?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
@@ -24134,6 +26501,7 @@ export namespace Prisma {
     mediaOnPlaylist?: MediaOnPlaylistListRelationFilter
     sessionUpload?: SessionUploadListRelationFilter
     mediaOnAlbum?: MediaOnAlbumListRelationFilter
+    MediaOnSocialAccount?: MediaOnSocialAccountListRelationFilter
   }
 
   export type MediaOrderByWithRelationInput = {
@@ -24161,6 +26529,7 @@ export namespace Prisma {
     mediaOnPlaylist?: MediaOnPlaylistOrderByRelationAggregateInput
     sessionUpload?: SessionUploadOrderByRelationAggregateInput
     mediaOnAlbum?: MediaOnAlbumOrderByRelationAggregateInput
+    MediaOnSocialAccount?: MediaOnSocialAccountOrderByRelationAggregateInput
   }
 
   export type MediaWhereUniqueInput = Prisma.AtLeast<{
@@ -24191,6 +26560,7 @@ export namespace Prisma {
     mediaOnPlaylist?: MediaOnPlaylistListRelationFilter
     sessionUpload?: SessionUploadListRelationFilter
     mediaOnAlbum?: MediaOnAlbumListRelationFilter
+    MediaOnSocialAccount?: MediaOnSocialAccountListRelationFilter
   }, "id">
 
   export type MediaOrderByWithAggregationInput = {
@@ -24568,6 +26938,7 @@ export namespace Prisma {
 
   export type SubscriberWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    userId_channelId?: SubscriberUserIdChannelIdCompoundUniqueInput
     AND?: SubscriberWhereInput | SubscriberWhereInput[]
     OR?: SubscriberWhereInput[]
     NOT?: SubscriberWhereInput | SubscriberWhereInput[]
@@ -24577,7 +26948,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Subscriber"> | Date | string
     user?: XOR<UserRelationFilter, UserWhereInput>
     channel?: XOR<UserRelationFilter, UserWhereInput>
-  }, "id">
+  }, "id" | "userId_channelId">
 
   export type SubscriberOrderByWithAggregationInput = {
     id?: SortOrder
@@ -25119,6 +27490,168 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Album"> | Date | string
   }
 
+  export type MediaOnSocialAccountWhereInput = {
+    AND?: MediaOnSocialAccountWhereInput | MediaOnSocialAccountWhereInput[]
+    OR?: MediaOnSocialAccountWhereInput[]
+    NOT?: MediaOnSocialAccountWhereInput | MediaOnSocialAccountWhereInput[]
+    id?: IntFilter<"MediaOnSocialAccount"> | number
+    socialAccountId?: IntFilter<"MediaOnSocialAccount"> | number
+    mediaSocialId?: StringFilter<"MediaOnSocialAccount"> | string
+    mediaId?: StringFilter<"MediaOnSocialAccount"> | string
+    createdAt?: DateTimeFilter<"MediaOnSocialAccount"> | Date | string
+    updatedAt?: DateTimeFilter<"MediaOnSocialAccount"> | Date | string
+    media?: XOR<MediaRelationFilter, MediaWhereInput>
+    socialAccount?: XOR<SocialAccountRelationFilter, SocialAccountWhereInput>
+  }
+
+  export type MediaOnSocialAccountOrderByWithRelationInput = {
+    id?: SortOrder
+    socialAccountId?: SortOrder
+    mediaSocialId?: SortOrder
+    mediaId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    media?: MediaOrderByWithRelationInput
+    socialAccount?: SocialAccountOrderByWithRelationInput
+  }
+
+  export type MediaOnSocialAccountWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    socialAccountId_mediaSocialId_mediaId?: MediaOnSocialAccountSocialAccountIdMediaSocialIdMediaIdCompoundUniqueInput
+    AND?: MediaOnSocialAccountWhereInput | MediaOnSocialAccountWhereInput[]
+    OR?: MediaOnSocialAccountWhereInput[]
+    NOT?: MediaOnSocialAccountWhereInput | MediaOnSocialAccountWhereInput[]
+    socialAccountId?: IntFilter<"MediaOnSocialAccount"> | number
+    mediaSocialId?: StringFilter<"MediaOnSocialAccount"> | string
+    mediaId?: StringFilter<"MediaOnSocialAccount"> | string
+    createdAt?: DateTimeFilter<"MediaOnSocialAccount"> | Date | string
+    updatedAt?: DateTimeFilter<"MediaOnSocialAccount"> | Date | string
+    media?: XOR<MediaRelationFilter, MediaWhereInput>
+    socialAccount?: XOR<SocialAccountRelationFilter, SocialAccountWhereInput>
+  }, "id" | "socialAccountId_mediaSocialId_mediaId">
+
+  export type MediaOnSocialAccountOrderByWithAggregationInput = {
+    id?: SortOrder
+    socialAccountId?: SortOrder
+    mediaSocialId?: SortOrder
+    mediaId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: MediaOnSocialAccountCountOrderByAggregateInput
+    _avg?: MediaOnSocialAccountAvgOrderByAggregateInput
+    _max?: MediaOnSocialAccountMaxOrderByAggregateInput
+    _min?: MediaOnSocialAccountMinOrderByAggregateInput
+    _sum?: MediaOnSocialAccountSumOrderByAggregateInput
+  }
+
+  export type MediaOnSocialAccountScalarWhereWithAggregatesInput = {
+    AND?: MediaOnSocialAccountScalarWhereWithAggregatesInput | MediaOnSocialAccountScalarWhereWithAggregatesInput[]
+    OR?: MediaOnSocialAccountScalarWhereWithAggregatesInput[]
+    NOT?: MediaOnSocialAccountScalarWhereWithAggregatesInput | MediaOnSocialAccountScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"MediaOnSocialAccount"> | number
+    socialAccountId?: IntWithAggregatesFilter<"MediaOnSocialAccount"> | number
+    mediaSocialId?: StringWithAggregatesFilter<"MediaOnSocialAccount"> | string
+    mediaId?: StringWithAggregatesFilter<"MediaOnSocialAccount"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"MediaOnSocialAccount"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"MediaOnSocialAccount"> | Date | string
+  }
+
+  export type SocialAccountWhereInput = {
+    AND?: SocialAccountWhereInput | SocialAccountWhereInput[]
+    OR?: SocialAccountWhereInput[]
+    NOT?: SocialAccountWhereInput | SocialAccountWhereInput[]
+    id?: IntFilter<"SocialAccount"> | number
+    userId?: StringFilter<"SocialAccount"> | string
+    type?: EnumAccountTypeFilter<"SocialAccount"> | $Enums.AccountType
+    fullName?: StringFilter<"SocialAccount"> | string
+    avatarUrl?: StringNullableFilter<"SocialAccount"> | string | null
+    accountUrl?: StringNullableFilter<"SocialAccount"> | string | null
+    accessToken?: StringNullableFilter<"SocialAccount"> | string | null
+    refreshToken?: StringNullableFilter<"SocialAccount"> | string | null
+    expiredAt?: DateTimeFilter<"SocialAccount"> | Date | string
+    createdAt?: DateTimeFilter<"SocialAccount"> | Date | string
+    updatedAt?: DateTimeFilter<"SocialAccount"> | Date | string
+    disabledAt?: DateTimeNullableFilter<"SocialAccount"> | Date | string | null
+    owner?: XOR<UserRelationFilter, UserWhereInput>
+    MediaOnSocialAccount?: MediaOnSocialAccountListRelationFilter
+  }
+
+  export type SocialAccountOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    type?: SortOrder
+    fullName?: SortOrder
+    avatarUrl?: SortOrderInput | SortOrder
+    accountUrl?: SortOrderInput | SortOrder
+    accessToken?: SortOrderInput | SortOrder
+    refreshToken?: SortOrderInput | SortOrder
+    expiredAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    disabledAt?: SortOrderInput | SortOrder
+    owner?: UserOrderByWithRelationInput
+    MediaOnSocialAccount?: MediaOnSocialAccountOrderByRelationAggregateInput
+  }
+
+  export type SocialAccountWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    userId_accountUrl_type?: SocialAccountUserIdAccountUrlTypeCompoundUniqueInput
+    AND?: SocialAccountWhereInput | SocialAccountWhereInput[]
+    OR?: SocialAccountWhereInput[]
+    NOT?: SocialAccountWhereInput | SocialAccountWhereInput[]
+    userId?: StringFilter<"SocialAccount"> | string
+    type?: EnumAccountTypeFilter<"SocialAccount"> | $Enums.AccountType
+    fullName?: StringFilter<"SocialAccount"> | string
+    avatarUrl?: StringNullableFilter<"SocialAccount"> | string | null
+    accountUrl?: StringNullableFilter<"SocialAccount"> | string | null
+    accessToken?: StringNullableFilter<"SocialAccount"> | string | null
+    refreshToken?: StringNullableFilter<"SocialAccount"> | string | null
+    expiredAt?: DateTimeFilter<"SocialAccount"> | Date | string
+    createdAt?: DateTimeFilter<"SocialAccount"> | Date | string
+    updatedAt?: DateTimeFilter<"SocialAccount"> | Date | string
+    disabledAt?: DateTimeNullableFilter<"SocialAccount"> | Date | string | null
+    owner?: XOR<UserRelationFilter, UserWhereInput>
+    MediaOnSocialAccount?: MediaOnSocialAccountListRelationFilter
+  }, "id" | "userId_accountUrl_type">
+
+  export type SocialAccountOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    type?: SortOrder
+    fullName?: SortOrder
+    avatarUrl?: SortOrderInput | SortOrder
+    accountUrl?: SortOrderInput | SortOrder
+    accessToken?: SortOrderInput | SortOrder
+    refreshToken?: SortOrderInput | SortOrder
+    expiredAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    disabledAt?: SortOrderInput | SortOrder
+    _count?: SocialAccountCountOrderByAggregateInput
+    _avg?: SocialAccountAvgOrderByAggregateInput
+    _max?: SocialAccountMaxOrderByAggregateInput
+    _min?: SocialAccountMinOrderByAggregateInput
+    _sum?: SocialAccountSumOrderByAggregateInput
+  }
+
+  export type SocialAccountScalarWhereWithAggregatesInput = {
+    AND?: SocialAccountScalarWhereWithAggregatesInput | SocialAccountScalarWhereWithAggregatesInput[]
+    OR?: SocialAccountScalarWhereWithAggregatesInput[]
+    NOT?: SocialAccountScalarWhereWithAggregatesInput | SocialAccountScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"SocialAccount"> | number
+    userId?: StringWithAggregatesFilter<"SocialAccount"> | string
+    type?: EnumAccountTypeWithAggregatesFilter<"SocialAccount"> | $Enums.AccountType
+    fullName?: StringWithAggregatesFilter<"SocialAccount"> | string
+    avatarUrl?: StringNullableWithAggregatesFilter<"SocialAccount"> | string | null
+    accountUrl?: StringNullableWithAggregatesFilter<"SocialAccount"> | string | null
+    accessToken?: StringNullableWithAggregatesFilter<"SocialAccount"> | string | null
+    refreshToken?: StringNullableWithAggregatesFilter<"SocialAccount"> | string | null
+    expiredAt?: DateTimeWithAggregatesFilter<"SocialAccount"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"SocialAccount"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"SocialAccount"> | Date | string
+    disabledAt?: DateTimeNullableWithAggregatesFilter<"SocialAccount"> | Date | string | null
+  }
+
   export type UserCreateInput = {
     id?: string
     firstName: string
@@ -25127,6 +27660,7 @@ export namespace Prisma {
     username: string
     password: string
     avatar?: string | null
+    cover?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -25140,6 +27674,7 @@ export namespace Prisma {
     Playlist?: PlaylistCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodCreateNestedManyWithoutUserInput
     Album?: AlbumCreateNestedManyWithoutOwnerInput
+    SocialAccount?: SocialAccountCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -25150,6 +27685,7 @@ export namespace Prisma {
     username: string
     password: string
     avatar?: string | null
+    cover?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -25163,6 +27699,7 @@ export namespace Prisma {
     Playlist?: PlaylistUncheckedCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodUncheckedCreateNestedManyWithoutUserInput
     Album?: AlbumUncheckedCreateNestedManyWithoutOwnerInput
+    SocialAccount?: SocialAccountUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUpdateInput = {
@@ -25173,6 +27710,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    cover?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -25186,6 +27724,7 @@ export namespace Prisma {
     Playlist?: PlaylistUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUpdateManyWithoutUserNestedInput
     Album?: AlbumUpdateManyWithoutOwnerNestedInput
+    SocialAccount?: SocialAccountUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -25196,6 +27735,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    cover?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -25209,6 +27749,7 @@ export namespace Prisma {
     Playlist?: PlaylistUncheckedUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUncheckedUpdateManyWithoutUserNestedInput
     Album?: AlbumUncheckedUpdateManyWithoutOwnerNestedInput
+    SocialAccount?: SocialAccountUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -25219,6 +27760,7 @@ export namespace Prisma {
     username: string
     password: string
     avatar?: string | null
+    cover?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -25232,6 +27774,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    cover?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -25245,6 +27788,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    cover?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -25492,6 +28036,7 @@ export namespace Prisma {
     mediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
     sessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
     mediaOnAlbum?: MediaOnAlbumCreateNestedManyWithoutMediaInput
+    MediaOnSocialAccount?: MediaOnSocialAccountCreateNestedManyWithoutMediaInput
   }
 
   export type MediaUncheckedCreateInput = {
@@ -25518,6 +28063,7 @@ export namespace Prisma {
     mediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
     sessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
     mediaOnAlbum?: MediaOnAlbumUncheckedCreateNestedManyWithoutMediaInput
+    MediaOnSocialAccount?: MediaOnSocialAccountUncheckedCreateNestedManyWithoutMediaInput
   }
 
   export type MediaUpdateInput = {
@@ -25544,6 +28090,7 @@ export namespace Prisma {
     mediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
     sessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
     mediaOnAlbum?: MediaOnAlbumUpdateManyWithoutMediaNestedInput
+    MediaOnSocialAccount?: MediaOnSocialAccountUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaUncheckedUpdateInput = {
@@ -25570,6 +28117,7 @@ export namespace Prisma {
     mediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
     sessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
     mediaOnAlbum?: MediaOnAlbumUncheckedUpdateManyWithoutMediaNestedInput
+    MediaOnSocialAccount?: MediaOnSocialAccountUncheckedUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaCreateManyInput = {
@@ -26458,6 +29006,169 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type MediaOnSocialAccountCreateInput = {
+    mediaSocialId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    media: MediaCreateNestedOneWithoutMediaOnSocialAccountInput
+    socialAccount: SocialAccountCreateNestedOneWithoutMediaOnSocialAccountInput
+  }
+
+  export type MediaOnSocialAccountUncheckedCreateInput = {
+    id?: number
+    socialAccountId: number
+    mediaSocialId: string
+    mediaId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MediaOnSocialAccountUpdateInput = {
+    mediaSocialId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    media?: MediaUpdateOneRequiredWithoutMediaOnSocialAccountNestedInput
+    socialAccount?: SocialAccountUpdateOneRequiredWithoutMediaOnSocialAccountNestedInput
+  }
+
+  export type MediaOnSocialAccountUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    socialAccountId?: IntFieldUpdateOperationsInput | number
+    mediaSocialId?: StringFieldUpdateOperationsInput | string
+    mediaId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MediaOnSocialAccountCreateManyInput = {
+    id?: number
+    socialAccountId: number
+    mediaSocialId: string
+    mediaId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MediaOnSocialAccountUpdateManyMutationInput = {
+    mediaSocialId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MediaOnSocialAccountUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    socialAccountId?: IntFieldUpdateOperationsInput | number
+    mediaSocialId?: StringFieldUpdateOperationsInput | string
+    mediaId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SocialAccountCreateInput = {
+    type?: $Enums.AccountType
+    fullName: string
+    avatarUrl?: string | null
+    accountUrl?: string | null
+    accessToken?: string | null
+    refreshToken?: string | null
+    expiredAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    disabledAt?: Date | string | null
+    owner: UserCreateNestedOneWithoutSocialAccountInput
+    MediaOnSocialAccount?: MediaOnSocialAccountCreateNestedManyWithoutSocialAccountInput
+  }
+
+  export type SocialAccountUncheckedCreateInput = {
+    id?: number
+    userId: string
+    type?: $Enums.AccountType
+    fullName: string
+    avatarUrl?: string | null
+    accountUrl?: string | null
+    accessToken?: string | null
+    refreshToken?: string | null
+    expiredAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    disabledAt?: Date | string | null
+    MediaOnSocialAccount?: MediaOnSocialAccountUncheckedCreateNestedManyWithoutSocialAccountInput
+  }
+
+  export type SocialAccountUpdateInput = {
+    type?: EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+    fullName?: StringFieldUpdateOperationsInput | string
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    accountUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    disabledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    owner?: UserUpdateOneRequiredWithoutSocialAccountNestedInput
+    MediaOnSocialAccount?: MediaOnSocialAccountUpdateManyWithoutSocialAccountNestedInput
+  }
+
+  export type SocialAccountUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
+    type?: EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+    fullName?: StringFieldUpdateOperationsInput | string
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    accountUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    disabledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    MediaOnSocialAccount?: MediaOnSocialAccountUncheckedUpdateManyWithoutSocialAccountNestedInput
+  }
+
+  export type SocialAccountCreateManyInput = {
+    id?: number
+    userId: string
+    type?: $Enums.AccountType
+    fullName: string
+    avatarUrl?: string | null
+    accountUrl?: string | null
+    accessToken?: string | null
+    refreshToken?: string | null
+    expiredAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    disabledAt?: Date | string | null
+  }
+
+  export type SocialAccountUpdateManyMutationInput = {
+    type?: EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+    fullName?: StringFieldUpdateOperationsInput | string
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    accountUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    disabledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type SocialAccountUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
+    type?: EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+    fullName?: StringFieldUpdateOperationsInput | string
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    accountUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    disabledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[]
@@ -26562,6 +29273,12 @@ export namespace Prisma {
     none?: AlbumWhereInput
   }
 
+  export type SocialAccountListRelationFilter = {
+    every?: SocialAccountWhereInput
+    some?: SocialAccountWhereInput
+    none?: SocialAccountWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -26603,6 +29320,10 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type SocialAccountOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     firstName?: SortOrder
@@ -26611,6 +29332,7 @@ export namespace Prisma {
     username?: SortOrder
     password?: SortOrder
     avatar?: SortOrder
+    cover?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     lockedAt?: SortOrder
@@ -26624,6 +29346,7 @@ export namespace Prisma {
     username?: SortOrder
     password?: SortOrder
     avatar?: SortOrder
+    cover?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     lockedAt?: SortOrder
@@ -26637,6 +29360,7 @@ export namespace Prisma {
     username?: SortOrder
     password?: SortOrder
     avatar?: SortOrder
+    cover?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     lockedAt?: SortOrder
@@ -26956,6 +29680,12 @@ export namespace Prisma {
     none?: MediaOnAlbumWhereInput
   }
 
+  export type MediaOnSocialAccountListRelationFilter = {
+    every?: MediaOnSocialAccountWhereInput
+    some?: MediaOnSocialAccountWhereInput
+    none?: MediaOnSocialAccountWhereInput
+  }
+
   export type ThumbnailOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -26977,6 +29707,10 @@ export namespace Prisma {
   }
 
   export type MediaOnAlbumOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type MediaOnSocialAccountOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -27251,6 +29985,11 @@ export namespace Prisma {
 
   export type HistorySumOrderByAggregateInput = {
     id?: SortOrder
+  }
+
+  export type SubscriberUserIdChannelIdCompoundUniqueInput = {
+    userId: string
+    channelId: string
   }
 
   export type SubscriberCountOrderByAggregateInput = {
@@ -27585,6 +30324,130 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type SocialAccountRelationFilter = {
+    is?: SocialAccountWhereInput
+    isNot?: SocialAccountWhereInput
+  }
+
+  export type MediaOnSocialAccountSocialAccountIdMediaSocialIdMediaIdCompoundUniqueInput = {
+    socialAccountId: number
+    mediaSocialId: string
+    mediaId: string
+  }
+
+  export type MediaOnSocialAccountCountOrderByAggregateInput = {
+    id?: SortOrder
+    socialAccountId?: SortOrder
+    mediaSocialId?: SortOrder
+    mediaId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MediaOnSocialAccountAvgOrderByAggregateInput = {
+    id?: SortOrder
+    socialAccountId?: SortOrder
+  }
+
+  export type MediaOnSocialAccountMaxOrderByAggregateInput = {
+    id?: SortOrder
+    socialAccountId?: SortOrder
+    mediaSocialId?: SortOrder
+    mediaId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MediaOnSocialAccountMinOrderByAggregateInput = {
+    id?: SortOrder
+    socialAccountId?: SortOrder
+    mediaSocialId?: SortOrder
+    mediaId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MediaOnSocialAccountSumOrderByAggregateInput = {
+    id?: SortOrder
+    socialAccountId?: SortOrder
+  }
+
+  export type EnumAccountTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.AccountType | EnumAccountTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.AccountType[]
+    notIn?: $Enums.AccountType[]
+    not?: NestedEnumAccountTypeFilter<$PrismaModel> | $Enums.AccountType
+  }
+
+  export type SocialAccountUserIdAccountUrlTypeCompoundUniqueInput = {
+    userId: string
+    accountUrl: string
+    type: $Enums.AccountType
+  }
+
+  export type SocialAccountCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    type?: SortOrder
+    fullName?: SortOrder
+    avatarUrl?: SortOrder
+    accountUrl?: SortOrder
+    accessToken?: SortOrder
+    refreshToken?: SortOrder
+    expiredAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    disabledAt?: SortOrder
+  }
+
+  export type SocialAccountAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type SocialAccountMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    type?: SortOrder
+    fullName?: SortOrder
+    avatarUrl?: SortOrder
+    accountUrl?: SortOrder
+    accessToken?: SortOrder
+    refreshToken?: SortOrder
+    expiredAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    disabledAt?: SortOrder
+  }
+
+  export type SocialAccountMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    type?: SortOrder
+    fullName?: SortOrder
+    avatarUrl?: SortOrder
+    accountUrl?: SortOrder
+    accessToken?: SortOrder
+    refreshToken?: SortOrder
+    expiredAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    disabledAt?: SortOrder
+  }
+
+  export type SocialAccountSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type EnumAccountTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AccountType | EnumAccountTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.AccountType[]
+    notIn?: $Enums.AccountType[]
+    not?: NestedEnumAccountTypeWithAggregatesFilter<$PrismaModel> | $Enums.AccountType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAccountTypeFilter<$PrismaModel>
+    _max?: NestedEnumAccountTypeFilter<$PrismaModel>
+  }
+
   export type MediaCreateNestedManyWithoutOwnerInput = {
     create?: XOR<MediaCreateWithoutOwnerInput, MediaUncheckedCreateWithoutOwnerInput> | MediaCreateWithoutOwnerInput[] | MediaUncheckedCreateWithoutOwnerInput[]
     connectOrCreate?: MediaCreateOrConnectWithoutOwnerInput | MediaCreateOrConnectWithoutOwnerInput[]
@@ -27655,6 +30518,13 @@ export namespace Prisma {
     connect?: AlbumWhereUniqueInput | AlbumWhereUniqueInput[]
   }
 
+  export type SocialAccountCreateNestedManyWithoutOwnerInput = {
+    create?: XOR<SocialAccountCreateWithoutOwnerInput, SocialAccountUncheckedCreateWithoutOwnerInput> | SocialAccountCreateWithoutOwnerInput[] | SocialAccountUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: SocialAccountCreateOrConnectWithoutOwnerInput | SocialAccountCreateOrConnectWithoutOwnerInput[]
+    createMany?: SocialAccountCreateManyOwnerInputEnvelope
+    connect?: SocialAccountWhereUniqueInput | SocialAccountWhereUniqueInput[]
+  }
+
   export type MediaUncheckedCreateNestedManyWithoutOwnerInput = {
     create?: XOR<MediaCreateWithoutOwnerInput, MediaUncheckedCreateWithoutOwnerInput> | MediaCreateWithoutOwnerInput[] | MediaUncheckedCreateWithoutOwnerInput[]
     connectOrCreate?: MediaCreateOrConnectWithoutOwnerInput | MediaCreateOrConnectWithoutOwnerInput[]
@@ -27723,6 +30593,13 @@ export namespace Prisma {
     connectOrCreate?: AlbumCreateOrConnectWithoutOwnerInput | AlbumCreateOrConnectWithoutOwnerInput[]
     createMany?: AlbumCreateManyOwnerInputEnvelope
     connect?: AlbumWhereUniqueInput | AlbumWhereUniqueInput[]
+  }
+
+  export type SocialAccountUncheckedCreateNestedManyWithoutOwnerInput = {
+    create?: XOR<SocialAccountCreateWithoutOwnerInput, SocialAccountUncheckedCreateWithoutOwnerInput> | SocialAccountCreateWithoutOwnerInput[] | SocialAccountUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: SocialAccountCreateOrConnectWithoutOwnerInput | SocialAccountCreateOrConnectWithoutOwnerInput[]
+    createMany?: SocialAccountCreateManyOwnerInputEnvelope
+    connect?: SocialAccountWhereUniqueInput | SocialAccountWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -27881,6 +30758,20 @@ export namespace Prisma {
     deleteMany?: AlbumScalarWhereInput | AlbumScalarWhereInput[]
   }
 
+  export type SocialAccountUpdateManyWithoutOwnerNestedInput = {
+    create?: XOR<SocialAccountCreateWithoutOwnerInput, SocialAccountUncheckedCreateWithoutOwnerInput> | SocialAccountCreateWithoutOwnerInput[] | SocialAccountUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: SocialAccountCreateOrConnectWithoutOwnerInput | SocialAccountCreateOrConnectWithoutOwnerInput[]
+    upsert?: SocialAccountUpsertWithWhereUniqueWithoutOwnerInput | SocialAccountUpsertWithWhereUniqueWithoutOwnerInput[]
+    createMany?: SocialAccountCreateManyOwnerInputEnvelope
+    set?: SocialAccountWhereUniqueInput | SocialAccountWhereUniqueInput[]
+    disconnect?: SocialAccountWhereUniqueInput | SocialAccountWhereUniqueInput[]
+    delete?: SocialAccountWhereUniqueInput | SocialAccountWhereUniqueInput[]
+    connect?: SocialAccountWhereUniqueInput | SocialAccountWhereUniqueInput[]
+    update?: SocialAccountUpdateWithWhereUniqueWithoutOwnerInput | SocialAccountUpdateWithWhereUniqueWithoutOwnerInput[]
+    updateMany?: SocialAccountUpdateManyWithWhereWithoutOwnerInput | SocialAccountUpdateManyWithWhereWithoutOwnerInput[]
+    deleteMany?: SocialAccountScalarWhereInput | SocialAccountScalarWhereInput[]
+  }
+
   export type MediaUncheckedUpdateManyWithoutOwnerNestedInput = {
     create?: XOR<MediaCreateWithoutOwnerInput, MediaUncheckedCreateWithoutOwnerInput> | MediaCreateWithoutOwnerInput[] | MediaUncheckedCreateWithoutOwnerInput[]
     connectOrCreate?: MediaCreateOrConnectWithoutOwnerInput | MediaCreateOrConnectWithoutOwnerInput[]
@@ -28019,6 +30910,20 @@ export namespace Prisma {
     update?: AlbumUpdateWithWhereUniqueWithoutOwnerInput | AlbumUpdateWithWhereUniqueWithoutOwnerInput[]
     updateMany?: AlbumUpdateManyWithWhereWithoutOwnerInput | AlbumUpdateManyWithWhereWithoutOwnerInput[]
     deleteMany?: AlbumScalarWhereInput | AlbumScalarWhereInput[]
+  }
+
+  export type SocialAccountUncheckedUpdateManyWithoutOwnerNestedInput = {
+    create?: XOR<SocialAccountCreateWithoutOwnerInput, SocialAccountUncheckedCreateWithoutOwnerInput> | SocialAccountCreateWithoutOwnerInput[] | SocialAccountUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: SocialAccountCreateOrConnectWithoutOwnerInput | SocialAccountCreateOrConnectWithoutOwnerInput[]
+    upsert?: SocialAccountUpsertWithWhereUniqueWithoutOwnerInput | SocialAccountUpsertWithWhereUniqueWithoutOwnerInput[]
+    createMany?: SocialAccountCreateManyOwnerInputEnvelope
+    set?: SocialAccountWhereUniqueInput | SocialAccountWhereUniqueInput[]
+    disconnect?: SocialAccountWhereUniqueInput | SocialAccountWhereUniqueInput[]
+    delete?: SocialAccountWhereUniqueInput | SocialAccountWhereUniqueInput[]
+    connect?: SocialAccountWhereUniqueInput | SocialAccountWhereUniqueInput[]
+    update?: SocialAccountUpdateWithWhereUniqueWithoutOwnerInput | SocialAccountUpdateWithWhereUniqueWithoutOwnerInput[]
+    updateMany?: SocialAccountUpdateManyWithWhereWithoutOwnerInput | SocialAccountUpdateManyWithWhereWithoutOwnerInput[]
+    deleteMany?: SocialAccountScalarWhereInput | SocialAccountScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutUserPaymentMethodInput = {
@@ -28213,6 +31118,13 @@ export namespace Prisma {
     connect?: MediaOnAlbumWhereUniqueInput | MediaOnAlbumWhereUniqueInput[]
   }
 
+  export type MediaOnSocialAccountCreateNestedManyWithoutMediaInput = {
+    create?: XOR<MediaOnSocialAccountCreateWithoutMediaInput, MediaOnSocialAccountUncheckedCreateWithoutMediaInput> | MediaOnSocialAccountCreateWithoutMediaInput[] | MediaOnSocialAccountUncheckedCreateWithoutMediaInput[]
+    connectOrCreate?: MediaOnSocialAccountCreateOrConnectWithoutMediaInput | MediaOnSocialAccountCreateOrConnectWithoutMediaInput[]
+    createMany?: MediaOnSocialAccountCreateManyMediaInputEnvelope
+    connect?: MediaOnSocialAccountWhereUniqueInput | MediaOnSocialAccountWhereUniqueInput[]
+  }
+
   export type ThumbnailUncheckedCreateNestedManyWithoutMediaInput = {
     create?: XOR<ThumbnailCreateWithoutMediaInput, ThumbnailUncheckedCreateWithoutMediaInput> | ThumbnailCreateWithoutMediaInput[] | ThumbnailUncheckedCreateWithoutMediaInput[]
     connectOrCreate?: ThumbnailCreateOrConnectWithoutMediaInput | ThumbnailCreateOrConnectWithoutMediaInput[]
@@ -28287,6 +31199,13 @@ export namespace Prisma {
     connectOrCreate?: MediaOnAlbumCreateOrConnectWithoutMediaInput | MediaOnAlbumCreateOrConnectWithoutMediaInput[]
     createMany?: MediaOnAlbumCreateManyMediaInputEnvelope
     connect?: MediaOnAlbumWhereUniqueInput | MediaOnAlbumWhereUniqueInput[]
+  }
+
+  export type MediaOnSocialAccountUncheckedCreateNestedManyWithoutMediaInput = {
+    create?: XOR<MediaOnSocialAccountCreateWithoutMediaInput, MediaOnSocialAccountUncheckedCreateWithoutMediaInput> | MediaOnSocialAccountCreateWithoutMediaInput[] | MediaOnSocialAccountUncheckedCreateWithoutMediaInput[]
+    connectOrCreate?: MediaOnSocialAccountCreateOrConnectWithoutMediaInput | MediaOnSocialAccountCreateOrConnectWithoutMediaInput[]
+    createMany?: MediaOnSocialAccountCreateManyMediaInputEnvelope
+    connect?: MediaOnSocialAccountWhereUniqueInput | MediaOnSocialAccountWhereUniqueInput[]
   }
 
   export type FloatFieldUpdateOperationsInput = {
@@ -28463,6 +31382,20 @@ export namespace Prisma {
     deleteMany?: MediaOnAlbumScalarWhereInput | MediaOnAlbumScalarWhereInput[]
   }
 
+  export type MediaOnSocialAccountUpdateManyWithoutMediaNestedInput = {
+    create?: XOR<MediaOnSocialAccountCreateWithoutMediaInput, MediaOnSocialAccountUncheckedCreateWithoutMediaInput> | MediaOnSocialAccountCreateWithoutMediaInput[] | MediaOnSocialAccountUncheckedCreateWithoutMediaInput[]
+    connectOrCreate?: MediaOnSocialAccountCreateOrConnectWithoutMediaInput | MediaOnSocialAccountCreateOrConnectWithoutMediaInput[]
+    upsert?: MediaOnSocialAccountUpsertWithWhereUniqueWithoutMediaInput | MediaOnSocialAccountUpsertWithWhereUniqueWithoutMediaInput[]
+    createMany?: MediaOnSocialAccountCreateManyMediaInputEnvelope
+    set?: MediaOnSocialAccountWhereUniqueInput | MediaOnSocialAccountWhereUniqueInput[]
+    disconnect?: MediaOnSocialAccountWhereUniqueInput | MediaOnSocialAccountWhereUniqueInput[]
+    delete?: MediaOnSocialAccountWhereUniqueInput | MediaOnSocialAccountWhereUniqueInput[]
+    connect?: MediaOnSocialAccountWhereUniqueInput | MediaOnSocialAccountWhereUniqueInput[]
+    update?: MediaOnSocialAccountUpdateWithWhereUniqueWithoutMediaInput | MediaOnSocialAccountUpdateWithWhereUniqueWithoutMediaInput[]
+    updateMany?: MediaOnSocialAccountUpdateManyWithWhereWithoutMediaInput | MediaOnSocialAccountUpdateManyWithWhereWithoutMediaInput[]
+    deleteMany?: MediaOnSocialAccountScalarWhereInput | MediaOnSocialAccountScalarWhereInput[]
+  }
+
   export type ThumbnailUncheckedUpdateManyWithoutMediaNestedInput = {
     create?: XOR<ThumbnailCreateWithoutMediaInput, ThumbnailUncheckedCreateWithoutMediaInput> | ThumbnailCreateWithoutMediaInput[] | ThumbnailUncheckedCreateWithoutMediaInput[]
     connectOrCreate?: ThumbnailCreateOrConnectWithoutMediaInput | ThumbnailCreateOrConnectWithoutMediaInput[]
@@ -28611,6 +31544,20 @@ export namespace Prisma {
     update?: MediaOnAlbumUpdateWithWhereUniqueWithoutMediaInput | MediaOnAlbumUpdateWithWhereUniqueWithoutMediaInput[]
     updateMany?: MediaOnAlbumUpdateManyWithWhereWithoutMediaInput | MediaOnAlbumUpdateManyWithWhereWithoutMediaInput[]
     deleteMany?: MediaOnAlbumScalarWhereInput | MediaOnAlbumScalarWhereInput[]
+  }
+
+  export type MediaOnSocialAccountUncheckedUpdateManyWithoutMediaNestedInput = {
+    create?: XOR<MediaOnSocialAccountCreateWithoutMediaInput, MediaOnSocialAccountUncheckedCreateWithoutMediaInput> | MediaOnSocialAccountCreateWithoutMediaInput[] | MediaOnSocialAccountUncheckedCreateWithoutMediaInput[]
+    connectOrCreate?: MediaOnSocialAccountCreateOrConnectWithoutMediaInput | MediaOnSocialAccountCreateOrConnectWithoutMediaInput[]
+    upsert?: MediaOnSocialAccountUpsertWithWhereUniqueWithoutMediaInput | MediaOnSocialAccountUpsertWithWhereUniqueWithoutMediaInput[]
+    createMany?: MediaOnSocialAccountCreateManyMediaInputEnvelope
+    set?: MediaOnSocialAccountWhereUniqueInput | MediaOnSocialAccountWhereUniqueInput[]
+    disconnect?: MediaOnSocialAccountWhereUniqueInput | MediaOnSocialAccountWhereUniqueInput[]
+    delete?: MediaOnSocialAccountWhereUniqueInput | MediaOnSocialAccountWhereUniqueInput[]
+    connect?: MediaOnSocialAccountWhereUniqueInput | MediaOnSocialAccountWhereUniqueInput[]
+    update?: MediaOnSocialAccountUpdateWithWhereUniqueWithoutMediaInput | MediaOnSocialAccountUpdateWithWhereUniqueWithoutMediaInput[]
+    updateMany?: MediaOnSocialAccountUpdateManyWithWhereWithoutMediaInput | MediaOnSocialAccountUpdateManyWithWhereWithoutMediaInput[]
+    deleteMany?: MediaOnSocialAccountScalarWhereInput | MediaOnSocialAccountScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutMediaReactionsInput = {
@@ -29027,6 +31974,94 @@ export namespace Prisma {
     deleteMany?: MediaOnAlbumScalarWhereInput | MediaOnAlbumScalarWhereInput[]
   }
 
+  export type MediaCreateNestedOneWithoutMediaOnSocialAccountInput = {
+    create?: XOR<MediaCreateWithoutMediaOnSocialAccountInput, MediaUncheckedCreateWithoutMediaOnSocialAccountInput>
+    connectOrCreate?: MediaCreateOrConnectWithoutMediaOnSocialAccountInput
+    connect?: MediaWhereUniqueInput
+  }
+
+  export type SocialAccountCreateNestedOneWithoutMediaOnSocialAccountInput = {
+    create?: XOR<SocialAccountCreateWithoutMediaOnSocialAccountInput, SocialAccountUncheckedCreateWithoutMediaOnSocialAccountInput>
+    connectOrCreate?: SocialAccountCreateOrConnectWithoutMediaOnSocialAccountInput
+    connect?: SocialAccountWhereUniqueInput
+  }
+
+  export type MediaUpdateOneRequiredWithoutMediaOnSocialAccountNestedInput = {
+    create?: XOR<MediaCreateWithoutMediaOnSocialAccountInput, MediaUncheckedCreateWithoutMediaOnSocialAccountInput>
+    connectOrCreate?: MediaCreateOrConnectWithoutMediaOnSocialAccountInput
+    upsert?: MediaUpsertWithoutMediaOnSocialAccountInput
+    connect?: MediaWhereUniqueInput
+    update?: XOR<XOR<MediaUpdateToOneWithWhereWithoutMediaOnSocialAccountInput, MediaUpdateWithoutMediaOnSocialAccountInput>, MediaUncheckedUpdateWithoutMediaOnSocialAccountInput>
+  }
+
+  export type SocialAccountUpdateOneRequiredWithoutMediaOnSocialAccountNestedInput = {
+    create?: XOR<SocialAccountCreateWithoutMediaOnSocialAccountInput, SocialAccountUncheckedCreateWithoutMediaOnSocialAccountInput>
+    connectOrCreate?: SocialAccountCreateOrConnectWithoutMediaOnSocialAccountInput
+    upsert?: SocialAccountUpsertWithoutMediaOnSocialAccountInput
+    connect?: SocialAccountWhereUniqueInput
+    update?: XOR<XOR<SocialAccountUpdateToOneWithWhereWithoutMediaOnSocialAccountInput, SocialAccountUpdateWithoutMediaOnSocialAccountInput>, SocialAccountUncheckedUpdateWithoutMediaOnSocialAccountInput>
+  }
+
+  export type UserCreateNestedOneWithoutSocialAccountInput = {
+    create?: XOR<UserCreateWithoutSocialAccountInput, UserUncheckedCreateWithoutSocialAccountInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSocialAccountInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type MediaOnSocialAccountCreateNestedManyWithoutSocialAccountInput = {
+    create?: XOR<MediaOnSocialAccountCreateWithoutSocialAccountInput, MediaOnSocialAccountUncheckedCreateWithoutSocialAccountInput> | MediaOnSocialAccountCreateWithoutSocialAccountInput[] | MediaOnSocialAccountUncheckedCreateWithoutSocialAccountInput[]
+    connectOrCreate?: MediaOnSocialAccountCreateOrConnectWithoutSocialAccountInput | MediaOnSocialAccountCreateOrConnectWithoutSocialAccountInput[]
+    createMany?: MediaOnSocialAccountCreateManySocialAccountInputEnvelope
+    connect?: MediaOnSocialAccountWhereUniqueInput | MediaOnSocialAccountWhereUniqueInput[]
+  }
+
+  export type MediaOnSocialAccountUncheckedCreateNestedManyWithoutSocialAccountInput = {
+    create?: XOR<MediaOnSocialAccountCreateWithoutSocialAccountInput, MediaOnSocialAccountUncheckedCreateWithoutSocialAccountInput> | MediaOnSocialAccountCreateWithoutSocialAccountInput[] | MediaOnSocialAccountUncheckedCreateWithoutSocialAccountInput[]
+    connectOrCreate?: MediaOnSocialAccountCreateOrConnectWithoutSocialAccountInput | MediaOnSocialAccountCreateOrConnectWithoutSocialAccountInput[]
+    createMany?: MediaOnSocialAccountCreateManySocialAccountInputEnvelope
+    connect?: MediaOnSocialAccountWhereUniqueInput | MediaOnSocialAccountWhereUniqueInput[]
+  }
+
+  export type EnumAccountTypeFieldUpdateOperationsInput = {
+    set?: $Enums.AccountType
+  }
+
+  export type UserUpdateOneRequiredWithoutSocialAccountNestedInput = {
+    create?: XOR<UserCreateWithoutSocialAccountInput, UserUncheckedCreateWithoutSocialAccountInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSocialAccountInput
+    upsert?: UserUpsertWithoutSocialAccountInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSocialAccountInput, UserUpdateWithoutSocialAccountInput>, UserUncheckedUpdateWithoutSocialAccountInput>
+  }
+
+  export type MediaOnSocialAccountUpdateManyWithoutSocialAccountNestedInput = {
+    create?: XOR<MediaOnSocialAccountCreateWithoutSocialAccountInput, MediaOnSocialAccountUncheckedCreateWithoutSocialAccountInput> | MediaOnSocialAccountCreateWithoutSocialAccountInput[] | MediaOnSocialAccountUncheckedCreateWithoutSocialAccountInput[]
+    connectOrCreate?: MediaOnSocialAccountCreateOrConnectWithoutSocialAccountInput | MediaOnSocialAccountCreateOrConnectWithoutSocialAccountInput[]
+    upsert?: MediaOnSocialAccountUpsertWithWhereUniqueWithoutSocialAccountInput | MediaOnSocialAccountUpsertWithWhereUniqueWithoutSocialAccountInput[]
+    createMany?: MediaOnSocialAccountCreateManySocialAccountInputEnvelope
+    set?: MediaOnSocialAccountWhereUniqueInput | MediaOnSocialAccountWhereUniqueInput[]
+    disconnect?: MediaOnSocialAccountWhereUniqueInput | MediaOnSocialAccountWhereUniqueInput[]
+    delete?: MediaOnSocialAccountWhereUniqueInput | MediaOnSocialAccountWhereUniqueInput[]
+    connect?: MediaOnSocialAccountWhereUniqueInput | MediaOnSocialAccountWhereUniqueInput[]
+    update?: MediaOnSocialAccountUpdateWithWhereUniqueWithoutSocialAccountInput | MediaOnSocialAccountUpdateWithWhereUniqueWithoutSocialAccountInput[]
+    updateMany?: MediaOnSocialAccountUpdateManyWithWhereWithoutSocialAccountInput | MediaOnSocialAccountUpdateManyWithWhereWithoutSocialAccountInput[]
+    deleteMany?: MediaOnSocialAccountScalarWhereInput | MediaOnSocialAccountScalarWhereInput[]
+  }
+
+  export type MediaOnSocialAccountUncheckedUpdateManyWithoutSocialAccountNestedInput = {
+    create?: XOR<MediaOnSocialAccountCreateWithoutSocialAccountInput, MediaOnSocialAccountUncheckedCreateWithoutSocialAccountInput> | MediaOnSocialAccountCreateWithoutSocialAccountInput[] | MediaOnSocialAccountUncheckedCreateWithoutSocialAccountInput[]
+    connectOrCreate?: MediaOnSocialAccountCreateOrConnectWithoutSocialAccountInput | MediaOnSocialAccountCreateOrConnectWithoutSocialAccountInput[]
+    upsert?: MediaOnSocialAccountUpsertWithWhereUniqueWithoutSocialAccountInput | MediaOnSocialAccountUpsertWithWhereUniqueWithoutSocialAccountInput[]
+    createMany?: MediaOnSocialAccountCreateManySocialAccountInputEnvelope
+    set?: MediaOnSocialAccountWhereUniqueInput | MediaOnSocialAccountWhereUniqueInput[]
+    disconnect?: MediaOnSocialAccountWhereUniqueInput | MediaOnSocialAccountWhereUniqueInput[]
+    delete?: MediaOnSocialAccountWhereUniqueInput | MediaOnSocialAccountWhereUniqueInput[]
+    connect?: MediaOnSocialAccountWhereUniqueInput | MediaOnSocialAccountWhereUniqueInput[]
+    update?: MediaOnSocialAccountUpdateWithWhereUniqueWithoutSocialAccountInput | MediaOnSocialAccountUpdateWithWhereUniqueWithoutSocialAccountInput[]
+    updateMany?: MediaOnSocialAccountUpdateManyWithWhereWithoutSocialAccountInput | MediaOnSocialAccountUpdateManyWithWhereWithoutSocialAccountInput[]
+    deleteMany?: MediaOnSocialAccountScalarWhereInput | MediaOnSocialAccountScalarWhereInput[]
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[]
@@ -29285,6 +32320,23 @@ export namespace Prisma {
     _max?: NestedEnumAudioQualityFilter<$PrismaModel>
   }
 
+  export type NestedEnumAccountTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.AccountType | EnumAccountTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.AccountType[]
+    notIn?: $Enums.AccountType[]
+    not?: NestedEnumAccountTypeFilter<$PrismaModel> | $Enums.AccountType
+  }
+
+  export type NestedEnumAccountTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AccountType | EnumAccountTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.AccountType[]
+    notIn?: $Enums.AccountType[]
+    not?: NestedEnumAccountTypeWithAggregatesFilter<$PrismaModel> | $Enums.AccountType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAccountTypeFilter<$PrismaModel>
+    _max?: NestedEnumAccountTypeFilter<$PrismaModel>
+  }
+
   export type MediaCreateWithoutOwnerInput = {
     id?: string
     title: string
@@ -29308,6 +32360,7 @@ export namespace Prisma {
     mediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
     sessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
     mediaOnAlbum?: MediaOnAlbumCreateNestedManyWithoutMediaInput
+    MediaOnSocialAccount?: MediaOnSocialAccountCreateNestedManyWithoutMediaInput
   }
 
   export type MediaUncheckedCreateWithoutOwnerInput = {
@@ -29333,6 +32386,7 @@ export namespace Prisma {
     mediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
     sessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
     mediaOnAlbum?: MediaOnAlbumUncheckedCreateNestedManyWithoutMediaInput
+    MediaOnSocialAccount?: MediaOnSocialAccountUncheckedCreateNestedManyWithoutMediaInput
   }
 
   export type MediaCreateOrConnectWithoutOwnerInput = {
@@ -29563,6 +32617,45 @@ export namespace Prisma {
 
   export type AlbumCreateManyOwnerInputEnvelope = {
     data: AlbumCreateManyOwnerInput | AlbumCreateManyOwnerInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type SocialAccountCreateWithoutOwnerInput = {
+    type?: $Enums.AccountType
+    fullName: string
+    avatarUrl?: string | null
+    accountUrl?: string | null
+    accessToken?: string | null
+    refreshToken?: string | null
+    expiredAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    disabledAt?: Date | string | null
+    MediaOnSocialAccount?: MediaOnSocialAccountCreateNestedManyWithoutSocialAccountInput
+  }
+
+  export type SocialAccountUncheckedCreateWithoutOwnerInput = {
+    id?: number
+    type?: $Enums.AccountType
+    fullName: string
+    avatarUrl?: string | null
+    accountUrl?: string | null
+    accessToken?: string | null
+    refreshToken?: string | null
+    expiredAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    disabledAt?: Date | string | null
+    MediaOnSocialAccount?: MediaOnSocialAccountUncheckedCreateNestedManyWithoutSocialAccountInput
+  }
+
+  export type SocialAccountCreateOrConnectWithoutOwnerInput = {
+    where: SocialAccountWhereUniqueInput
+    create: XOR<SocialAccountCreateWithoutOwnerInput, SocialAccountUncheckedCreateWithoutOwnerInput>
+  }
+
+  export type SocialAccountCreateManyOwnerInputEnvelope = {
+    data: SocialAccountCreateManyOwnerInput | SocialAccountCreateManyOwnerInput[]
     skipDuplicates?: boolean
   }
 
@@ -29835,6 +32928,40 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Album"> | Date | string
   }
 
+  export type SocialAccountUpsertWithWhereUniqueWithoutOwnerInput = {
+    where: SocialAccountWhereUniqueInput
+    update: XOR<SocialAccountUpdateWithoutOwnerInput, SocialAccountUncheckedUpdateWithoutOwnerInput>
+    create: XOR<SocialAccountCreateWithoutOwnerInput, SocialAccountUncheckedCreateWithoutOwnerInput>
+  }
+
+  export type SocialAccountUpdateWithWhereUniqueWithoutOwnerInput = {
+    where: SocialAccountWhereUniqueInput
+    data: XOR<SocialAccountUpdateWithoutOwnerInput, SocialAccountUncheckedUpdateWithoutOwnerInput>
+  }
+
+  export type SocialAccountUpdateManyWithWhereWithoutOwnerInput = {
+    where: SocialAccountScalarWhereInput
+    data: XOR<SocialAccountUpdateManyMutationInput, SocialAccountUncheckedUpdateManyWithoutOwnerInput>
+  }
+
+  export type SocialAccountScalarWhereInput = {
+    AND?: SocialAccountScalarWhereInput | SocialAccountScalarWhereInput[]
+    OR?: SocialAccountScalarWhereInput[]
+    NOT?: SocialAccountScalarWhereInput | SocialAccountScalarWhereInput[]
+    id?: IntFilter<"SocialAccount"> | number
+    userId?: StringFilter<"SocialAccount"> | string
+    type?: EnumAccountTypeFilter<"SocialAccount"> | $Enums.AccountType
+    fullName?: StringFilter<"SocialAccount"> | string
+    avatarUrl?: StringNullableFilter<"SocialAccount"> | string | null
+    accountUrl?: StringNullableFilter<"SocialAccount"> | string | null
+    accessToken?: StringNullableFilter<"SocialAccount"> | string | null
+    refreshToken?: StringNullableFilter<"SocialAccount"> | string | null
+    expiredAt?: DateTimeFilter<"SocialAccount"> | Date | string
+    createdAt?: DateTimeFilter<"SocialAccount"> | Date | string
+    updatedAt?: DateTimeFilter<"SocialAccount"> | Date | string
+    disabledAt?: DateTimeNullableFilter<"SocialAccount"> | Date | string | null
+  }
+
   export type UserCreateWithoutUserPaymentMethodInput = {
     id?: string
     firstName: string
@@ -29843,6 +32970,7 @@ export namespace Prisma {
     username: string
     password: string
     avatar?: string | null
+    cover?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -29855,6 +32983,7 @@ export namespace Prisma {
     Comment?: CommentCreateNestedManyWithoutUserInput
     Playlist?: PlaylistCreateNestedManyWithoutUserInput
     Album?: AlbumCreateNestedManyWithoutOwnerInput
+    SocialAccount?: SocialAccountCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUncheckedCreateWithoutUserPaymentMethodInput = {
@@ -29865,6 +32994,7 @@ export namespace Prisma {
     username: string
     password: string
     avatar?: string | null
+    cover?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -29877,6 +33007,7 @@ export namespace Prisma {
     Comment?: CommentUncheckedCreateNestedManyWithoutUserInput
     Playlist?: PlaylistUncheckedCreateNestedManyWithoutUserInput
     Album?: AlbumUncheckedCreateNestedManyWithoutOwnerInput
+    SocialAccount?: SocialAccountUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type UserCreateOrConnectWithoutUserPaymentMethodInput = {
@@ -29903,6 +33034,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    cover?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -29915,6 +33047,7 @@ export namespace Prisma {
     Comment?: CommentUpdateManyWithoutUserNestedInput
     Playlist?: PlaylistUpdateManyWithoutUserNestedInput
     Album?: AlbumUpdateManyWithoutOwnerNestedInput
+    SocialAccount?: SocialAccountUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutUserPaymentMethodInput = {
@@ -29925,6 +33058,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    cover?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -29937,6 +33071,7 @@ export namespace Prisma {
     Comment?: CommentUncheckedUpdateManyWithoutUserNestedInput
     Playlist?: PlaylistUncheckedUpdateManyWithoutUserNestedInput
     Album?: AlbumUncheckedUpdateManyWithoutOwnerNestedInput
+    SocialAccount?: SocialAccountUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type MediaOnCategoryCreateWithoutCategoryInput = {
@@ -30031,6 +33166,7 @@ export namespace Prisma {
     mediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
     sessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
     mediaOnAlbum?: MediaOnAlbumCreateNestedManyWithoutMediaInput
+    MediaOnSocialAccount?: MediaOnSocialAccountCreateNestedManyWithoutMediaInput
   }
 
   export type MediaUncheckedCreateWithoutMediaOnCategoryInput = {
@@ -30056,6 +33192,7 @@ export namespace Prisma {
     mediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
     sessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
     mediaOnAlbum?: MediaOnAlbumUncheckedCreateNestedManyWithoutMediaInput
+    MediaOnSocialAccount?: MediaOnSocialAccountUncheckedCreateNestedManyWithoutMediaInput
   }
 
   export type MediaCreateOrConnectWithoutMediaOnCategoryInput = {
@@ -30122,6 +33259,7 @@ export namespace Prisma {
     mediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
     sessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
     mediaOnAlbum?: MediaOnAlbumUpdateManyWithoutMediaNestedInput
+    MediaOnSocialAccount?: MediaOnSocialAccountUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaUncheckedUpdateWithoutMediaOnCategoryInput = {
@@ -30147,6 +33285,7 @@ export namespace Prisma {
     mediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
     sessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
     mediaOnAlbum?: MediaOnAlbumUncheckedUpdateManyWithoutMediaNestedInput
+    MediaOnSocialAccount?: MediaOnSocialAccountUncheckedUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaCreateWithoutSessionUploadInput = {
@@ -30172,6 +33311,7 @@ export namespace Prisma {
     comment?: CommentCreateNestedManyWithoutMediaInput
     mediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
     mediaOnAlbum?: MediaOnAlbumCreateNestedManyWithoutMediaInput
+    MediaOnSocialAccount?: MediaOnSocialAccountCreateNestedManyWithoutMediaInput
   }
 
   export type MediaUncheckedCreateWithoutSessionUploadInput = {
@@ -30197,6 +33337,7 @@ export namespace Prisma {
     comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
     mediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
     mediaOnAlbum?: MediaOnAlbumUncheckedCreateNestedManyWithoutMediaInput
+    MediaOnSocialAccount?: MediaOnSocialAccountUncheckedCreateNestedManyWithoutMediaInput
   }
 
   export type MediaCreateOrConnectWithoutSessionUploadInput = {
@@ -30238,6 +33379,7 @@ export namespace Prisma {
     comment?: CommentUpdateManyWithoutMediaNestedInput
     mediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
     mediaOnAlbum?: MediaOnAlbumUpdateManyWithoutMediaNestedInput
+    MediaOnSocialAccount?: MediaOnSocialAccountUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaUncheckedUpdateWithoutSessionUploadInput = {
@@ -30263,6 +33405,7 @@ export namespace Prisma {
     comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
     mediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
     mediaOnAlbum?: MediaOnAlbumUncheckedUpdateManyWithoutMediaNestedInput
+    MediaOnSocialAccount?: MediaOnSocialAccountUncheckedUpdateManyWithoutMediaNestedInput
   }
 
   export type UserCreateWithoutMediaInput = {
@@ -30273,6 +33416,7 @@ export namespace Prisma {
     username: string
     password: string
     avatar?: string | null
+    cover?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -30285,6 +33429,7 @@ export namespace Prisma {
     Playlist?: PlaylistCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodCreateNestedManyWithoutUserInput
     Album?: AlbumCreateNestedManyWithoutOwnerInput
+    SocialAccount?: SocialAccountCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUncheckedCreateWithoutMediaInput = {
@@ -30295,6 +33440,7 @@ export namespace Prisma {
     username: string
     password: string
     avatar?: string | null
+    cover?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -30307,6 +33453,7 @@ export namespace Prisma {
     Playlist?: PlaylistUncheckedCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodUncheckedCreateNestedManyWithoutUserInput
     Album?: AlbumUncheckedCreateNestedManyWithoutOwnerInput
+    SocialAccount?: SocialAccountUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type UserCreateOrConnectWithoutMediaInput = {
@@ -30581,6 +33728,31 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type MediaOnSocialAccountCreateWithoutMediaInput = {
+    mediaSocialId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    socialAccount: SocialAccountCreateNestedOneWithoutMediaOnSocialAccountInput
+  }
+
+  export type MediaOnSocialAccountUncheckedCreateWithoutMediaInput = {
+    id?: number
+    socialAccountId: number
+    mediaSocialId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MediaOnSocialAccountCreateOrConnectWithoutMediaInput = {
+    where: MediaOnSocialAccountWhereUniqueInput
+    create: XOR<MediaOnSocialAccountCreateWithoutMediaInput, MediaOnSocialAccountUncheckedCreateWithoutMediaInput>
+  }
+
+  export type MediaOnSocialAccountCreateManyMediaInputEnvelope = {
+    data: MediaOnSocialAccountCreateManyMediaInput | MediaOnSocialAccountCreateManyMediaInput[]
+    skipDuplicates?: boolean
+  }
+
   export type UserUpsertWithoutMediaInput = {
     update: XOR<UserUpdateWithoutMediaInput, UserUncheckedUpdateWithoutMediaInput>
     create: XOR<UserCreateWithoutMediaInput, UserUncheckedCreateWithoutMediaInput>
@@ -30600,6 +33772,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    cover?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -30612,6 +33785,7 @@ export namespace Prisma {
     Playlist?: PlaylistUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUpdateManyWithoutUserNestedInput
     Album?: AlbumUpdateManyWithoutOwnerNestedInput
+    SocialAccount?: SocialAccountUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMediaInput = {
@@ -30622,6 +33796,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    cover?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -30634,6 +33809,7 @@ export namespace Prisma {
     Playlist?: PlaylistUncheckedUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUncheckedUpdateManyWithoutUserNestedInput
     Album?: AlbumUncheckedUpdateManyWithoutOwnerNestedInput
+    SocialAccount?: SocialAccountUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type ThumbnailUpsertWithWhereUniqueWithoutMediaInput = {
@@ -30890,6 +34066,34 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"MediaOnAlbum"> | Date | string
   }
 
+  export type MediaOnSocialAccountUpsertWithWhereUniqueWithoutMediaInput = {
+    where: MediaOnSocialAccountWhereUniqueInput
+    update: XOR<MediaOnSocialAccountUpdateWithoutMediaInput, MediaOnSocialAccountUncheckedUpdateWithoutMediaInput>
+    create: XOR<MediaOnSocialAccountCreateWithoutMediaInput, MediaOnSocialAccountUncheckedCreateWithoutMediaInput>
+  }
+
+  export type MediaOnSocialAccountUpdateWithWhereUniqueWithoutMediaInput = {
+    where: MediaOnSocialAccountWhereUniqueInput
+    data: XOR<MediaOnSocialAccountUpdateWithoutMediaInput, MediaOnSocialAccountUncheckedUpdateWithoutMediaInput>
+  }
+
+  export type MediaOnSocialAccountUpdateManyWithWhereWithoutMediaInput = {
+    where: MediaOnSocialAccountScalarWhereInput
+    data: XOR<MediaOnSocialAccountUpdateManyMutationInput, MediaOnSocialAccountUncheckedUpdateManyWithoutMediaInput>
+  }
+
+  export type MediaOnSocialAccountScalarWhereInput = {
+    AND?: MediaOnSocialAccountScalarWhereInput | MediaOnSocialAccountScalarWhereInput[]
+    OR?: MediaOnSocialAccountScalarWhereInput[]
+    NOT?: MediaOnSocialAccountScalarWhereInput | MediaOnSocialAccountScalarWhereInput[]
+    id?: IntFilter<"MediaOnSocialAccount"> | number
+    socialAccountId?: IntFilter<"MediaOnSocialAccount"> | number
+    mediaSocialId?: StringFilter<"MediaOnSocialAccount"> | string
+    mediaId?: StringFilter<"MediaOnSocialAccount"> | string
+    createdAt?: DateTimeFilter<"MediaOnSocialAccount"> | Date | string
+    updatedAt?: DateTimeFilter<"MediaOnSocialAccount"> | Date | string
+  }
+
   export type UserCreateWithoutMediaReactionsInput = {
     id?: string
     firstName: string
@@ -30898,6 +34102,7 @@ export namespace Prisma {
     username: string
     password: string
     avatar?: string | null
+    cover?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -30910,6 +34115,7 @@ export namespace Prisma {
     Playlist?: PlaylistCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodCreateNestedManyWithoutUserInput
     Album?: AlbumCreateNestedManyWithoutOwnerInput
+    SocialAccount?: SocialAccountCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUncheckedCreateWithoutMediaReactionsInput = {
@@ -30920,6 +34126,7 @@ export namespace Prisma {
     username: string
     password: string
     avatar?: string | null
+    cover?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -30932,6 +34139,7 @@ export namespace Prisma {
     Playlist?: PlaylistUncheckedCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodUncheckedCreateNestedManyWithoutUserInput
     Album?: AlbumUncheckedCreateNestedManyWithoutOwnerInput
+    SocialAccount?: SocialAccountUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type UserCreateOrConnectWithoutMediaReactionsInput = {
@@ -30962,6 +34170,7 @@ export namespace Prisma {
     mediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
     sessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
     mediaOnAlbum?: MediaOnAlbumCreateNestedManyWithoutMediaInput
+    MediaOnSocialAccount?: MediaOnSocialAccountCreateNestedManyWithoutMediaInput
   }
 
   export type MediaUncheckedCreateWithoutMediaReactionInput = {
@@ -30987,6 +34196,7 @@ export namespace Prisma {
     mediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
     sessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
     mediaOnAlbum?: MediaOnAlbumUncheckedCreateNestedManyWithoutMediaInput
+    MediaOnSocialAccount?: MediaOnSocialAccountUncheckedCreateNestedManyWithoutMediaInput
   }
 
   export type MediaCreateOrConnectWithoutMediaReactionInput = {
@@ -31013,6 +34223,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    cover?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -31025,6 +34236,7 @@ export namespace Prisma {
     Playlist?: PlaylistUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUpdateManyWithoutUserNestedInput
     Album?: AlbumUpdateManyWithoutOwnerNestedInput
+    SocialAccount?: SocialAccountUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMediaReactionsInput = {
@@ -31035,6 +34247,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    cover?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -31047,6 +34260,7 @@ export namespace Prisma {
     Playlist?: PlaylistUncheckedUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUncheckedUpdateManyWithoutUserNestedInput
     Album?: AlbumUncheckedUpdateManyWithoutOwnerNestedInput
+    SocialAccount?: SocialAccountUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type MediaUpsertWithoutMediaReactionInput = {
@@ -31083,6 +34297,7 @@ export namespace Prisma {
     mediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
     sessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
     mediaOnAlbum?: MediaOnAlbumUpdateManyWithoutMediaNestedInput
+    MediaOnSocialAccount?: MediaOnSocialAccountUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaUncheckedUpdateWithoutMediaReactionInput = {
@@ -31108,6 +34323,7 @@ export namespace Prisma {
     mediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
     sessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
     mediaOnAlbum?: MediaOnAlbumUncheckedUpdateManyWithoutMediaNestedInput
+    MediaOnSocialAccount?: MediaOnSocialAccountUncheckedUpdateManyWithoutMediaNestedInput
   }
 
   export type UserCreateWithoutCommentInput = {
@@ -31118,6 +34334,7 @@ export namespace Prisma {
     username: string
     password: string
     avatar?: string | null
+    cover?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -31130,6 +34347,7 @@ export namespace Prisma {
     Playlist?: PlaylistCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodCreateNestedManyWithoutUserInput
     Album?: AlbumCreateNestedManyWithoutOwnerInput
+    SocialAccount?: SocialAccountCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUncheckedCreateWithoutCommentInput = {
@@ -31140,6 +34358,7 @@ export namespace Prisma {
     username: string
     password: string
     avatar?: string | null
+    cover?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -31152,6 +34371,7 @@ export namespace Prisma {
     Playlist?: PlaylistUncheckedCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodUncheckedCreateNestedManyWithoutUserInput
     Album?: AlbumUncheckedCreateNestedManyWithoutOwnerInput
+    SocialAccount?: SocialAccountUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type UserCreateOrConnectWithoutCommentInput = {
@@ -31182,6 +34402,7 @@ export namespace Prisma {
     mediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
     sessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
     mediaOnAlbum?: MediaOnAlbumCreateNestedManyWithoutMediaInput
+    MediaOnSocialAccount?: MediaOnSocialAccountCreateNestedManyWithoutMediaInput
   }
 
   export type MediaUncheckedCreateWithoutCommentInput = {
@@ -31207,6 +34428,7 @@ export namespace Prisma {
     mediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
     sessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
     mediaOnAlbum?: MediaOnAlbumUncheckedCreateNestedManyWithoutMediaInput
+    MediaOnSocialAccount?: MediaOnSocialAccountUncheckedCreateNestedManyWithoutMediaInput
   }
 
   export type MediaCreateOrConnectWithoutCommentInput = {
@@ -31233,6 +34455,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    cover?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -31245,6 +34468,7 @@ export namespace Prisma {
     Playlist?: PlaylistUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUpdateManyWithoutUserNestedInput
     Album?: AlbumUpdateManyWithoutOwnerNestedInput
+    SocialAccount?: SocialAccountUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCommentInput = {
@@ -31255,6 +34479,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    cover?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -31267,6 +34492,7 @@ export namespace Prisma {
     Playlist?: PlaylistUncheckedUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUncheckedUpdateManyWithoutUserNestedInput
     Album?: AlbumUncheckedUpdateManyWithoutOwnerNestedInput
+    SocialAccount?: SocialAccountUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type MediaUpsertWithoutCommentInput = {
@@ -31303,6 +34529,7 @@ export namespace Prisma {
     mediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
     sessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
     mediaOnAlbum?: MediaOnAlbumUpdateManyWithoutMediaNestedInput
+    MediaOnSocialAccount?: MediaOnSocialAccountUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaUncheckedUpdateWithoutCommentInput = {
@@ -31328,6 +34555,7 @@ export namespace Prisma {
     mediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
     sessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
     mediaOnAlbum?: MediaOnAlbumUncheckedUpdateManyWithoutMediaNestedInput
+    MediaOnSocialAccount?: MediaOnSocialAccountUncheckedUpdateManyWithoutMediaNestedInput
   }
 
   export type UserCreateWithoutPlaylistInput = {
@@ -31338,6 +34566,7 @@ export namespace Prisma {
     username: string
     password: string
     avatar?: string | null
+    cover?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -31350,6 +34579,7 @@ export namespace Prisma {
     Comment?: CommentCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodCreateNestedManyWithoutUserInput
     Album?: AlbumCreateNestedManyWithoutOwnerInput
+    SocialAccount?: SocialAccountCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUncheckedCreateWithoutPlaylistInput = {
@@ -31360,6 +34590,7 @@ export namespace Prisma {
     username: string
     password: string
     avatar?: string | null
+    cover?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -31372,6 +34603,7 @@ export namespace Prisma {
     Comment?: CommentUncheckedCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodUncheckedCreateNestedManyWithoutUserInput
     Album?: AlbumUncheckedCreateNestedManyWithoutOwnerInput
+    SocialAccount?: SocialAccountUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type UserCreateOrConnectWithoutPlaylistInput = {
@@ -31423,6 +34655,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    cover?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -31435,6 +34668,7 @@ export namespace Prisma {
     Comment?: CommentUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUpdateManyWithoutUserNestedInput
     Album?: AlbumUpdateManyWithoutOwnerNestedInput
+    SocialAccount?: SocialAccountUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPlaylistInput = {
@@ -31445,6 +34679,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    cover?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -31457,6 +34692,7 @@ export namespace Prisma {
     Comment?: CommentUncheckedUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUncheckedUpdateManyWithoutUserNestedInput
     Album?: AlbumUncheckedUpdateManyWithoutOwnerNestedInput
+    SocialAccount?: SocialAccountUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type MediaOnPlaylistUpsertWithWhereUniqueWithoutPlaylistInput = {
@@ -31519,6 +34755,7 @@ export namespace Prisma {
     comment?: CommentCreateNestedManyWithoutMediaInput
     sessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
     mediaOnAlbum?: MediaOnAlbumCreateNestedManyWithoutMediaInput
+    MediaOnSocialAccount?: MediaOnSocialAccountCreateNestedManyWithoutMediaInput
   }
 
   export type MediaUncheckedCreateWithoutMediaOnPlaylistInput = {
@@ -31544,6 +34781,7 @@ export namespace Prisma {
     comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
     sessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
     mediaOnAlbum?: MediaOnAlbumUncheckedCreateNestedManyWithoutMediaInput
+    MediaOnSocialAccount?: MediaOnSocialAccountUncheckedCreateNestedManyWithoutMediaInput
   }
 
   export type MediaCreateOrConnectWithoutMediaOnPlaylistInput = {
@@ -31612,6 +34850,7 @@ export namespace Prisma {
     comment?: CommentUpdateManyWithoutMediaNestedInput
     sessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
     mediaOnAlbum?: MediaOnAlbumUpdateManyWithoutMediaNestedInput
+    MediaOnSocialAccount?: MediaOnSocialAccountUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaUncheckedUpdateWithoutMediaOnPlaylistInput = {
@@ -31637,6 +34876,7 @@ export namespace Prisma {
     comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
     sessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
     mediaOnAlbum?: MediaOnAlbumUncheckedUpdateManyWithoutMediaNestedInput
+    MediaOnSocialAccount?: MediaOnSocialAccountUncheckedUpdateManyWithoutMediaNestedInput
   }
 
   export type UserCreateWithoutHistoriesInput = {
@@ -31647,6 +34887,7 @@ export namespace Prisma {
     username: string
     password: string
     avatar?: string | null
+    cover?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -31659,6 +34900,7 @@ export namespace Prisma {
     Playlist?: PlaylistCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodCreateNestedManyWithoutUserInput
     Album?: AlbumCreateNestedManyWithoutOwnerInput
+    SocialAccount?: SocialAccountCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUncheckedCreateWithoutHistoriesInput = {
@@ -31669,6 +34911,7 @@ export namespace Prisma {
     username: string
     password: string
     avatar?: string | null
+    cover?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -31681,6 +34924,7 @@ export namespace Prisma {
     Playlist?: PlaylistUncheckedCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodUncheckedCreateNestedManyWithoutUserInput
     Album?: AlbumUncheckedCreateNestedManyWithoutOwnerInput
+    SocialAccount?: SocialAccountUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type UserCreateOrConnectWithoutHistoriesInput = {
@@ -31711,6 +34955,7 @@ export namespace Prisma {
     mediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
     sessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
     mediaOnAlbum?: MediaOnAlbumCreateNestedManyWithoutMediaInput
+    MediaOnSocialAccount?: MediaOnSocialAccountCreateNestedManyWithoutMediaInput
   }
 
   export type MediaUncheckedCreateWithoutHistoryInput = {
@@ -31736,6 +34981,7 @@ export namespace Prisma {
     mediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
     sessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
     mediaOnAlbum?: MediaOnAlbumUncheckedCreateNestedManyWithoutMediaInput
+    MediaOnSocialAccount?: MediaOnSocialAccountUncheckedCreateNestedManyWithoutMediaInput
   }
 
   export type MediaCreateOrConnectWithoutHistoryInput = {
@@ -31762,6 +35008,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    cover?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -31774,6 +35021,7 @@ export namespace Prisma {
     Playlist?: PlaylistUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUpdateManyWithoutUserNestedInput
     Album?: AlbumUpdateManyWithoutOwnerNestedInput
+    SocialAccount?: SocialAccountUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutHistoriesInput = {
@@ -31784,6 +35032,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    cover?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -31796,6 +35045,7 @@ export namespace Prisma {
     Playlist?: PlaylistUncheckedUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUncheckedUpdateManyWithoutUserNestedInput
     Album?: AlbumUncheckedUpdateManyWithoutOwnerNestedInput
+    SocialAccount?: SocialAccountUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type MediaUpsertWithoutHistoryInput = {
@@ -31832,6 +35082,7 @@ export namespace Prisma {
     mediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
     sessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
     mediaOnAlbum?: MediaOnAlbumUpdateManyWithoutMediaNestedInput
+    MediaOnSocialAccount?: MediaOnSocialAccountUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaUncheckedUpdateWithoutHistoryInput = {
@@ -31857,6 +35108,7 @@ export namespace Prisma {
     mediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
     sessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
     mediaOnAlbum?: MediaOnAlbumUncheckedUpdateManyWithoutMediaNestedInput
+    MediaOnSocialAccount?: MediaOnSocialAccountUncheckedUpdateManyWithoutMediaNestedInput
   }
 
   export type UserCreateWithoutSubscribersInput = {
@@ -31867,6 +35119,7 @@ export namespace Prisma {
     username: string
     password: string
     avatar?: string | null
+    cover?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -31879,6 +35132,7 @@ export namespace Prisma {
     Playlist?: PlaylistCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodCreateNestedManyWithoutUserInput
     Album?: AlbumCreateNestedManyWithoutOwnerInput
+    SocialAccount?: SocialAccountCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUncheckedCreateWithoutSubscribersInput = {
@@ -31889,6 +35143,7 @@ export namespace Prisma {
     username: string
     password: string
     avatar?: string | null
+    cover?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -31901,6 +35156,7 @@ export namespace Prisma {
     Playlist?: PlaylistUncheckedCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodUncheckedCreateNestedManyWithoutUserInput
     Album?: AlbumUncheckedCreateNestedManyWithoutOwnerInput
+    SocialAccount?: SocialAccountUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type UserCreateOrConnectWithoutSubscribersInput = {
@@ -31916,6 +35172,7 @@ export namespace Prisma {
     username: string
     password: string
     avatar?: string | null
+    cover?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -31928,6 +35185,7 @@ export namespace Prisma {
     Playlist?: PlaylistCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodCreateNestedManyWithoutUserInput
     Album?: AlbumCreateNestedManyWithoutOwnerInput
+    SocialAccount?: SocialAccountCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUncheckedCreateWithoutChannelInput = {
@@ -31938,6 +35196,7 @@ export namespace Prisma {
     username: string
     password: string
     avatar?: string | null
+    cover?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -31950,6 +35209,7 @@ export namespace Prisma {
     Playlist?: PlaylistUncheckedCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodUncheckedCreateNestedManyWithoutUserInput
     Album?: AlbumUncheckedCreateNestedManyWithoutOwnerInput
+    SocialAccount?: SocialAccountUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type UserCreateOrConnectWithoutChannelInput = {
@@ -31976,6 +35236,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    cover?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -31988,6 +35249,7 @@ export namespace Prisma {
     Playlist?: PlaylistUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUpdateManyWithoutUserNestedInput
     Album?: AlbumUpdateManyWithoutOwnerNestedInput
+    SocialAccount?: SocialAccountUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSubscribersInput = {
@@ -31998,6 +35260,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    cover?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -32010,6 +35273,7 @@ export namespace Prisma {
     Playlist?: PlaylistUncheckedUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUncheckedUpdateManyWithoutUserNestedInput
     Album?: AlbumUncheckedUpdateManyWithoutOwnerNestedInput
+    SocialAccount?: SocialAccountUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUpsertWithoutChannelInput = {
@@ -32031,6 +35295,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    cover?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -32043,6 +35308,7 @@ export namespace Prisma {
     Playlist?: PlaylistUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUpdateManyWithoutUserNestedInput
     Album?: AlbumUpdateManyWithoutOwnerNestedInput
+    SocialAccount?: SocialAccountUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutChannelInput = {
@@ -32053,6 +35319,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    cover?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -32065,6 +35332,7 @@ export namespace Prisma {
     Playlist?: PlaylistUncheckedUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUncheckedUpdateManyWithoutUserNestedInput
     Album?: AlbumUncheckedUpdateManyWithoutOwnerNestedInput
+    SocialAccount?: SocialAccountUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserCreateWithoutNotificationSubscriptionsInput = {
@@ -32075,6 +35343,7 @@ export namespace Prisma {
     username: string
     password: string
     avatar?: string | null
+    cover?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -32087,6 +35356,7 @@ export namespace Prisma {
     Playlist?: PlaylistCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodCreateNestedManyWithoutUserInput
     Album?: AlbumCreateNestedManyWithoutOwnerInput
+    SocialAccount?: SocialAccountCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUncheckedCreateWithoutNotificationSubscriptionsInput = {
@@ -32097,6 +35367,7 @@ export namespace Prisma {
     username: string
     password: string
     avatar?: string | null
+    cover?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -32109,6 +35380,7 @@ export namespace Prisma {
     Playlist?: PlaylistUncheckedCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodUncheckedCreateNestedManyWithoutUserInput
     Album?: AlbumUncheckedCreateNestedManyWithoutOwnerInput
+    SocialAccount?: SocialAccountUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type UserCreateOrConnectWithoutNotificationSubscriptionsInput = {
@@ -32135,6 +35407,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    cover?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -32147,6 +35420,7 @@ export namespace Prisma {
     Playlist?: PlaylistUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUpdateManyWithoutUserNestedInput
     Album?: AlbumUpdateManyWithoutOwnerNestedInput
+    SocialAccount?: SocialAccountUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutNotificationSubscriptionsInput = {
@@ -32157,6 +35431,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    cover?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -32169,6 +35444,7 @@ export namespace Prisma {
     Playlist?: PlaylistUncheckedUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUncheckedUpdateManyWithoutUserNestedInput
     Album?: AlbumUncheckedUpdateManyWithoutOwnerNestedInput
+    SocialAccount?: SocialAccountUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type MediaCreateWithoutVideoResourcesInput = {
@@ -32194,6 +35470,7 @@ export namespace Prisma {
     mediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
     sessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
     mediaOnAlbum?: MediaOnAlbumCreateNestedManyWithoutMediaInput
+    MediaOnSocialAccount?: MediaOnSocialAccountCreateNestedManyWithoutMediaInput
   }
 
   export type MediaUncheckedCreateWithoutVideoResourcesInput = {
@@ -32219,6 +35496,7 @@ export namespace Prisma {
     mediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
     sessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
     mediaOnAlbum?: MediaOnAlbumUncheckedCreateNestedManyWithoutMediaInput
+    MediaOnSocialAccount?: MediaOnSocialAccountUncheckedCreateNestedManyWithoutMediaInput
   }
 
   export type MediaCreateOrConnectWithoutVideoResourcesInput = {
@@ -32260,6 +35538,7 @@ export namespace Prisma {
     mediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
     sessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
     mediaOnAlbum?: MediaOnAlbumUpdateManyWithoutMediaNestedInput
+    MediaOnSocialAccount?: MediaOnSocialAccountUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaUncheckedUpdateWithoutVideoResourcesInput = {
@@ -32285,6 +35564,7 @@ export namespace Prisma {
     mediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
     sessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
     mediaOnAlbum?: MediaOnAlbumUncheckedUpdateManyWithoutMediaNestedInput
+    MediaOnSocialAccount?: MediaOnSocialAccountUncheckedUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaCreateWithoutAudioResourcesInput = {
@@ -32310,6 +35590,7 @@ export namespace Prisma {
     mediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
     sessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
     mediaOnAlbum?: MediaOnAlbumCreateNestedManyWithoutMediaInput
+    MediaOnSocialAccount?: MediaOnSocialAccountCreateNestedManyWithoutMediaInput
   }
 
   export type MediaUncheckedCreateWithoutAudioResourcesInput = {
@@ -32335,6 +35616,7 @@ export namespace Prisma {
     mediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
     sessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
     mediaOnAlbum?: MediaOnAlbumUncheckedCreateNestedManyWithoutMediaInput
+    MediaOnSocialAccount?: MediaOnSocialAccountUncheckedCreateNestedManyWithoutMediaInput
   }
 
   export type MediaCreateOrConnectWithoutAudioResourcesInput = {
@@ -32376,6 +35658,7 @@ export namespace Prisma {
     mediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
     sessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
     mediaOnAlbum?: MediaOnAlbumUpdateManyWithoutMediaNestedInput
+    MediaOnSocialAccount?: MediaOnSocialAccountUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaUncheckedUpdateWithoutAudioResourcesInput = {
@@ -32401,6 +35684,7 @@ export namespace Prisma {
     mediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
     sessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
     mediaOnAlbum?: MediaOnAlbumUncheckedUpdateManyWithoutMediaNestedInput
+    MediaOnSocialAccount?: MediaOnSocialAccountUncheckedUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaCreateWithoutDetailInput = {
@@ -32426,6 +35710,7 @@ export namespace Prisma {
     mediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
     sessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
     mediaOnAlbum?: MediaOnAlbumCreateNestedManyWithoutMediaInput
+    MediaOnSocialAccount?: MediaOnSocialAccountCreateNestedManyWithoutMediaInput
   }
 
   export type MediaUncheckedCreateWithoutDetailInput = {
@@ -32451,6 +35736,7 @@ export namespace Prisma {
     mediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
     sessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
     mediaOnAlbum?: MediaOnAlbumUncheckedCreateNestedManyWithoutMediaInput
+    MediaOnSocialAccount?: MediaOnSocialAccountUncheckedCreateNestedManyWithoutMediaInput
   }
 
   export type MediaCreateOrConnectWithoutDetailInput = {
@@ -32492,6 +35778,7 @@ export namespace Prisma {
     mediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
     sessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
     mediaOnAlbum?: MediaOnAlbumUpdateManyWithoutMediaNestedInput
+    MediaOnSocialAccount?: MediaOnSocialAccountUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaUncheckedUpdateWithoutDetailInput = {
@@ -32517,6 +35804,7 @@ export namespace Prisma {
     mediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
     sessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
     mediaOnAlbum?: MediaOnAlbumUncheckedUpdateManyWithoutMediaNestedInput
+    MediaOnSocialAccount?: MediaOnSocialAccountUncheckedUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaCreateWithoutThumbnailsInput = {
@@ -32542,6 +35830,7 @@ export namespace Prisma {
     mediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
     sessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
     mediaOnAlbum?: MediaOnAlbumCreateNestedManyWithoutMediaInput
+    MediaOnSocialAccount?: MediaOnSocialAccountCreateNestedManyWithoutMediaInput
   }
 
   export type MediaUncheckedCreateWithoutThumbnailsInput = {
@@ -32567,6 +35856,7 @@ export namespace Prisma {
     mediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
     sessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
     mediaOnAlbum?: MediaOnAlbumUncheckedCreateNestedManyWithoutMediaInput
+    MediaOnSocialAccount?: MediaOnSocialAccountUncheckedCreateNestedManyWithoutMediaInput
   }
 
   export type MediaCreateOrConnectWithoutThumbnailsInput = {
@@ -32608,6 +35898,7 @@ export namespace Prisma {
     mediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
     sessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
     mediaOnAlbum?: MediaOnAlbumUpdateManyWithoutMediaNestedInput
+    MediaOnSocialAccount?: MediaOnSocialAccountUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaUncheckedUpdateWithoutThumbnailsInput = {
@@ -32633,6 +35924,7 @@ export namespace Prisma {
     mediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
     sessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
     mediaOnAlbum?: MediaOnAlbumUncheckedUpdateManyWithoutMediaNestedInput
+    MediaOnSocialAccount?: MediaOnSocialAccountUncheckedUpdateManyWithoutMediaNestedInput
   }
 
   export type PaymentTransactionDetailCreateWithoutPaymentTransactionInput = {
@@ -32747,6 +36039,7 @@ export namespace Prisma {
     comment?: CommentCreateNestedManyWithoutMediaInput
     mediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
     sessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
+    MediaOnSocialAccount?: MediaOnSocialAccountCreateNestedManyWithoutMediaInput
   }
 
   export type MediaUncheckedCreateWithoutMediaOnAlbumInput = {
@@ -32772,6 +36065,7 @@ export namespace Prisma {
     comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
     mediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
     sessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
+    MediaOnSocialAccount?: MediaOnSocialAccountUncheckedCreateNestedManyWithoutMediaInput
   }
 
   export type MediaCreateOrConnectWithoutMediaOnAlbumInput = {
@@ -32836,6 +36130,7 @@ export namespace Prisma {
     comment?: CommentUpdateManyWithoutMediaNestedInput
     mediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
     sessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
+    MediaOnSocialAccount?: MediaOnSocialAccountUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaUncheckedUpdateWithoutMediaOnAlbumInput = {
@@ -32861,6 +36156,7 @@ export namespace Prisma {
     comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
     mediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
     sessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
+    MediaOnSocialAccount?: MediaOnSocialAccountUncheckedUpdateManyWithoutMediaNestedInput
   }
 
   export type AlbumUpsertWithoutMediaOnAlbumInput = {
@@ -32900,6 +36196,7 @@ export namespace Prisma {
     username: string
     password: string
     avatar?: string | null
+    cover?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -32912,6 +36209,7 @@ export namespace Prisma {
     Comment?: CommentCreateNestedManyWithoutUserInput
     Playlist?: PlaylistCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodCreateNestedManyWithoutUserInput
+    SocialAccount?: SocialAccountCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUncheckedCreateWithoutAlbumInput = {
@@ -32922,6 +36220,7 @@ export namespace Prisma {
     username: string
     password: string
     avatar?: string | null
+    cover?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -32934,6 +36233,7 @@ export namespace Prisma {
     Comment?: CommentUncheckedCreateNestedManyWithoutUserInput
     Playlist?: PlaylistUncheckedCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodUncheckedCreateNestedManyWithoutUserInput
+    SocialAccount?: SocialAccountUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type UserCreateOrConnectWithoutAlbumInput = {
@@ -32983,6 +36283,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    cover?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -32995,6 +36296,7 @@ export namespace Prisma {
     Comment?: CommentUpdateManyWithoutUserNestedInput
     Playlist?: PlaylistUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUpdateManyWithoutUserNestedInput
+    SocialAccount?: SocialAccountUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAlbumInput = {
@@ -33005,6 +36307,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    cover?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -33017,6 +36320,7 @@ export namespace Prisma {
     Comment?: CommentUncheckedUpdateManyWithoutUserNestedInput
     Playlist?: PlaylistUncheckedUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUncheckedUpdateManyWithoutUserNestedInput
+    SocialAccount?: SocialAccountUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type MediaOnAlbumUpsertWithWhereUniqueWithoutAlbumInput = {
@@ -33033,6 +36337,353 @@ export namespace Prisma {
   export type MediaOnAlbumUpdateManyWithWhereWithoutAlbumInput = {
     where: MediaOnAlbumScalarWhereInput
     data: XOR<MediaOnAlbumUpdateManyMutationInput, MediaOnAlbumUncheckedUpdateManyWithoutAlbumInput>
+  }
+
+  export type MediaCreateWithoutMediaOnSocialAccountInput = {
+    id?: string
+    title: string
+    views?: number
+    duration?: number
+    plays?: number
+    status?: $Enums.StatusResource
+    viewMode?: $Enums.Status
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    lockedAt?: Date | string | null
+    publishedAt?: Date | string | null
+    owner: UserCreateNestedOneWithoutMediaInput
+    thumbnails?: ThumbnailCreateNestedManyWithoutMediaInput
+    detail?: MediaDetailCreateNestedOneWithoutMediaInput
+    videoResources?: VideoResourceCreateNestedManyWithoutMediaInput
+    audioResources?: AudioResourceCreateNestedManyWithoutMediaInput
+    mediaReaction?: MediaReactionCreateNestedManyWithoutMediaInput
+    history?: HistoryCreateNestedManyWithoutMediaInput
+    mediaOnCategory?: MediaOnCategoryCreateNestedManyWithoutMediaInput
+    comment?: CommentCreateNestedManyWithoutMediaInput
+    mediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
+    sessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
+    mediaOnAlbum?: MediaOnAlbumCreateNestedManyWithoutMediaInput
+  }
+
+  export type MediaUncheckedCreateWithoutMediaOnSocialAccountInput = {
+    id?: string
+    userId: string
+    title: string
+    views?: number
+    duration?: number
+    plays?: number
+    status?: $Enums.StatusResource
+    viewMode?: $Enums.Status
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    lockedAt?: Date | string | null
+    publishedAt?: Date | string | null
+    thumbnails?: ThumbnailUncheckedCreateNestedManyWithoutMediaInput
+    detail?: MediaDetailUncheckedCreateNestedOneWithoutMediaInput
+    videoResources?: VideoResourceUncheckedCreateNestedManyWithoutMediaInput
+    audioResources?: AudioResourceUncheckedCreateNestedManyWithoutMediaInput
+    mediaReaction?: MediaReactionUncheckedCreateNestedManyWithoutMediaInput
+    history?: HistoryUncheckedCreateNestedManyWithoutMediaInput
+    mediaOnCategory?: MediaOnCategoryUncheckedCreateNestedManyWithoutMediaInput
+    comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
+    mediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
+    sessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
+    mediaOnAlbum?: MediaOnAlbumUncheckedCreateNestedManyWithoutMediaInput
+  }
+
+  export type MediaCreateOrConnectWithoutMediaOnSocialAccountInput = {
+    where: MediaWhereUniqueInput
+    create: XOR<MediaCreateWithoutMediaOnSocialAccountInput, MediaUncheckedCreateWithoutMediaOnSocialAccountInput>
+  }
+
+  export type SocialAccountCreateWithoutMediaOnSocialAccountInput = {
+    type?: $Enums.AccountType
+    fullName: string
+    avatarUrl?: string | null
+    accountUrl?: string | null
+    accessToken?: string | null
+    refreshToken?: string | null
+    expiredAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    disabledAt?: Date | string | null
+    owner: UserCreateNestedOneWithoutSocialAccountInput
+  }
+
+  export type SocialAccountUncheckedCreateWithoutMediaOnSocialAccountInput = {
+    id?: number
+    userId: string
+    type?: $Enums.AccountType
+    fullName: string
+    avatarUrl?: string | null
+    accountUrl?: string | null
+    accessToken?: string | null
+    refreshToken?: string | null
+    expiredAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    disabledAt?: Date | string | null
+  }
+
+  export type SocialAccountCreateOrConnectWithoutMediaOnSocialAccountInput = {
+    where: SocialAccountWhereUniqueInput
+    create: XOR<SocialAccountCreateWithoutMediaOnSocialAccountInput, SocialAccountUncheckedCreateWithoutMediaOnSocialAccountInput>
+  }
+
+  export type MediaUpsertWithoutMediaOnSocialAccountInput = {
+    update: XOR<MediaUpdateWithoutMediaOnSocialAccountInput, MediaUncheckedUpdateWithoutMediaOnSocialAccountInput>
+    create: XOR<MediaCreateWithoutMediaOnSocialAccountInput, MediaUncheckedCreateWithoutMediaOnSocialAccountInput>
+    where?: MediaWhereInput
+  }
+
+  export type MediaUpdateToOneWithWhereWithoutMediaOnSocialAccountInput = {
+    where?: MediaWhereInput
+    data: XOR<MediaUpdateWithoutMediaOnSocialAccountInput, MediaUncheckedUpdateWithoutMediaOnSocialAccountInput>
+  }
+
+  export type MediaUpdateWithoutMediaOnSocialAccountInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    views?: IntFieldUpdateOperationsInput | number
+    duration?: FloatFieldUpdateOperationsInput | number
+    plays?: IntFieldUpdateOperationsInput | number
+    status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
+    viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    owner?: UserUpdateOneRequiredWithoutMediaNestedInput
+    thumbnails?: ThumbnailUpdateManyWithoutMediaNestedInput
+    detail?: MediaDetailUpdateOneWithoutMediaNestedInput
+    videoResources?: VideoResourceUpdateManyWithoutMediaNestedInput
+    audioResources?: AudioResourceUpdateManyWithoutMediaNestedInput
+    mediaReaction?: MediaReactionUpdateManyWithoutMediaNestedInput
+    history?: HistoryUpdateManyWithoutMediaNestedInput
+    mediaOnCategory?: MediaOnCategoryUpdateManyWithoutMediaNestedInput
+    comment?: CommentUpdateManyWithoutMediaNestedInput
+    mediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
+    sessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
+    mediaOnAlbum?: MediaOnAlbumUpdateManyWithoutMediaNestedInput
+  }
+
+  export type MediaUncheckedUpdateWithoutMediaOnSocialAccountInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    views?: IntFieldUpdateOperationsInput | number
+    duration?: FloatFieldUpdateOperationsInput | number
+    plays?: IntFieldUpdateOperationsInput | number
+    status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
+    viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    thumbnails?: ThumbnailUncheckedUpdateManyWithoutMediaNestedInput
+    detail?: MediaDetailUncheckedUpdateOneWithoutMediaNestedInput
+    videoResources?: VideoResourceUncheckedUpdateManyWithoutMediaNestedInput
+    audioResources?: AudioResourceUncheckedUpdateManyWithoutMediaNestedInput
+    mediaReaction?: MediaReactionUncheckedUpdateManyWithoutMediaNestedInput
+    history?: HistoryUncheckedUpdateManyWithoutMediaNestedInput
+    mediaOnCategory?: MediaOnCategoryUncheckedUpdateManyWithoutMediaNestedInput
+    comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
+    mediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
+    sessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
+    mediaOnAlbum?: MediaOnAlbumUncheckedUpdateManyWithoutMediaNestedInput
+  }
+
+  export type SocialAccountUpsertWithoutMediaOnSocialAccountInput = {
+    update: XOR<SocialAccountUpdateWithoutMediaOnSocialAccountInput, SocialAccountUncheckedUpdateWithoutMediaOnSocialAccountInput>
+    create: XOR<SocialAccountCreateWithoutMediaOnSocialAccountInput, SocialAccountUncheckedCreateWithoutMediaOnSocialAccountInput>
+    where?: SocialAccountWhereInput
+  }
+
+  export type SocialAccountUpdateToOneWithWhereWithoutMediaOnSocialAccountInput = {
+    where?: SocialAccountWhereInput
+    data: XOR<SocialAccountUpdateWithoutMediaOnSocialAccountInput, SocialAccountUncheckedUpdateWithoutMediaOnSocialAccountInput>
+  }
+
+  export type SocialAccountUpdateWithoutMediaOnSocialAccountInput = {
+    type?: EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+    fullName?: StringFieldUpdateOperationsInput | string
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    accountUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    disabledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    owner?: UserUpdateOneRequiredWithoutSocialAccountNestedInput
+  }
+
+  export type SocialAccountUncheckedUpdateWithoutMediaOnSocialAccountInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
+    type?: EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+    fullName?: StringFieldUpdateOperationsInput | string
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    accountUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    disabledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type UserCreateWithoutSocialAccountInput = {
+    id?: string
+    firstName: string
+    lastName: string
+    email: string
+    username: string
+    password: string
+    avatar?: string | null
+    cover?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    lockedAt?: Date | string | null
+    media?: MediaCreateNestedManyWithoutOwnerInput
+    mediaReactions?: MediaReactionCreateNestedManyWithoutUserInput
+    histories?: HistoryCreateNestedManyWithoutUserInput
+    subscribers?: SubscriberCreateNestedManyWithoutUserInput
+    channel?: SubscriberCreateNestedManyWithoutChannelInput
+    NotificationSubscriptions?: NotificationSubscriptionsCreateNestedManyWithoutUserInput
+    Comment?: CommentCreateNestedManyWithoutUserInput
+    Playlist?: PlaylistCreateNestedManyWithoutUserInput
+    UserPaymentMethod?: UserPaymentMethodCreateNestedManyWithoutUserInput
+    Album?: AlbumCreateNestedManyWithoutOwnerInput
+  }
+
+  export type UserUncheckedCreateWithoutSocialAccountInput = {
+    id?: string
+    firstName: string
+    lastName: string
+    email: string
+    username: string
+    password: string
+    avatar?: string | null
+    cover?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    lockedAt?: Date | string | null
+    media?: MediaUncheckedCreateNestedManyWithoutOwnerInput
+    mediaReactions?: MediaReactionUncheckedCreateNestedManyWithoutUserInput
+    histories?: HistoryUncheckedCreateNestedManyWithoutUserInput
+    subscribers?: SubscriberUncheckedCreateNestedManyWithoutUserInput
+    channel?: SubscriberUncheckedCreateNestedManyWithoutChannelInput
+    NotificationSubscriptions?: NotificationSubscriptionsUncheckedCreateNestedManyWithoutUserInput
+    Comment?: CommentUncheckedCreateNestedManyWithoutUserInput
+    Playlist?: PlaylistUncheckedCreateNestedManyWithoutUserInput
+    UserPaymentMethod?: UserPaymentMethodUncheckedCreateNestedManyWithoutUserInput
+    Album?: AlbumUncheckedCreateNestedManyWithoutOwnerInput
+  }
+
+  export type UserCreateOrConnectWithoutSocialAccountInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutSocialAccountInput, UserUncheckedCreateWithoutSocialAccountInput>
+  }
+
+  export type MediaOnSocialAccountCreateWithoutSocialAccountInput = {
+    mediaSocialId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    media: MediaCreateNestedOneWithoutMediaOnSocialAccountInput
+  }
+
+  export type MediaOnSocialAccountUncheckedCreateWithoutSocialAccountInput = {
+    id?: number
+    mediaSocialId: string
+    mediaId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MediaOnSocialAccountCreateOrConnectWithoutSocialAccountInput = {
+    where: MediaOnSocialAccountWhereUniqueInput
+    create: XOR<MediaOnSocialAccountCreateWithoutSocialAccountInput, MediaOnSocialAccountUncheckedCreateWithoutSocialAccountInput>
+  }
+
+  export type MediaOnSocialAccountCreateManySocialAccountInputEnvelope = {
+    data: MediaOnSocialAccountCreateManySocialAccountInput | MediaOnSocialAccountCreateManySocialAccountInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserUpsertWithoutSocialAccountInput = {
+    update: XOR<UserUpdateWithoutSocialAccountInput, UserUncheckedUpdateWithoutSocialAccountInput>
+    create: XOR<UserCreateWithoutSocialAccountInput, UserUncheckedCreateWithoutSocialAccountInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutSocialAccountInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutSocialAccountInput, UserUncheckedUpdateWithoutSocialAccountInput>
+  }
+
+  export type UserUpdateWithoutSocialAccountInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    cover?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    media?: MediaUpdateManyWithoutOwnerNestedInput
+    mediaReactions?: MediaReactionUpdateManyWithoutUserNestedInput
+    histories?: HistoryUpdateManyWithoutUserNestedInput
+    subscribers?: SubscriberUpdateManyWithoutUserNestedInput
+    channel?: SubscriberUpdateManyWithoutChannelNestedInput
+    NotificationSubscriptions?: NotificationSubscriptionsUpdateManyWithoutUserNestedInput
+    Comment?: CommentUpdateManyWithoutUserNestedInput
+    Playlist?: PlaylistUpdateManyWithoutUserNestedInput
+    UserPaymentMethod?: UserPaymentMethodUpdateManyWithoutUserNestedInput
+    Album?: AlbumUpdateManyWithoutOwnerNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutSocialAccountInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    cover?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    media?: MediaUncheckedUpdateManyWithoutOwnerNestedInput
+    mediaReactions?: MediaReactionUncheckedUpdateManyWithoutUserNestedInput
+    histories?: HistoryUncheckedUpdateManyWithoutUserNestedInput
+    subscribers?: SubscriberUncheckedUpdateManyWithoutUserNestedInput
+    channel?: SubscriberUncheckedUpdateManyWithoutChannelNestedInput
+    NotificationSubscriptions?: NotificationSubscriptionsUncheckedUpdateManyWithoutUserNestedInput
+    Comment?: CommentUncheckedUpdateManyWithoutUserNestedInput
+    Playlist?: PlaylistUncheckedUpdateManyWithoutUserNestedInput
+    UserPaymentMethod?: UserPaymentMethodUncheckedUpdateManyWithoutUserNestedInput
+    Album?: AlbumUncheckedUpdateManyWithoutOwnerNestedInput
+  }
+
+  export type MediaOnSocialAccountUpsertWithWhereUniqueWithoutSocialAccountInput = {
+    where: MediaOnSocialAccountWhereUniqueInput
+    update: XOR<MediaOnSocialAccountUpdateWithoutSocialAccountInput, MediaOnSocialAccountUncheckedUpdateWithoutSocialAccountInput>
+    create: XOR<MediaOnSocialAccountCreateWithoutSocialAccountInput, MediaOnSocialAccountUncheckedCreateWithoutSocialAccountInput>
+  }
+
+  export type MediaOnSocialAccountUpdateWithWhereUniqueWithoutSocialAccountInput = {
+    where: MediaOnSocialAccountWhereUniqueInput
+    data: XOR<MediaOnSocialAccountUpdateWithoutSocialAccountInput, MediaOnSocialAccountUncheckedUpdateWithoutSocialAccountInput>
+  }
+
+  export type MediaOnSocialAccountUpdateManyWithWhereWithoutSocialAccountInput = {
+    where: MediaOnSocialAccountScalarWhereInput
+    data: XOR<MediaOnSocialAccountUpdateManyMutationInput, MediaOnSocialAccountUncheckedUpdateManyWithoutSocialAccountInput>
   }
 
   export type MediaCreateManyOwnerInput = {
@@ -33115,6 +36766,20 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type SocialAccountCreateManyOwnerInput = {
+    id?: number
+    type?: $Enums.AccountType
+    fullName: string
+    avatarUrl?: string | null
+    accountUrl?: string | null
+    accessToken?: string | null
+    refreshToken?: string | null
+    expiredAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    disabledAt?: Date | string | null
+  }
+
   export type MediaUpdateWithoutOwnerInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
@@ -33138,6 +36803,7 @@ export namespace Prisma {
     mediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
     sessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
     mediaOnAlbum?: MediaOnAlbumUpdateManyWithoutMediaNestedInput
+    MediaOnSocialAccount?: MediaOnSocialAccountUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaUncheckedUpdateWithoutOwnerInput = {
@@ -33163,6 +36829,7 @@ export namespace Prisma {
     mediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
     sessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
     mediaOnAlbum?: MediaOnAlbumUncheckedUpdateManyWithoutMediaNestedInput
+    MediaOnSocialAccount?: MediaOnSocialAccountUncheckedUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaUncheckedUpdateManyWithoutOwnerInput = {
@@ -33376,6 +37043,49 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type SocialAccountUpdateWithoutOwnerInput = {
+    type?: EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+    fullName?: StringFieldUpdateOperationsInput | string
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    accountUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    disabledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    MediaOnSocialAccount?: MediaOnSocialAccountUpdateManyWithoutSocialAccountNestedInput
+  }
+
+  export type SocialAccountUncheckedUpdateWithoutOwnerInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    type?: EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+    fullName?: StringFieldUpdateOperationsInput | string
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    accountUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    disabledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    MediaOnSocialAccount?: MediaOnSocialAccountUncheckedUpdateManyWithoutSocialAccountNestedInput
+  }
+
+  export type SocialAccountUncheckedUpdateManyWithoutOwnerInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    type?: EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+    fullName?: StringFieldUpdateOperationsInput | string
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    accountUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    disabledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
   export type MediaOnCategoryCreateManyCategoryInput = {
     id?: number
     mediaId: string
@@ -33476,6 +37186,14 @@ export namespace Prisma {
   export type MediaOnAlbumCreateManyMediaInput = {
     id?: number
     albumId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MediaOnSocialAccountCreateManyMediaInput = {
+    id?: number
+    socialAccountId: number
+    mediaSocialId: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -33707,6 +37425,29 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type MediaOnSocialAccountUpdateWithoutMediaInput = {
+    mediaSocialId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    socialAccount?: SocialAccountUpdateOneRequiredWithoutMediaOnSocialAccountNestedInput
+  }
+
+  export type MediaOnSocialAccountUncheckedUpdateWithoutMediaInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    socialAccountId?: IntFieldUpdateOperationsInput | number
+    mediaSocialId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MediaOnSocialAccountUncheckedUpdateManyWithoutMediaInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    socialAccountId?: IntFieldUpdateOperationsInput | number
+    mediaSocialId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type MediaOnPlaylistCreateManyPlaylistInput = {
     id?: number
     mediaId: string
@@ -33793,6 +37534,37 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type MediaOnSocialAccountCreateManySocialAccountInput = {
+    id?: number
+    mediaSocialId: string
+    mediaId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MediaOnSocialAccountUpdateWithoutSocialAccountInput = {
+    mediaSocialId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    media?: MediaUpdateOneRequiredWithoutMediaOnSocialAccountNestedInput
+  }
+
+  export type MediaOnSocialAccountUncheckedUpdateWithoutSocialAccountInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    mediaSocialId?: StringFieldUpdateOperationsInput | string
+    mediaId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MediaOnSocialAccountUncheckedUpdateManyWithoutSocialAccountInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    mediaSocialId?: StringFieldUpdateOperationsInput | string
+    mediaId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
 
 
   /**
@@ -33822,6 +37594,10 @@ export namespace Prisma {
      * @deprecated Use AlbumCountOutputTypeDefaultArgs instead
      */
     export type AlbumCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = AlbumCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use SocialAccountCountOutputTypeDefaultArgs instead
+     */
+    export type SocialAccountCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = SocialAccountCountOutputTypeDefaultArgs<ExtArgs>
     /**
      * @deprecated Use UserDefaultArgs instead
      */
@@ -33906,6 +37682,14 @@ export namespace Prisma {
      * @deprecated Use AlbumDefaultArgs instead
      */
     export type AlbumArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = AlbumDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use MediaOnSocialAccountDefaultArgs instead
+     */
+    export type MediaOnSocialAccountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = MediaOnSocialAccountDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use SocialAccountDefaultArgs instead
+     */
+    export type SocialAccountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = SocialAccountDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

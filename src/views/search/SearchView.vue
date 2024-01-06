@@ -9,10 +9,13 @@
       <SongSearch :q="q" />
       <div class="border border-slate-700"></div>
       <ArtistSearch :q="q" />
+      <div class="border border-slate-700"></div>
+      <AlbumSearch :q="q" />
     </div>
   </div>
 </template>
 <script lang="ts" setup>
+import AlbumSearch from '@/components/Search/AlbumSearch.vue';
 import ArtistSearch from '@/components/Search/ArtistSearch.vue';
 import SongSearch from '@/components/Search/SongSearch.vue';
 import { ref, watch } from 'vue';

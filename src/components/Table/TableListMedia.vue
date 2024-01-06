@@ -27,16 +27,39 @@
           {{ formatDate(row.createdAt) }}
         </div>
       </template>
+      <template v-if="column.dataIndex === 'action'">
+        <div>
+          <slot name="action" :data="row">
+            <MediaDropDown :media="row.media" @click.stop="" />
+          </slot>
+        </div>
+      </template>
     </template>
   </Table>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import Table from './Table.vue';
 import { convertDuration, formatDate, getFullName, getThumbnailUrlPrimary, playMedia } from '@/utils/common';
 import { Prisma } from '~/prisma/generated/mysql';
+import MediaDropDown from '../Dropdown/MediaDropDown.vue';
 
-const columns = ref<Array<{
+const props = defineProps<{
+  dataSource: Prisma.MediaOnPlaylistGetPayload<{
+    select: {
+      media: {
+        include: {
+          owner: true,
+          thumbnails: true,
+        },
+      },
+      createdAt: true,
+    },
+  }>[],
+  showAction?: boolean,
+}>()
+
+const baseColumns = ref<Array<{
   dataIndex: string,
   key: string,
   title: string,
@@ -63,19 +86,11 @@ const columns = ref<Array<{
   }
 ])
 
-const props = defineProps<{
-  dataSource: Prisma.MediaOnPlaylistGetPayload<{
-    select: {
-      media: {
-        include: {
-          owner: true,
-          thumbnails: true,
-        },
-      },
-      createdAt: true,
-    },
-  }>[]
-}>()
+const columns = computed(() => (props.showAction ? [...baseColumns.value, {
+  dataIndex: 'action',
+  key: 'action',
+  title: '',
+}] : baseColumns.value))
 
 const rowClicked = (row: any) => {
   playMedia(row.media)

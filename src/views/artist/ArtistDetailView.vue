@@ -3,8 +3,11 @@
     <Pulse :handler="handler">
       <div v-if="dataSource">
         <div class="pt-2 mb-8">
-          <div class="w-full h-96 bg-slate-800 rounded-lg flex items-end py-8 px-8">
-            <div class="flex justify-between items-end w-full">
+          <div class="w-full h-96 bg-slate-800 rounded-lg flex items-end py-8 px-8 relative">
+            <div :style="`background-image: url('${dataSource.artist.cover}')`"
+              class="bg-cover bg-center bg-no-repeat absolute inset-0 opacity-50" v-if="dataSource.artist.cover">
+            </div>
+            <div class="flex justify-between items-end w-full z-10 relative">
               <div class="space-y-8">
                 <h1 class="text-6xl font-bold tracking-wider ">
                   {{ getFullName(dataSource.artist) }}
@@ -21,11 +24,22 @@
             </div>
           </div>
         </div>
-        <div>
+        <div class="px-2 mb-8">
           <div class="text-3xl text-beige font-semibold mb-4">
             Top ca khúc nổi bật
           </div>
-          <TableListMedia :data-source="mediaPoplar" />
+          <TableListMedia :data-source="mediaPoplar" :show-action="true" />
+        </div>
+
+        <div>
+          <div class="text-3xl text-beige font-semibold mb-4">
+            Album mới nhất
+          </div>
+          <div class="flex flex-wrap gap-x-4">
+            <div class="w-1/6" v-for="album in dataSource.artist.Album">
+              <AlbumCard :artist="dataSource.artist" :album="album" />
+            </div>
+          </div>
         </div>
       </div>
       <template #loading>
@@ -42,6 +56,7 @@
   </div>
 </template>
 <script setup lang="ts">
+import AlbumCard from '@/components/Album/AlbumCard.vue';
 import Pulse from '@/components/Lazy/Pulse.vue';
 import PulseSongTemplate from '@/components/Lazy/PulseSongTemplate.vue';
 import TableListMedia from '@/components/Table/TableListMedia.vue';
@@ -65,7 +80,31 @@ type ResourceType = {
           thumbnails: true,
           owner: true,
         },
-      }
+      },
+      Album: {
+        orderBy: {
+          createdAt: 'desc',
+        },
+        include: {
+          mediaOnAlbum: {
+            select: {
+              media: {
+                select: {
+                  thumbnails: {
+                    where: {
+                      isPrimary: true,
+                    },
+                  },
+                },
+              },
+            },
+            take: 1,
+            orderBy: {
+              createdAt: 'desc',
+            },
+          },
+        },
+      },
     }
   }>
   subscribe: Subscriber | undefined,

@@ -1,26 +1,13 @@
 <template>
-  <div
-    class="flex justify-end w-full py-3 space-x-6 text-beige fill-beige items-center"
-  >
+  <div class="flex w-full py-3 space-x-6 text-beige fill-beige items-center">
     <slot name="title" />
     <div class="flex space-x-3 items-center">
-      <VueFontAwesome
-        icon="fa-regular fa-chevron-left"
-        class="h-3 cursor-pointer"
-        @click="prev()"
-      />
-      <VueFontAwesome
-        icon="fa-regular fa-chevron-right"
-        class="h-3 cursor-pointer"
-        @click="next()"
-      />
+      <VueFontAwesome icon="fa-regular fa-chevron-left" class="h-3 cursor-pointer" @click="prev()" />
+      <VueFontAwesome icon="fa-regular fa-chevron-right" class="h-3 cursor-pointer" @click="next()" />
     </div>
   </div>
   <div class="h-full w-full overflow-hidden snap-x" ref="slideWrapper">
-    <div
-      class="flex flex-nowrap slide-container transition-transform duration-300"
-      ref="container"
-    >
+    <div class="flex flex-nowrap slide-container transition-transform duration-300" ref="container">
       <slot />
     </div>
   </div>
@@ -68,25 +55,26 @@ const update = () => {
 };
 
 onMounted(() => {
-  if (slideWrapper.value) {
-    const width = slideWrapper.value.clientWidth;
-    perWidth.value = width / props.perPage;
-    const items = slideWrapper.value.querySelectorAll(".slide-container>*");
-    items.forEach((item) => {
-      const width = item.clientWidth;
-      const margin = (perWidth.value as number) - width;
-      item.setAttribute(
-        "style",
-        `${item.getAttribute("style")}; margin-right: ${
-          margin / 2
-        }px; margin-left: ${margin / 2}px`
-      );
-    });
-  }
+  setTimeout(() => {
+    if (slideWrapper.value) {
+      const width = slideWrapper.value.clientWidth;
+      perWidth.value = width / props.perPage;
+      const items = slideWrapper.value.querySelectorAll(".slide-container>*");
+      items.forEach((item) => {
+        const width = item.clientWidth;
+        const margin = (perWidth.value as number) - width;
+        item.setAttribute(
+          "style",
+          `${item.getAttribute("style")}; margin-right: ${margin / 2
+          }px; margin-left: ${margin / 2}px`
+        );
+      });
+    }
+  }, 100)
 });
 </script>
 <style scoped>
-.slide-container::v-deep > * {
+.slide-container::v-deep>* {
   flex: 0 0 auto;
 }
 </style>

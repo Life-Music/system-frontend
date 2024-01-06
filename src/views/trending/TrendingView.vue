@@ -7,7 +7,7 @@
             Top 10 thịnh hành
           </h1>
         </div>
-        <TableListMedia :data-source="dataSource" />
+        <TableListMedia :data-source="dataSource" :show-action="true" />
       </div>
       <template #loading>
         <div class="animate-pulse flex h-12 w-44 my-10">

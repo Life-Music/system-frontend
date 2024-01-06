@@ -9,6 +9,8 @@ import ArtistView from "@/views/artist/ArtistView.vue";
 import ArtistDetailView from "@/views/artist/ArtistDetailView.vue";
 import SearchViewVue from "@/views/search/SearchView.vue";
 import TrendingView from "@/views/trending/TrendingView.vue";
+import AlbumView from "@/views/album/AlbumView.vue";
+import CategoryView from "@/views/category/CategoryView.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -78,6 +80,26 @@ const routes: Array<RouteRecordRaw> = [
         path: "",
         name: routerNames.TRENDING,
         component: TrendingView,
+      },
+    ],
+  },
+  {
+    path: "/album",
+    children: [
+      {
+        path: ":albumId",
+        name: routerNames.ALBUM_DETAIL,
+        component: AlbumView,
+      },
+    ],
+  },
+  {
+    path: "/category",
+    children: [
+      {
+        path: ":categoryId",
+        name: routerNames.CATEGORY_DETAIL,
+        component: CategoryView,
       },
     ],
   },

@@ -1,5 +1,5 @@
 <template>
-  <div ref="header" class="py-6 px-10 flex items-center text-beige fill-beige gap-x-8 fixed top-0 z-10 left-48 right-5">
+  <div ref="header" class="py-6 px-10 flex items-center text-beige fill-beige gap-x-8 fixed top-0 z-40 left-48 right-5">
     <div class="flex items-center gap-x-3">
       <VueFontAwesome icon="fa-regular fa-chevron-left" class="h-5" />
       <VueFontAwesome icon="fa-regular fa-chevron-right" class="h-5" />

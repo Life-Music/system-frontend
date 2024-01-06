@@ -13,7 +13,7 @@
           class="gap-x-4 flex items-center cursor-pointer transition-colors hover:text-orange-400 hover:fill-orange-400"
           v-for="(item, j) in menu.children" :class="{
             'text-orange-400 fill-orange-400':
-              currentRoute.name === item.routerName,
+              !item.forceActive && currentRoute === item.routerName,
           }" :key="j" @click="item.onClick()">
           <VueFontAwesome v-if="item.icon" :icon="item.icon" class="w-4 fill-inherit" />
           <span>{{ $t(item.text) }}</span>
@@ -23,7 +23,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { ref, Ref, watch } from "vue";
+import { computed, ref, Ref, watch } from "vue";
 import Logo from "@/assets/images/logo.png";
 import { useRoute, useRouter } from "vue-router";
 import routerNames from "@/router/routerNames";
@@ -35,7 +35,7 @@ const router = useRouter();
 const route = useRoute();
 const userStore = useUserInfoStore();
 const playlistStore = usePlaylistStore();
-const currentRoute = route.matched[0];
+const currentRoute = computed(() => route.name)
 
 const menus: Ref<
   Array<{
@@ -45,6 +45,7 @@ const menus: Ref<
       icon?: string;
       onClick: () => void;
       routerName: string;
+      forceActive?: boolean;
     }[];
   }>
 > = ref([
@@ -145,6 +146,7 @@ const updateMenuPlaylist = async () => {
     return {
       routerName: routerNames.PLAYLIST_DETAIL,
       text: item.title,
+      forceActive: true,
       onClick() {
         router.push({
           name: this.routerName,

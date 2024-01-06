@@ -57,6 +57,7 @@ export const playMedia = (
 ) => {
   const mediaStore = useMediaStore();
   mediaStore.playMedia(media);
+  localStorage.setItem("last_played", media.id);
   const userStore = useUserInfoStore();
   if (userStore.userInfo) {
     requestInstance.post("/history/media", {

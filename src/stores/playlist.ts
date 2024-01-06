@@ -1,11 +1,34 @@
 import requestInstance from "@/utils/axios";
 import { defineStore } from "pinia";
-import { Playlist } from "~/prisma/generated/mysql";
+import { Prisma } from "~/prisma/generated/mysql";
 
+type PlayListResource = Prisma.PlaylistGetPayload<{
+  include: {
+    MediaOnPlaylist: {
+      take: 1,
+      orderBy: {
+        createdAt: 'desc',
+      },
+      select: {
+        media: {
+          select: {
+            thumbnails: {
+              where: {
+                isPrimary: true,
+              },
+              take: 1,
+            }
+          }
+        }
+      }
+    }
+  }
+}>
 export const usePlaylistStore = defineStore('playlist', {
+
   state(): {
-    handler: Promise<Playlist[]> | null,
-    playlists: Playlist[] | null,
+    handler: Promise<PlayListResource[]> | null,
+    playlists: PlayListResource[] | null,
   } {
     return {
       handler: null,
@@ -14,7 +37,7 @@ export const usePlaylistStore = defineStore('playlist', {
   },
   actions: {
     init() {
-      this.handler ??= requestInstance.get<AxiosResponse<Playlist[]>>("/playlist").then(({ data }) => {
+      this.handler ??= requestInstance.get<AxiosResponse<PlayListResource[]>>("/playlist").then(({ data }) => {
         return data.data
       }).then((data) => {
         this.playlists = data
@@ -22,7 +45,7 @@ export const usePlaylistStore = defineStore('playlist', {
       });
       return this.handler
     },
-    setPlaylist(playlists: Playlist[]) {
+    setPlaylist(playlists: PlayListResource[]) {
       this.playlists = playlists
     },
     removePlaylist() {

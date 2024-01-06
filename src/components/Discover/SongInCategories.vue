@@ -1,15 +1,15 @@
 <template>
   <LazyPulse :handler="handler">
     <div class="space-y-14">
-      <div v-for="album in albums" class="space-y-2">
+      <div v-for="category in categories" class="space-y-2">
         <RouterLink :to="{
-          name: routerNames.ALBUM_DETAIL,
+          name: routerNames.CATEGORY_DETAIL,
           params: {
-            albumId: album.id,
+            categoryId: category.id,
           }
-        }" class="text-left font-medium text-lg text-beige py-3">{{ album.name }}</RouterLink>
+        }" class="text-left font-medium text-lg text-beige py-3">{{ category.name }}</RouterLink>
         <div class="flex gap-x-4 gap-y-4">
-          <div v-for="(music, i) in album.mediaOnAlbum" class="w-1/6">
+          <div v-for="(music, i) in category.categoryOnMedia" class="w-1/6">
             <SongCard :media="music.media" />
           </div>
         </div>
@@ -34,35 +34,40 @@ import requestInstance from "@/utils/axios";
 import { ref } from "vue";
 import { Prisma } from "~/prisma/generated/mysql";
 import LazyPulse from "../Lazy/Pulse.vue";
-import PulseSongTemplate from "../Lazy/PulseSongTemplate.vue";
-import AlbumCard from "../Album/AlbumCard.vue";
 import PulseAlbumTemplate from "../Lazy/PulseAlbumTemplate.vue";
-import { getFullName, getThumbnailUrlPrimary } from "@/utils/common";
 import SongCard from "../Song/SongCard.vue";
 import routerNames from "@/router/routerNames";
 
-type ItemResource = Prisma.AlbumGetPayload<{
+type ItemResource = Prisma.CategoryGetPayload<{
   select: {
-    name: true;
-    id: true;
-    mediaOnAlbum: {
+    name: true,
+    id: true,
+    categoryOnMedia: {
       select: {
         media: {
           include: {
-            owner: true;
-            thumbnails: true;
-          };
-        };
-      };
-    };
-  };
+            owner: true,
+            thumbnails: true,
+          },
+        },
+        createdAt: true,
+        updatedAt: true,
+      },
+      orderBy: {
+        media: {
+          createdAt: 'desc',
+        },
+      },
+      take: 10,
+    },
+  },
 }>;
 
-const albums = ref<ItemResource[]>([]);
+const categories = ref<ItemResource[]>([]);
 
 const handler = requestInstance
-  .get<ResponseSuccess<ItemResource[]>>("/recommendation/album/media")
+  .get<ResponseSuccess<ItemResource[]>>("/recommendation/category/media")
   .then(({ data: { data } }) => {
-    albums.value = data;
+    categories.value = data;
   });
 </script>
