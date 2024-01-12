@@ -56,9 +56,10 @@ export const playMedia = (
   }>
 ) => {
   const mediaStore = useMediaStore();
-  mediaStore.playMedia(media);
-  localStorage.setItem("last_played", media.id);
   const userStore = useUserInfoStore();
+  let forceAds = userStore.userInfo && userStore.userInfo.productId ? true : false;
+  mediaStore.playMedia(media, forceAds);
+  localStorage.setItem("last_played", media.id);
   if (userStore.userInfo) {
     requestInstance.post("/history/media", {
       mediaId: media.id,

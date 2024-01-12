@@ -41,7 +41,8 @@ export const useMediaStore = defineStore('media', {
       volume: number,
       currentQuality: AudioQuality
     }
-    isPlaying: boolean
+    isPlaying: boolean,
+    isAdsPlayed: boolean,
   } {
     return {
       currentMedia: null,
@@ -54,7 +55,8 @@ export const useMediaStore = defineStore('media', {
         volume: 1,
         currentQuality: "LOSSLESS",
       },
-      isPlaying: false
+      isPlaying: false,
+      isAdsPlayed: false,
     }
   },
   actions: {
@@ -70,7 +72,8 @@ export const useMediaStore = defineStore('media', {
       const res = await requestInstance.get<ResponseSuccess<MediaInfoType>>(`/media/${this.currentMedia.id}`)
       this.infoCurrentMedia = res.data.data
     },
-    async playMedia(media: MediaType) {
+    async playMedia(media: MediaType, forceAds: boolean = false) {
+      this.isAdsPlayed = forceAds;
       const currentMediaId = this.currentMedia?.id;
       if (media.id === currentMediaId) return;
       this.isPlaying = true;
@@ -112,6 +115,13 @@ export const useMediaStore = defineStore('media', {
         });
         audio.addEventListener("timeupdate", () => {
           this.currentAudio.currentTime = audio.currentTime
+          if (audio.currentTime > 60 && this.isAdsPlayed === false) {
+            this.currentAudio.player?.pause()
+            this.isAdsPlayed = true
+            setTimeout(() => {
+              this.currentAudio.player?.play()
+            }, 5000)
+          }
         });
         audio.addEventListener("volumechange", () => {
           this.currentAudio.volume = audio.volume
